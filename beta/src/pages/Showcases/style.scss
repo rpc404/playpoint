@@ -1,0 +1,87 @@
+// 9848449757
+.showcases__container {
+  margin-top: 145px;
+
+  h1 {
+    font-size: 3.8em;
+    padding: 80px 5vw;
+    background: url("https://images.unsplash.com/photo-1529154631088-a0e516571c60?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80")
+      no-repeat fixed;
+    background-size: cover;
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
+    color: #fff;
+  }
+
+  h2 {
+    padding: 10px 2vw;
+  }
+
+  .MuiBox-root {
+    padding: 0 5vw;
+
+    .gameDetails {
+      padding: 25px 0;
+
+      h3 {
+        font-weight: 500;
+        margin-bottom: 10px;
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .gameDetails__item {
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #5a5a5a;
+        border-bottom: 0.5px solid #9a9a9a;
+        padding: 15px 0;
+        position: relative;
+
+        .gameDetails__location{
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            gap: 5px;
+            transform: translate3d(-50%, -50%, 0);
+        }
+
+        .gameDetails__teamDetails {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          .teamName {
+            font-weight: 500;
+            color: #4a4a4a;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+          }
+
+          .gameTime{
+            border: 1px solid #9a9a9a;
+            padding: 3px;
+          }
+        }
+
+        .gameDetails__action{
+            .MuiButton-root{
+                text-transform: capitalize;
+                padding: 1px 5px;
+                color: #000;
+
+                &.quickView{
+                    border: 1px solid #9a9a9a;
+                }
+            }
+        }
+      }
+    }
+  }
+}

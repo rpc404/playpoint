@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import { MoralisProvider } from "react-moralis";
 import App from "./App";
 import { envData } from "./utils/envData";
+import 'remixicon/fonts/remixicon.css'
+import './index.css'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

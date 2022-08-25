@@ -1,0 +1,18 @@
+.helpbar__container {
+  padding: 10px 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-bottom: .5px solid #9a9a9a;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  img {
+    height: 30px;
+  }
+}

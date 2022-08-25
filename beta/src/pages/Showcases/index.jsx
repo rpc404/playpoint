@@ -5,27 +5,11 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Moment from "moment";
-import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import "./style.css";
 
 import WorldCupFixtures from "../../helpers/WorldCupFixtures.json";
-import CountryFlags from "../../helpers/CountryFlags.json";
-
-/**
- * @dev styles for quick view modal
- */
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import QuickView from "./QuickView";
 
 /**
  *
@@ -90,9 +74,13 @@ export default function Showcases() {
   /**
    * @dev states for quick view modal
    */
+  // eslint-disable-next-line
   const [modalOpen, setModalOpen] = React.useState(false);
-  const handleModalOpen = () => setModalOpen(true);
-  const handleModalClose = () => setModalOpen(false);
+  
+  const handleModalOpen = (data) => {
+    localStorage.setItem('quickViewItem', JSON.stringify(data))
+    setModalOpen(true)
+  }
 
   /**
    * @dev convert game dates to more readable format
@@ -125,6 +113,7 @@ export default function Showcases() {
 
   return (
     <div className="showcases__container">
+      {modalOpen && <QuickView handleModalClose={setModalOpen}/>}
       <h1>Showcases</h1>
 
       {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRoI1jUI6TmNhKEDpDBzwkh2dtMJrxxzcZxw&usqp=CAU" alt="" /> */}
@@ -156,18 +145,6 @@ export default function Showcases() {
                     <div className="gameDetails__item" key={index}>
                       <div className="gameDetails__teamDetails">
                         <div className="teamName">{data.HomeTeam}</div>
-                        <div>
-                          {CountryFlags.map((country, index) => {
-                            return (
-                              <img
-                                src={
-                                  data.HomeTeam === country.name &&
-                                  country.image
-                                }
-                              />
-                            );
-                          })}
-                        </div>
                         <div className="gameTime">
                           {data.DateUtc.split(" ")[1].split(":")[0] +
                             ":" +
@@ -181,30 +158,7 @@ export default function Showcases() {
                       </div>
 
                       <div className="gameDetails__action">
-                        <Modal
-                          open={modalOpen}
-                          onClose={handleModalClose}
-                          aria-labelledby="modal-modal-title"
-                          aria-describedby="modal-modal-description"
-                        >
-                          <Box sx={style}>
-                            <Typography
-                              id="modal-modal-title"
-                              variant="h6"
-                              component="h2"
-                            >
-                              Text in a modal
-                            </Typography>
-                            <Typography
-                              id="modal-modal-description"
-                              sx={{ mt: 2 }}
-                            >
-                              Duis mollis, est non commodo luctus, nisi erat
-                              porttitor ligula.
-                            </Typography>
-                          </Box>
-                        </Modal>
-                        <Button className="quickView" onClick={handleModalOpen}>
+                        <Button className="quickView" onClick={() => handleModalOpen(data)}>
                           Quick View
                         </Button>
                         <Button>

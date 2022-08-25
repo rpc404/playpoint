@@ -84,4 +84,30 @@
       }
     }
   }
+
+  .quickViewModal__container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: #0009;
+    width: 100vw;
+    height: 100vh;
+
+    .container{
+      position: relative;
+      width: 100vw;
+      height: 70vh;
+
+      .item{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        background: #fff;
+        padding: 20px;
+        border-radius: 16px;
+      }
+    }
+  }
 }

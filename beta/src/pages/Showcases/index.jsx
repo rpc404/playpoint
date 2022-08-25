@@ -55,7 +55,6 @@ export default function Showcases() {
    * @dev states for the tab panel
    */
   const [groupValue, setGroupValue] = React.useState(0);
-  const [flags, setFlags] = React.useState("");
   const groups = [
     "all",
     "group a",
@@ -158,6 +157,7 @@ export default function Showcases() {
                                   alt={country.name}
                                   style={{ width: "3vw" }}
                                   key={i}
+                                  loading="lazy"
                                 />
                               )
                             );
@@ -177,6 +177,7 @@ export default function Showcases() {
                                   alt={country.name}
                                   style={{ width: "3vw" }}
                                   key={i}
+                                  loading = "lazy"
                                 />
                               )
                             );

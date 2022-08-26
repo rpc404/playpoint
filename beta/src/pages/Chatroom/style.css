@@ -9,11 +9,17 @@
   max-height: 82vh;
   height: 82vh;
   padding: 15px 0;
+  overflow-y: hidden;
 }
 .chatroom__container .rooms {
   width: 23vw;
   border-right: 0.5px solid #9a9a9a;
   height: 100%;
+}
+@media (max-width: 576px) {
+  .chatroom__container .rooms {
+    width: 100vw;
+  }
 }
 .chatroom__container .rooms .topbar {
   display: -webkit-box;
@@ -44,14 +50,23 @@
 .chatroom__container .rooms .topbar .MuiButton-root i {
   font-size: 20px;
 }
-.chatroom__container .rooms .chathead {
+.chatroom__container .rooms .roomsItems {
+  overflow-y: scroll;
+  height: 91%;
+}
+@media (max-width: 576px) {
+  .chatroom__container .rooms .roomsItems {
+    height: 77%;
+  }
+}
+.chatroom__container .rooms .roomsItems .chathead {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 18px 0 18px 15px;
+  padding: 18px 15px;
   text-transform: capitalize;
   font-weight: 400;
   width: 92%;
@@ -61,14 +76,25 @@
           justify-content: left;
   margin: 0 10px;
   color: #000;
+  border-radius: 0;
 }
-.chatroom__container .rooms .chathead.active {
+@media (max-width: 576px) {
+  .chatroom__container .rooms .roomsItems .chathead {
+    border-top: 0.5px solid #9a9a9a;
+  }
+}
+.chatroom__container .rooms .roomsItems .chathead.active {
   background: #f4f4f5;
 }
-.chatroom__container .rooms .chathead .imgHolder {
+@media (max-width: 576px) {
+  .chatroom__container .rooms .roomsItems .chathead.active {
+    background: #fff;
+  }
+}
+.chatroom__container .rooms .roomsItems .chathead .imgHolder {
   position: relative;
 }
-.chatroom__container .rooms .chathead .imgHolder img {
+.chatroom__container .rooms .roomsItems .chathead .imgHolder img {
   position: absolute;
   top: 50%;
   -webkit-transform: translate3d(0, -50%, 0);
@@ -80,19 +106,32 @@
   border-radius: 50%;
   background: #fff;
 }
-.chatroom__container .rooms .chathead .imgHolder img:first-child {
+.chatroom__container .rooms .roomsItems .chathead .imgHolder img:first-child {
   left: 0;
   z-index: 0;
 }
-.chatroom__container .rooms .chathead .imgHolder img:last-child {
+.chatroom__container .rooms .roomsItems .chathead .imgHolder img:last-child {
   left: 25px;
   z-index: 1;
   box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
   -webkit-box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
   -moz-box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
 }
-.chatroom__container .rooms .chathead .username {
+.chatroom__container .rooms .roomsItems .chathead .username {
+  width: 90%;
   margin-left: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.chatroom__container .rooms .roomsItems .chathead .username i {
+  font-size: 16px;
 }
 .chatroom__container .chatbox {
   border-right: 0.5px solid #9a9a9a;
@@ -108,6 +147,11 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+@media (max-width: 576px) {
+  .chatroom__container .chatbox {
+    display: none;
+  }
 }
 .chatroom__container .chatbox .topbar {
   display: -webkit-box;
@@ -247,6 +291,11 @@
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+@media (max-width: 576px) {
+  .chatroom__container .rightbar {
+    display: none;
+  }
 }
 .chatroom__container .rightbar h3 {
   font-weight: 500;

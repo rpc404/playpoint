@@ -67,6 +67,11 @@
             border: 1px solid #9a9a9a;
             padding: 3px;
           }
+
+          img{
+            width: 30px;
+            object-fit: contain;
+          }
         }
 
         .gameDetails__action{

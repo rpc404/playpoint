@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import "./style.css";
 
 import WorldCupFixtures from "../../helpers/WorldCupFixtures.json";
+import CountryFlags from "../../helpers/CountryFlags.json";
 import QuickView from "./QuickView";
 import { Helmet } from "react-helmet";
 
@@ -77,11 +78,11 @@ export default function Showcases() {
    */
   // eslint-disable-next-line
   const [modalOpen, setModalOpen] = React.useState(false);
-  
+
   const handleModalOpen = (data) => {
-    localStorage.setItem('quickViewItem', JSON.stringify(data))
-    setModalOpen(true)
-  }
+    localStorage.setItem("quickViewItem", JSON.stringify(data));
+    setModalOpen(true);
+  };
 
   /**
    * @dev convert game dates to more readable format
@@ -117,7 +118,7 @@ export default function Showcases() {
       <Helmet>
         <title>Showcases | Playpoint</title>
       </Helmet>
-      {modalOpen && <QuickView handleModalClose={setModalOpen}/>}
+      {modalOpen && <QuickView handleModalClose={setModalOpen} />}
       <h1>Showcases</h1>
 
       {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRoI1jUI6TmNhKEDpDBzwkh2dtMJrxxzcZxw&usqp=CAU" alt="" /> */}
@@ -149,11 +150,35 @@ export default function Showcases() {
                     <div className="gameDetails__item" key={index}>
                       <div className="gameDetails__teamDetails">
                         <div className="teamName">{data.HomeTeam}</div>
+                        {CountryFlags.map((country, i) => {
+                          return (
+                            country.name === data.HomeTeam && (
+                              <img
+                                src={country.image}
+                                alt={country.name}
+                                key={i}
+                                loading="lazy"
+                              />
+                            )
+                          );
+                        })}
                         <div className="gameTime">
                           {data.DateUtc.split(" ")[1].split(":")[0] +
                             ":" +
                             data.DateUtc.split(" ")[1].split(":")[1]}
                         </div>
+                        {CountryFlags.map((country, i) => {
+                          return (
+                            country.name === data.AwayTeam && (
+                              <img
+                                src={country.image}
+                                alt={country.name}
+                                key={i}
+                                loading="lazy"
+                              />
+                            )
+                          );
+                        })}
                         <div className="teamName">{data.AwayTeam}</div>
                       </div>
 
@@ -162,7 +187,10 @@ export default function Showcases() {
                       </div>
 
                       <div className="gameDetails__action">
-                        <Button className="quickView" onClick={() => handleModalOpen(data)}>
+                        <Button
+                          className="quickView"
+                          onClick={() => handleModalOpen(data)}
+                        >
                           Quick View
                         </Button>
                         <Button>

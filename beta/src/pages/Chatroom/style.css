@@ -98,7 +98,7 @@
 .chatroom__container .chatbox {
   border-right: 0.5px solid #9a9a9a;
   height: 100%;
-  width: 55vw;
+  width: 53vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -257,16 +257,42 @@
       -ms-flex-align: center;
           align-items: center;
   gap: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
-.chatroom__container .rightbar .leaderboards,
-.chatroom__container .rightbar .matches {
-  height: 50%;
+.chatroom__container .rightbar .leaderboards {
+  height: 94%;
   padding: 0 15px;
 }
-.chatroom__container .rightbar .matches .matchItems {
-  max-height: 90%;
+.chatroom__container .rightbar .leaderboards .leaderboardItems {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   overflow-y: scroll;
+}
+.chatroom__container .rightbar .leaderboards .leaderboardItems .item {
+  border-top: 0.5px solid #9a9a9a;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+.chatroom__container .rightbar .leaderboards .leaderboardItems .item .topbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 10px;
+  font-size: 18px;
+}
+.chatroom__container .rightbar .leaderboards .leaderboardItems .item .topbar div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -274,23 +300,54 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 5px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 3px;
 }
-.chatroom__container .rightbar .matches .matchItems .MuiButton-root {
-  color: #4a4a4a;
-  width: 100%;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
-          justify-content: left;
-  gap: 10px;
-}
-.chatroom__container .rightbar .matches .matchItems .MuiButton-root .time {
-  border: 0.5px solid #9a9a9a;
-}
-.chatroom__container .rightbar .matches .matchItems .MuiButton-root img {
-  width: 30px;
-  height: 30px;
+.chatroom__container .rightbar .leaderboards .leaderboardItems .item .topbar div img {
+  width: 40px;
+  height: 40px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
+  background: #fff;
+}
+.chatroom__container .rightbar .leaderboards .leaderboardItems .item .topbar span {
+  font-size: 22px;
+}
+.chatroom__container .rightbar .leaderboards .leaderboardItems .item .location {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+.chatroom__container .rightbar .leaderboards .leaderboardItems .item .feeds {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.chatroom__container .rightbar .leaderboards .leaderboardItems .item .actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+.chatroom__container .rightbar .leaderboards .leaderboardItems .item .actions .MuiButton-root {
+  text-transform: capitalize;
+  color: #000;
+  gap: 5px;
+  background: rgba(0, 0, 0, 0.0666666667);
+  padding: 2px 15px;
 }

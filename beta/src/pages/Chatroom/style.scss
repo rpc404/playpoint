@@ -7,12 +7,16 @@
   padding: 15px 0;
   overflow-y: hidden;
 
+  @media (max-width: 576px){
+    height: 80vh;
+  }
+
   .rooms {
     width: 23vw;
     border-right: 0.5px solid #9a9a9a;
     height: 100%;
 
-    @media (max-width: 576px){
+    @media (max-width: 576px) {
       width: 100vw;
     }
 
@@ -40,11 +44,11 @@
       }
     }
 
-    .roomsItems{
+    .roomsItems {
       overflow-y: scroll;
       height: 91%;
-      @media (max-width: 576px){
-        height: 77%;
+      @media (max-width: 576px) {
+        height: 70vh;
       }
       .chathead {
         display: flex;
@@ -58,21 +62,21 @@
         margin: 0 10px;
         color: #000;
         border-radius: 0;
-  
-        @media (max-width: 576px){
-          border-top: .5px solid #9a9a9a;
+
+        @media (max-width: 576px) {
+          border-top: 0.5px solid #9a9a9a;
         }
         &.active {
           background: #f4f4f5;
-          
-          @media (max-width: 576px){
+
+          @media (max-width: 576px) {
             background: #fff;
           }
         }
-  
+
         .imgHolder {
           position: relative;
-  
+
           img {
             position: absolute;
             top: 50%;
@@ -82,7 +86,7 @@
             object-fit: cover;
             border-radius: 50%;
             background: #fff;
-  
+
             &:first-child {
               left: 0;
               z-index: 0;
@@ -96,7 +100,7 @@
             }
           }
         }
-  
+
         .username {
           width: 90%;
           margin-left: 70px;
@@ -104,18 +108,17 @@
           align-items: center;
           justify-content: space-between;
 
-          p{
+          p {
             font-weight: 400;
             font-size: 15px;
           }
-  
-          i{
+
+          i {
             font-size: 16px;
           }
         }
       }
     }
-
   }
 
   .chatbox {
@@ -126,8 +129,9 @@
     align-items: flex-start;
     flex-direction: column;
 
-    @media (max-width: 576px){
-      display: none;
+    @media (max-width: 576px) {
+      width: 100vw;
+      height: 75vh;
     }
 
     .topbar {
@@ -138,6 +142,10 @@
       padding: 15px;
       padding-top: 0;
       border-bottom: 0.5px solid #9a9a9a;
+
+      @media (max-width: 576px) {
+        font-size: 14px;
+      }
 
       .chathead__info {
         display: flex;
@@ -155,6 +163,11 @@
             border-radius: 50%;
             background: #fff;
 
+            @media (max-width: 576px) {
+              width: 25px;
+              height: 25px;
+            }
+
             &:first-child {
               left: 0;
               z-index: 0;
@@ -165,6 +178,10 @@
               box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
               -webkit-box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
               -moz-box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
+
+              @media (max-width: 576px) {
+                left: 20px;
+              }
             }
           }
         }
@@ -172,6 +189,10 @@
         h3 {
           margin-left: 70px;
           font-weight: 500;
+
+          @media (max-width: 576px) {
+            margin-left: 53px;
+          }
         }
       }
       .MuiButton-root {
@@ -194,6 +215,10 @@
         max-height: 100%;
         overflow-y: scroll;
 
+        @media (max-width: 576px) {
+          gap: 15px;
+        }
+
         .message {
           display: flex;
           align-items: flex-start;
@@ -211,6 +236,10 @@
             color: #3a3a3a;
             line-height: 1.5;
             font-size: 15px;
+
+            @media (max-width: 576px) {
+              font-size: 14px;
+            }
           }
         }
       }
@@ -220,8 +249,19 @@
       display: flex;
       align-items: center;
       width: 100%;
+
+      @media (max-width: 576px) {
+        padding: 0 2vw;
+      }
+
       .MuiButton-root {
         font-size: 20px;
+        min-width: 0;
+        
+
+        @media (max-width: 576px) {
+          padding: 3px 5px;
+        }
       }
 
       input {
@@ -245,7 +285,7 @@
     height: 100%;
     flex: 1;
 
-    @media (max-width: 576px){
+    @media (max-width: 576px) {
       display: none;
     }
 
@@ -314,13 +354,13 @@
             color: #7a7a7a;
           }
 
-          .actions{
+          .actions {
             display: flex;
             align-items: center;
             gap: 8px;
             margin-top: 10px;
 
-            .MuiButton-root{
+            .MuiButton-root {
               text-transform: capitalize;
               color: #000;
               gap: 5px;

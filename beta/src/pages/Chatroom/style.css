@@ -11,6 +11,11 @@
   padding: 15px 0;
   overflow-y: hidden;
 }
+@media (max-width: 576px) {
+  .chatroom__container {
+    height: 80vh;
+  }
+}
 .chatroom__container .rooms {
   width: 23vw;
   border-right: 0.5px solid #9a9a9a;
@@ -56,7 +61,7 @@
 }
 @media (max-width: 576px) {
   .chatroom__container .rooms .roomsItems {
-    height: 77%;
+    height: 70vh;
   }
 }
 .chatroom__container .rooms .roomsItems .chathead {
@@ -154,7 +159,8 @@
 }
 @media (max-width: 576px) {
   .chatroom__container .chatbox {
-    display: none;
+    width: 100vw;
+    height: 75vh;
   }
 }
 .chatroom__container .chatbox .topbar {
@@ -171,6 +177,11 @@
   padding: 15px;
   padding-top: 0;
   border-bottom: 0.5px solid #9a9a9a;
+}
+@media (max-width: 576px) {
+  .chatroom__container .chatbox .topbar {
+    font-size: 14px;
+  }
 }
 .chatroom__container .chatbox .topbar .chathead__info {
   display: -webkit-box;
@@ -195,6 +206,12 @@
   border-radius: 50%;
   background: #fff;
 }
+@media (max-width: 576px) {
+  .chatroom__container .chatbox .topbar .chathead__info .imgHolder img {
+    width: 25px;
+    height: 25px;
+  }
+}
 .chatroom__container .chatbox .topbar .chathead__info .imgHolder img:first-child {
   left: 0;
   z-index: 0;
@@ -206,9 +223,19 @@
   -webkit-box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
   -moz-box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
 }
+@media (max-width: 576px) {
+  .chatroom__container .chatbox .topbar .chathead__info .imgHolder img:last-child {
+    left: 20px;
+  }
+}
 .chatroom__container .chatbox .topbar .chathead__info h3 {
   margin-left: 70px;
   font-weight: 500;
+}
+@media (max-width: 576px) {
+  .chatroom__container .chatbox .topbar .chathead__info h3 {
+    margin-left: 53px;
+  }
 }
 .chatroom__container .chatbox .topbar .MuiButton-root {
   text-transform: capitalize;
@@ -237,6 +264,11 @@
   max-height: 100%;
   overflow-y: scroll;
 }
+@media (max-width: 576px) {
+  .chatroom__container .chatbox .chats .messageItems {
+    gap: 15px;
+  }
+}
 .chatroom__container .chatbox .chats .messageItems .message {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -258,6 +290,11 @@
   line-height: 1.5;
   font-size: 15px;
 }
+@media (max-width: 576px) {
+  .chatroom__container .chatbox .chats .messageItems .message .messageContent {
+    font-size: 14px;
+  }
+}
 .chatroom__container .chatbox .inputField {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -267,8 +304,19 @@
           align-items: center;
   width: 100%;
 }
+@media (max-width: 576px) {
+  .chatroom__container .chatbox .inputField {
+    padding: 0 2vw;
+  }
+}
 .chatroom__container .chatbox .inputField .MuiButton-root {
   font-size: 20px;
+  min-width: 0;
+}
+@media (max-width: 576px) {
+  .chatroom__container .chatbox .inputField .MuiButton-root {
+    padding: 3px 5px;
+  }
 }
 .chatroom__container .chatbox .inputField input {
   -webkit-box-flex: 1;

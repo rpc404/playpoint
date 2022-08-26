@@ -26,3 +26,5 @@ yarn.lock
 .dccache
 
 yarn.lock
+
+dist

@@ -36,7 +36,6 @@
   border-radius: 50%;
 }
 .chatroom__container .rooms .topbar .MuiButton-root {
-  color: #000;
   -webkit-box-pack: right;
       -ms-flex-pack: right;
           justify-content: right;
@@ -52,7 +51,6 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 10px;
   padding: 18px 0 18px 15px;
   text-transform: capitalize;
   font-weight: 400;
@@ -80,6 +78,7 @@
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
+  background: #fff;
 }
 .chatroom__container .rooms .chathead .imgHolder img:first-child {
   left: 0;
@@ -146,6 +145,7 @@
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
+  background: #fff;
 }
 .chatroom__container .chatbox .topbar .chathead__info .imgHolder img:first-child {
   left: 0;
@@ -333,6 +333,8 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding: 0 8px;
+  color: #7a7a7a;
 }
 .chatroom__container .rightbar .leaderboards .leaderboardItems .item .actions {
   display: -webkit-box;
@@ -348,6 +350,6 @@
   text-transform: capitalize;
   color: #000;
   gap: 5px;
-  background: rgba(0, 0, 0, 0.0666666667);
+  background: #dbf1ff;
   padding: 2px 15px;
 }

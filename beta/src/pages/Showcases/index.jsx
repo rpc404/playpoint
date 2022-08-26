@@ -120,16 +120,14 @@ export default function Showcases() {
       </Helmet>
       {modalOpen && <QuickView handleModalClose={setModalOpen} />}
       <h1>Showcases</h1>
-
-      {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRoI1jUI6TmNhKEDpDBzwkh2dtMJrxxzcZxw&usqp=CAU" alt="" /> */}
-      {/* <h3>Prepared for Fifa WorldCup 2022</h3> */}
-      {/* <div>Fixtures Per Groups</div> */}
       <Box sx={{ width: "100%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={groupValue}
             onChange={handleGroupChange}
-            aria-label="basic tabs example"
+            variant="scrollable"
+            scrollButtons="auto"
+            aria-label="scrollable auto tabs example"
           >
             {groups.map((value, index) => {
               return <Tab label={value} {...a11yProps(index)} key={index} />;
@@ -150,39 +148,75 @@ export default function Showcases() {
                   // console.log(data)
                   return (
                     <div className="gameDetails__item" key={index}>
-                      <div className="gameDetails__teamDetails">
-                        <div className="teamName">{data.HomeTeam}</div>
-                        {CountryFlags.map((country, i) => {
-                          return (
-                            country.name === data.HomeTeam && (
-                              <img
-                                src={country.image}
-                                alt={country.name}
-                                key={i}
-                                loading="lazy"
-                              />
-                            )
-                          );
-                        })}
-                        <div className="gameTime">
-                          {data.DateUtc.split(" ")[1].split(":")[0] +
-                            ":" +
-                            data.DateUtc.split(" ")[1].split(":")[1]}
+                      {window.innerWidth > 576 ? (
+                        <div className="gameDetails__teamDetails">
+                          <div className="teamName">{data.HomeTeam}</div>
+                          {CountryFlags.map((country, i) => {
+                            return (
+                              country.name === data.HomeTeam && (
+                                <img
+                                  src={country.image}
+                                  alt={country.name}
+                                  key={i}
+                                  loading="lazy"
+                                />
+                              )
+                            );
+                          })}
+                          <div className="gameTime">
+                            {data.DateUtc.split(" ")[1].split(":")[0] +
+                              ":" +
+                              data.DateUtc.split(" ")[1].split(":")[1]}
+                          </div>
+                          {CountryFlags.map((country, i) => {
+                            return (
+                              country.name === data.AwayTeam && (
+                                <img
+                                  src={country.image}
+                                  alt={country.name}
+                                  key={i}
+                                  loading="lazy"
+                                />
+                              )
+                            );
+                          })}
+                          <div className="teamName">{data.AwayTeam}</div>
                         </div>
-                        {CountryFlags.map((country, i) => {
-                          return (
-                            country.name === data.AwayTeam && (
-                              <img
-                                src={country.image}
-                                alt={country.name}
-                                key={i}
-                                loading="lazy"
-                              />
-                            )
-                          );
-                        })}
-                        <div className="teamName">{data.AwayTeam}</div>
-                      </div>
+                      ) : (
+                        <Button className="gameDetails__teamDetails">
+                          <div className="teamName">{data.HomeTeam}</div>
+                          {CountryFlags.map((country, i) => {
+                            return (
+                              country.name === data.HomeTeam && (
+                                <img
+                                  src={country.image}
+                                  alt={country.name}
+                                  key={i}
+                                  loading="lazy"
+                                />
+                              )
+                            );
+                          })}
+                          <div className="gameTime">
+                            {data.DateUtc.split(" ")[1].split(":")[0] +
+                              ":" +
+                              data.DateUtc.split(" ")[1].split(":")[1]}
+                          </div>
+                          {CountryFlags.map((country, i) => {
+                            return (
+                              country.name === data.AwayTeam && (
+                                <img
+                                  src={country.image}
+                                  alt={country.name}
+                                  key={i}
+                                  loading="lazy"
+                                />
+                              )
+                            );
+                          })}
+                          <div className="teamName">{data.AwayTeam}</div>
+                        </Button>
+                      )}
 
                       <div className="gameDetails__location">
                         <i className="ri-map-pin-2-line"></i> {data.Location}

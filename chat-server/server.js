@@ -5,7 +5,9 @@ const cors = require('cors');
 const mongoose = require('mongoose')
 const chatController = require('./controller/chatController');
 const Room = require('./model/Room');
-
+const Pushsubscription = require('./model/Pushsubscription')
+const subscriptionHandler = require('./controller/pushController')
+const webpush = require("web-push");
 
 // deepcode ignore DisablePoweredBy: <please specify a reason of ignoring this>
 const app = express();
@@ -30,6 +32,12 @@ app
 	.get(chatController.getRoomChat)
 	.put(chatController.addChat)
 	.delete(chatController.deleteRoom);
+app.post(
+    "/subscription",
+    // protect,
+    subscriptionHandler.handlePushNotificationSubscription
+  );
+  app.post("/subscriptionpost", subscriptionHandler.sendPushNotification);
 
 app.listen(app.get('PORT'), () => 
   console.log('Listening at ' + app.get('PORT')))
@@ -50,12 +58,29 @@ db.once('open',()=>{
           if(change.operationType==='insert'){
               const details = change.fullDocument;
               const room = await Room.findById(details.room_id)
+              const users = await Pushsubscription.find().all();
+
               pusher.trigger('messages','inserted',{
                   sender:details.sender,
                   message:details.message,
                   timestamp:details.timestamp,
                   room_id: room.room_id
               });
+              users.map(function(user) {
+                webpush
+                    .sendNotification(
+                        user,
+                        JSON.stringify({
+                          title: `${String(room.room_id).split('-').join(" ").toLocaleUpperCase()}`,
+                          image: "",
+                          tag: "new message",
+                          url: "/chats/" + room.room_id,
+                        }),
+                    )
+                    .catch(err => {
+                        console.log(err);
+                    });
+             });
           }else{
               console.log('error on pusher');
           }

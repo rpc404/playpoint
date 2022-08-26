@@ -8,6 +8,7 @@ import "./style.css";
 import { useNavigate } from "react-router-dom"
 import Pusher from 'pusher-js'
 import axios from "axios"
+import usePushNotifications from "../../utils/usePushNotification";
 
 const User = {
   uid:parseInt(Math.random()*1000),
@@ -35,7 +36,7 @@ export default function Chatroom() {
   useEffect(() => {
 
     // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+    // Pusher.logToConsole = true;
     const pusher = new Pusher('186e3ce0d881032f7ee9', {
         cluster: 'ap2',
         key: '186e3ce0d881032f7ee9',
@@ -58,6 +59,33 @@ export default function Chatroom() {
     }
 
 }, [Messages, room_id])
+
+const {
+  userConsent,
+  pushNotificationSupported,
+  onClickAskUserPermission,
+  onClickSusbribeToPushNotification,
+  onClickSendSubscriptionToPushServer,
+} = usePushNotifications();
+
+const isConsentGranted = userConsent === "granted";
+const connectPushServer = async () => {
+  await onClickSusbribeToPushNotification().then(async (userSubscription) => {
+    if (userSubscription) {
+      await onClickSendSubscriptionToPushServer(userSubscription).then(
+        async (PSSID) => {
+          console.log(PSSID)
+        }
+      );
+    }
+  });
+};
+useEffect(() => {
+  !isConsentGranted && onClickAskUserPermission();
+  if (pushNotificationSupported && isConsentGranted) {
+    connectPushServer();
+  }
+}, [isConsentGranted]);
 
 
   return (

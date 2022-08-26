@@ -28,7 +28,7 @@ exports.getRoomChat = asyncHandler(async (req,res,next)=>{
     const room = await Room.findOne({room_id: req.params.id})
     if(room){
         const chat = await Message.find({room_id:room._id})
-        res.status(200).json({
+        return res.status(200).json({
             status: true,
             chat: chat,
         });

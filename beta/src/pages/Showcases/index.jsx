@@ -139,6 +139,7 @@ export default function Showcases() {
 
         <TabPanel value={groupValue} index={0}>
           {gameDates.map((data, index) => {
+            // console.log(data)
             return (
               <div className="gameDetails" key={index}>
                 <h3>
@@ -146,6 +147,7 @@ export default function Showcases() {
                 </h3>
 
                 {getGamesByDate(data).map((data, index) => {
+                  // console.log(data)
                   return (
                     <div className="gameDetails__item" key={index}>
                       <div className="gameDetails__teamDetails">

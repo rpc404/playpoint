@@ -6,6 +6,7 @@ import CountryFlags from '../../helpers/CountryFlags.json'
 export default function Topbar() {
   return (
     <div className="topbar__container">
+
         <div className="details">
             Club Sites <i className="ri-attachment-line"></i>
         </div>
@@ -27,5 +28,5 @@ export default function Topbar() {
         })}
         </div>
     </div>
-  )
+  );
 }

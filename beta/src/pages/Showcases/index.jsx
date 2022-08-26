@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 import Moment from "moment";
 import Button from "@mui/material/Button";
 import "./style.css";
-
 import WorldCupFixtures from "../../helpers/WorldCupFixtures.json";
 import CountryFlags from "../../helpers/CountryFlags.json";
 import QuickView from "./QuickView";
@@ -31,7 +30,9 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component={"div"} variant={"p"}>
+            {children}
+          </Typography>
         </Box>
       )}
     </div>
@@ -147,9 +148,9 @@ export default function Showcases() {
           {gameDates.map((data, index) => {
             return (
               <div className="gameDetails" key={index}>
-                <h3>
+                <Typography component={"span"} variant={"h3"}>
                   <i className="ri-calendar-line"></i> {data}
-                </h3>
+                </Typography>
 
                 {getGamesByDate(data).map((data, index) => {
                   return (
@@ -159,13 +160,13 @@ export default function Showcases() {
                         <div className="home__Image">
                           {CountryFlags.map((country, i) => {
                             return (
-                              (country?.name === data?.HomeTeam ||
-                                (country?.name === "United States" &&
-                                  data?.HomeTeam === "USA") ||
-                                (country?.name === "South Korea" &&
-                                  data?.HomeTeam === "Korea Republic")) && (
+                              (country.name === data.HomeTeam ||
+                                (country.name === "United States" &&
+                                  data.HomeTeam === "USA") ||
+                                (country.name === "South Korea" &&
+                                  data.HomeTeam === "Korea Republic")) && (
                                 <img
-                                  src={country?.image}
+                                  src={country.image}
                                   alt={country.name}
                                   key={i}
                                   loading="lazy"

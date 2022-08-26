@@ -1,4 +1,3 @@
-// 9848449757
 .showcases__container {
   margin-top: 145px;
 
@@ -105,8 +104,31 @@
         left: 50%;
         transform: translate3d(-50%, -50%, 0);
         background: #fff;
-        padding: 20px;
+        padding: 20px 30px;
         border-radius: 16px;
+
+        .closeBtn{
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .info__container{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .topBar{
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          justify-content: center;
+        }
+
+        .stadiumInformation{
+          text-align: center;
+        }
       }
     }
   }

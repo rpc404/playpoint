@@ -11,6 +11,7 @@ import "./style.css";
 import WorldCupFixtures from "../../helpers/WorldCupFixtures.json";
 import CountryFlags from "../../helpers/CountryFlags.json";
 import QuickView from "./QuickView";
+import { Helmet } from "react-helmet";
 
 /**
  *
@@ -114,7 +115,10 @@ export default function Showcases() {
 
   return (
     <div className="showcases__container">
-      {modalOpen && <QuickView handleModalClose={setModalOpen} />}
+      <Helmet>
+        <title>Showcases | Playpoint</title>
+      </Helmet>
+      {modalOpen && <QuickView handleModalClose={setModalOpen}/>}
       <h1>Showcases</h1>
 
       {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRoI1jUI6TmNhKEDpDBzwkh2dtMJrxxzcZxw&usqp=CAU" alt="" /> */}

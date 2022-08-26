@@ -25,19 +25,14 @@
   .navbar__authentication {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 
     .MuiButton-root {
       color: #fff;
       display: flex;
       align-items: center;
       gap:5px;
-      
-      &.search-button{
-        min-width: 0;
-        padding: 0;
-        text-transform: capitalize;
-      }
+      text-transform: capitalize;
     }
 
   }

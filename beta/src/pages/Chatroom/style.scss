@@ -1,0 +1,291 @@
+.chatroom__container {
+  margin-top: 145px;
+  display: flex;
+  align-items: flex-start;
+  max-height: 82vh;
+  height: 82vh;
+  padding: 15px 0;
+
+  .rooms {
+    width: 23vw;
+    border-right: 0.5px solid #9a9a9a;
+    height: 100%;
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px;
+      margin-bottom: 10px;
+
+      img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .MuiButton-root {
+        color: #000;
+        justify-content: right;
+        min-width: 0;
+
+        i {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .chathead {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 0 18px 15px;
+      text-transform: capitalize;
+      font-weight: 400;
+      width: 92%;
+      text-align: left;
+      justify-content: left;
+      margin: 0 10px;
+      color: #000;
+
+      &.active {
+        background: #f4f4f5;
+      }
+
+      .imgHolder {
+        position: relative;
+
+        img {
+          position: absolute;
+          top: 50%;
+          transform: translate3d(0, -50%, 0);
+          width: 40px;
+          height: 40px;
+          object-fit: cover;
+          border-radius: 50%;
+
+          &:first-child {
+            left: 0;
+            z-index: 0;
+          }
+          &:last-child {
+            left: 25px;
+            z-index: 1;
+            box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
+            -webkit-box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
+            -moz-box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
+          }
+        }
+      }
+
+      .username {
+        margin-left: 70px;
+      }
+    }
+  }
+
+  .chatbox {
+    border-right: 0.5px solid #9a9a9a;
+    height: 100%;
+    width: 53vw;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    .topbar {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      padding-top: 0;
+      border-bottom: 0.5px solid #9a9a9a;
+
+      .chathead__info {
+        display: flex;
+        align-items: center;
+        .imgHolder {
+          position: relative;
+
+          img {
+            position: absolute;
+            top: 50%;
+            transform: translate3d(0, -50%, 0);
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+
+            &:first-child {
+              left: 0;
+              z-index: 0;
+            }
+            &:last-child {
+              left: 25px;
+              z-index: 1;
+              box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
+              -webkit-box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
+              -moz-box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
+            }
+          }
+        }
+
+        h3 {
+          margin-left: 70px;
+          font-weight: 500;
+        }
+      }
+      .MuiButton-root {
+        text-transform: capitalize;
+        font-size: 16px;
+        gap: 5px;
+      }
+    }
+
+    .chats {
+      flex: 1;
+      padding: 15px;
+      height: 85%;
+
+      .messageItems {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        flex-direction: column;
+        max-height: 100%;
+        overflow-y: scroll;
+
+        .message {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+
+          img {
+            width: 35px;
+            height: 35px;
+          }
+
+          .messageContent {
+            background: #f4f4f5;
+            padding: 10px 15px;
+            border-radius: 0 15px 15px 15px;
+            color: #3a3a3a;
+            line-height: 1.5;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+
+    .inputField {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      .MuiButton-root {
+        font-size: 20px;
+      }
+
+      input {
+        flex: 1;
+        background: #f4f4f5;
+        border: none;
+        font-size: 16px;
+        padding: 8px 10px;
+        border-radius: 10px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .rightbar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1;
+
+    h3 {
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+
+    .leaderboards {
+      height: 94%;
+      padding: 0 15px;
+
+      .leaderboardItems {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        overflow-y: scroll;
+
+        .item {
+          border-top: 0.5px solid #9a9a9a;
+          padding-top: 10px;
+          margin-bottom: 10px;
+          font-size: 15px;
+
+          .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 10px;
+            font-size: 18px;
+
+            div {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 3px;
+
+              img {
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+                border-radius: 50%;
+                background: #fff;
+              }
+            }
+
+            span {
+              font-size: 22px;
+            }
+          }
+
+          .location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 5px;
+          }
+
+          .feeds {
+            display: flex;
+            justify-content: space-between;
+          }
+
+          .actions{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+
+            .MuiButton-root{
+              text-transform: capitalize;
+              color: #000;
+              gap: 5px;
+              background: #0001;
+              padding: 2px 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

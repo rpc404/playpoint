@@ -1,0 +1,39 @@
+.navbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 5vw;
+  background: #000;
+
+  color: #fff;
+
+  .logo__container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+
+    img {
+      width: 40px;
+      object-fit: contain;
+    }
+    h3 {
+      font-weight: 500;
+    }
+  }
+
+  .navbar__authentication {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .MuiButton-root {
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap:5px;
+      text-transform: capitalize;
+    }
+
+  }
+}

@@ -265,145 +265,49 @@ export default function Chatroom() {
           </h3>
 
           <div className="leaderboardItems">
-            <Button></Button>
-          </div>
-        </div>
-        <div className="matches">
-          <h3>
-            <i className="ri-football-line"></i> Matches
-          </h3>
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((data) => {
+              return (
+                <div className="item" key={data}>
+                  <p>Football / Worldcup</p>
+                  <div className="topbar">
+                    <div>
+                      <img
+                        src="https://img.freepik.com/free-vector/australia-flag-round-badge_1308-73039.jpg?w=2000"
+                        alt=""
+                        loading="lazy"
+                      />
+                      <p>Australia</p>
+                    </div>
+                    <span>vs</span>
+                    <div>
+                      <img
+                        src="https://img.freepik.com/free-vector/badge-design-china-flag_1308-73070.jpg?w=2000"
+                        alt=""
+                        loading="lazy"
+                      />
+                      <p>China</p>
+                    </div>
+                  </div>
+                  <p className="location">
+                    <i className="ri-football-line"></i> Al Thumama Stadium
+                  </p>
 
-          <div className="matchItems">
-            <Button>
-              Qatar{" "}
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                alt=""
-              />{" "}
-              <span className="time">17:00</span>{" "}
-              <img
-                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                alt=""
-              />{" "}
-              England
-            </Button>
-            <Button>
-              Qatar{" "}
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                alt=""
-              />{" "}
-              <span className="time">17:00</span>{" "}
-              <img
-                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                alt=""
-              />{" "}
-              England
-            </Button>
-            <Button>
-              Qatar{" "}
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                alt=""
-              />{" "}
-              <span className="time">17:00</span>{" "}
-              <img
-                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                alt=""
-              />{" "}
-              England
-            </Button>
-            <Button>
-              Qatar{" "}
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                alt=""
-              />{" "}
-              <span className="time">17:00</span>{" "}
-              <img
-                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                alt=""
-              />{" "}
-              England
-            </Button>
-            <Button>
-              Qatar{" "}
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                alt=""
-              />{" "}
-              <span className="time">17:00</span>{" "}
-              <img
-                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                alt=""
-              />{" "}
-              England
-            </Button>
-            <Button>
-              Qatar{" "}
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                alt=""
-              />{" "}
-              <span className="time">17:00</span>{" "}
-              <img
-                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                alt=""
-              />{" "}
-              England
-            </Button>
-            <Button>
-              Qatar{" "}
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                alt=""
-              />{" "}
-              <span className="time">17:00</span>{" "}
-              <img
-                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                alt=""
-              />{" "}
-              England
-            </Button>
-            <Button>
-              Qatar{" "}
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                alt=""
-              />{" "}
-              <span className="time">17:00</span>{" "}
-              <img
-                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                alt=""
-              />{" "}
-              England
-            </Button>
-            <Button>
-              Qatar{" "}
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                alt=""
-              />{" "}
-              <span className="time">17:00</span>{" "}
-              <img
-                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                alt=""
-              />{" "}
-              England
-            </Button>
-            <Button>
-              Qatar{" "}
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                alt=""
-              />{" "}
-              <span className="time">17:00</span>{" "}
-              <img
-                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                alt=""
-              />{" "}
-              England
-            </Button>
+                  <div className="feeds">
+                    <p>Participants</p>
+                    <p>1254</p>
+                  </div>
+                  <div className="feeds">
+                    <p>Volume</p>
+                    <p>$1.4K</p>
+                  </div>
+
+                  <div className="actions">
+                    <Button><i className="ri-message-3-line"></i> Join Chat</Button>
+                    <Button><i className="ri-chat-poll-line"></i> Predict Now</Button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

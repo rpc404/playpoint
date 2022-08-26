@@ -118,7 +118,7 @@ export default function Showcases() {
       <Helmet>
         <title>Showcases | Playpoint</title>
       </Helmet>
-      {modalOpen && <QuickView handleModalClose={setModalOpen}/>}
+      {modalOpen && <QuickView handleModalClose={setModalOpen} />}
       <h1>Showcases</h1>
 
       {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRoI1jUI6TmNhKEDpDBzwkh2dtMJrxxzcZxw&usqp=CAU" alt="" /> */}
@@ -152,41 +152,35 @@ export default function Showcases() {
                     <div className="gameDetails__item" key={index}>
                       <div className="gameDetails__teamDetails">
                         <div className="teamName">{data.HomeTeam}</div>
-                        <div>
-                          {CountryFlags.map((country, i) => {
-                            return (
-                              country.name === data.HomeTeam && (
-                                <img
-                                  src={country.image}
-                                  alt={country.name}
-                                  style={{ width: "3vw" }}
-                                  key={i}
-                                  loading="lazy"
-                                />
-                              )
-                            );
-                          })}
-                        </div>
+                        {CountryFlags.map((country, i) => {
+                          return (
+                            country.name === data.HomeTeam && (
+                              <img
+                                src={country.image}
+                                alt={country.name}
+                                key={i}
+                                loading="lazy"
+                              />
+                            )
+                          );
+                        })}
                         <div className="gameTime">
                           {data.DateUtc.split(" ")[1].split(":")[0] +
                             ":" +
                             data.DateUtc.split(" ")[1].split(":")[1]}
                         </div>
-                        <div>
-                          {CountryFlags.map((country, i) => {
-                            return (
-                              country.name === data.AwayTeam && (
-                                <img
-                                  src={country.image}
-                                  alt={country.name}
-                                  style={{ width: "3vw" }}
-                                  key={i}
-                                  loading = "lazy"
-                                />
-                              )
-                            );
-                          })}
-                        </div>
+                        {CountryFlags.map((country, i) => {
+                          return (
+                            country.name === data.AwayTeam && (
+                              <img
+                                src={country.image}
+                                alt={country.name}
+                                key={i}
+                                loading="lazy"
+                              />
+                            )
+                          );
+                        })}
                         <div className="teamName">{data.AwayTeam}</div>
                       </div>
 

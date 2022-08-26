@@ -1,15 +1,16 @@
-import React from "react";
-import "./style.css";
-import CountryFlags from "../../helpers/CountryFlags.json";
-import WorldCupFixtures from "../../helpers/WorldCupFixtures.json";
+import React from 'react'
+import './style.css'
+import WorldCupFixtures from '../../helpers/WorldCupFixtures.json'
+import CountryFlags from '../../helpers/CountryFlags.json'
 
 export default function Topbar() {
   return (
     <div className="topbar__container">
-      <div style={{display:"flex"}}>
-        Club Sites <i className="ri-attachment-line"></i>
-      </div>
-      <div>
+
+        <div className="details">
+            Club Sites <i className="ri-attachment-line"></i>
+        </div>
+        <div className='imgContainers'>
         {WorldCupFixtures.map((data) => {
           return CountryFlags.map((country, i) => {
             return (
@@ -25,7 +26,7 @@ export default function Topbar() {
             );
           });
         })}
-      </div>
+        </div>
     </div>
   );
 }

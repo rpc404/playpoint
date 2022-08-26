@@ -8,9 +8,12 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./style.css";
 
 export default function Navbar() {
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+
   const [state, setState] = React.useState({
     right: false,
   });
@@ -68,9 +71,19 @@ export default function Navbar() {
         <Button className="search-button">
           <i className="ri-search-line"></i>Search
         </Button>
-        <Button>
-          <i className="ri-fingerprint-line"></i> Login / Register
+        {!isAuthenticated && (
+          <Button onClick={() => loginWithRedirect()}>
+            <i className="ri-fingerprint-line"></i> Login / Register
+          </Button>
+        )}
+        {isAuthenticated && (
+          <>
+        <Button><i className="ri-user-line"></i> {user.name}</Button>
+          <Button onClick={() => logout({ returnTo: "http://localhost:5173" })}>
+          <i className="ri-logout-box-line"></i> Logout
         </Button>
+        </>
+        )}
       </div>
       {window.innerWidth < 576 && (
         <div className="drawer">

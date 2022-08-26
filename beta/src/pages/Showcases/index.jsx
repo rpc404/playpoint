@@ -31,7 +31,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component={"div"} variant={"p"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -199,9 +199,9 @@ export default function Showcases() {
           {gameDates.all.map((data, index) => {
             return (
               <div className="gameDetails" key={index}>
-                <h3>
+                <Typography component={"span"} variant={"h3"}>
                   <i className="ri-calendar-line"></i> {data}
-                </h3>
+                </Typography>
 
                 {getGamesByDate(data).map((data, index) => {
                   return (
@@ -302,9 +302,9 @@ export default function Showcases() {
           {gameDates.groupA.map((data, index) => {
             return (
               <div className="gameDetails" key={index}>
-                <h3>
+                <Typography component={"span"} variant={"h3"}>
                   <i className="ri-calendar-line"></i> {data}
-                </h3>
+                </Typography>
 
                 {getGamesByDate(data).map((data, index) => {
                   if (data.Group === "Group A")
@@ -406,9 +406,9 @@ export default function Showcases() {
           {gameDates?.groupB?.map((data, index) => {
             return (
               <div className="gameDetails" key={index}>
-                <h3>
+                <Typography component={"span"} variant={"h3"}>
                   <i className="ri-calendar-line"></i> {data}
-                </h3>
+                </Typography>
 
                 {getGamesByDate(data).map((data, index) => {
                   if (data.Group === "Group B")
@@ -510,9 +510,9 @@ export default function Showcases() {
           {gameDates?.groupC?.map((data, index) => {
             return (
               <div className="gameDetails" key={index}>
-                <h3>
+                <Typography component={"span"} variant={"h3"}>
                   <i className="ri-calendar-line"></i> {data}
-                </h3>
+                </Typography>
 
                 {getGamesByDate(data).map((data, index) => {
                   if (data.Group === "Group C")
@@ -614,9 +614,9 @@ export default function Showcases() {
           {gameDates?.groupD?.map((data, index) => {
             return (
               <div className="gameDetails" key={index}>
-                <h3>
+                <Typography component={"span"} variant={"h3"}>
                   <i className="ri-calendar-line"></i> {data}
-                </h3>
+                </Typography>
 
                 {getGamesByDate(data).map((data, index) => {
                   if (data.Group === "Group D")
@@ -718,9 +718,9 @@ export default function Showcases() {
           {gameDates?.groupE?.map((data, index) => {
             return (
               <div className="gameDetails" key={index}>
-                <h3>
+                <Typography component={"span"} variant={"h3"}>
                   <i className="ri-calendar-line"></i> {data}
-                </h3>
+                </Typography>
 
                 {getGamesByDate(data).map((data, index) => {
                   if (data.Group === "Group E")
@@ -822,9 +822,9 @@ export default function Showcases() {
           {gameDates?.groupF?.map((data, index) => {
             return (
               <div className="gameDetails" key={index}>
-                <h3>
+                <Typography component={"span"} variant={"h3"}>
                   <i className="ri-calendar-line"></i> {data}
-                </h3>
+                </Typography>
 
                 {getGamesByDate(data).map((data, index) => {
                   if (data.Group === "Group F")
@@ -926,9 +926,9 @@ export default function Showcases() {
           {gameDates?.groupG?.map((data, index) => {
             return (
               <div className="gameDetails" key={index}>
-                <h3>
+                <Typography component={"span"} variant={"h3"}>
                   <i className="ri-calendar-line"></i> {data}
-                </h3>
+                </Typography>
 
                 {getGamesByDate(data).map((data, index) => {
                   if (data.Group === "Group G")
@@ -1030,9 +1030,9 @@ export default function Showcases() {
           {gameDates?.groupH?.map((data, index) => {
             return (
               <div className="gameDetails" key={index}>
-                <h3>
+                <Typography component={"span"} variant={"h3"}>
                   <i className="ri-calendar-line"></i> {data}
-                </h3>
+                </Typography>
 
                 {getGamesByDate(data).map((data, index) => {
                   if (data.Group === "Group H")

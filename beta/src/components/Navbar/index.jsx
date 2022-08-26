@@ -68,9 +68,6 @@ export default function Navbar() {
         <Button className="notificationBtn">
           <i className="ri-notification-2-line"></i>Notifications
         </Button>
-        <Button className="search-button">
-          <i className="ri-search-line"></i>Search
-        </Button>
         {!isAuthenticated && (
           <Button onClick={() => loginWithRedirect()}>
             <i className="ri-fingerprint-line"></i> Login / Register

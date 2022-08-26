@@ -68,12 +68,6 @@
             height: 5vh;
             display: flex;
             align-items: center;
-            // overflow: hidden;
-            img {
-              border-radius: 50%;
-              // width: 100px;
-              // height: 100px;
-            }
           }
 
           .gameTime{
@@ -83,15 +77,9 @@
 
           .Away__Image{
             width: 3vw;
-            height: 5vh;
+            height: 2vh;
             display: flex;
             align-items: center;
-            img {
-              width: 100px;
-              height: 100px;
-              border-radius: 50%;
-              // clip-path: circle();
-            }
           }
         }
 
@@ -123,6 +111,7 @@
       position: relative;
       width: 100vw;
       height: 70vh;
+      // overflow: hidden;
 
       .item{
         position: absolute;

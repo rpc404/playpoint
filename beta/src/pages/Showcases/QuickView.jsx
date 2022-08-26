@@ -7,6 +7,7 @@ export default function QuickView({ handleModalClose }) {
   // eslint-disable-next-line
   const handleModal = () => {
     handleModalClose(false);
+    document.body.style = ""
   };
 
   React.useEffect(() => {
@@ -21,7 +22,9 @@ export default function QuickView({ handleModalClose }) {
           <div className="item">
             <div className="info__container">
               <div>Football/Worldcup</div>
-            <Button onClick={handleModal} className="closeBtn"><i className="ri-close-line"></i> Close</Button>
+              <Button onClick={handleModal} className="closeBtn">
+                <i className="ri-close-line"></i> Close
+              </Button>
             </div>
             <div className="topBar">
               <div className="homeTeam">{gameData?.HomeTeam}</div>
@@ -34,18 +37,12 @@ export default function QuickView({ handleModalClose }) {
             </div>
 
             <div className="stadiumInformation">
-            <i className="ri-map-pin-2-line"></i> {gameData?.Location}
+              <i className="ri-map-pin-2-line"></i> {gameData?.Location}
             </div>
             <div className="actions">
-              <Button>
-                Predict Now
-              </Button>
-              <Button>
-                Join Chat
-              </Button>
-              <Button>
-                Leaderboards
-              </Button>
+              <Button>Predict Now</Button>
+              <Button>Join Chat</Button>
+              <Button>Leaderboards</Button>
             </div>
           </div>
         )}

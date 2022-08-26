@@ -56,6 +56,7 @@ export default function Showcases() {
    * @dev states for the tab panel
    */
   const [groupValue, setGroupValue] = React.useState(0);
+  const [opened,setOpened] = React.useState(false)
   const groups = [
     "all",
     "group a",
@@ -82,7 +83,15 @@ export default function Showcases() {
   const handleModalOpen = (data) => {
     localStorage.setItem("quickViewItem", JSON.stringify(data));
     setModalOpen(true);
+    setOpened(true)
   };
+
+  React.useEffect(() => {
+    if(opened){
+      document.body.style.overflow = "hidden"
+      document.body.style.height = "100vh"
+    }
+  },[opened])
 
   /**
    * @dev convert game dates to more readable format
@@ -118,7 +127,7 @@ export default function Showcases() {
       <Helmet>
         <title>Showcases | Playpoint</title>
       </Helmet>
-      {modalOpen && <QuickView handleModalClose={setModalOpen}/>}
+      {modalOpen && <QuickView handleModalClose={setModalOpen} />}
       <h1>Showcases</h1>
 
       {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRoI1jUI6TmNhKEDpDBzwkh2dtMJrxxzcZxw&usqp=CAU" alt="" /> */}
@@ -139,7 +148,6 @@ export default function Showcases() {
 
         <TabPanel value={groupValue} index={0}>
           {gameDates.map((data, index) => {
-            // console.log(data)
             return (
               <div className="gameDetails" key={index}>
                 <h3>
@@ -147,12 +155,11 @@ export default function Showcases() {
                 </h3>
 
                 {getGamesByDate(data).map((data, index) => {
-                  // console.log(data)
                   return (
                     <div className="gameDetails__item" key={index}>
                       <div className="gameDetails__teamDetails">
                         <div className="teamName">{data.HomeTeam}</div>
-                        <div  className="home__Image">
+                        <div className="home__Image">
                           {CountryFlags.map((country, i) => {
                             return (
                               country.name === data.HomeTeam && (
@@ -162,7 +169,6 @@ export default function Showcases() {
                                   style={{ width: "3vw" }}
                                   key={i}
                                   loading="lazy"
-                                 
                                 />
                               )
                             );
@@ -180,9 +186,8 @@ export default function Showcases() {
                                 <img
                                   src={country.image}
                                   alt={country.name}
-                                  style={{ width: "3vw",borderRadius:"50%" }}
                                   key={i}
-                                  loading = "lazy"
+                                  loading="lazy"
                                 />
                               )
                             );
@@ -214,28 +219,28 @@ export default function Showcases() {
           })}
         </TabPanel>
         <TabPanel value={groupValue} index={1}>
-          Group A
+          Hello
         </TabPanel>
         <TabPanel value={groupValue} index={2}>
-          hello
+          Hello
         </TabPanel>
         <TabPanel value={groupValue} index={3}>
-          hello
+          Hello
         </TabPanel>
         <TabPanel value={groupValue} index={4}>
-          hello
+          Hello
         </TabPanel>
         <TabPanel value={groupValue} index={5}>
-          hello
+          Hello
         </TabPanel>
         <TabPanel value={groupValue} index={6}>
-          hello
+          Hello
         </TabPanel>
         <TabPanel value={groupValue} index={7}>
-          hello
+          Hello
         </TabPanel>
         <TabPanel value={groupValue} index={8}>
-          hello
+          Hello
         </TabPanel>
       </Box>
     </div>

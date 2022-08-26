@@ -1,50 +1,11 @@
 import { Button } from "@mui/material";
 import React from "react";
 import { Helmet } from "react-helmet";
-// import axios from "axios";
-// import Pusher from "pusher-js";
 import "./style.css";
-// import ChatList from "./components/ChatList";
-// import ChatBox from "./components/ChatBox";
 
 export default function Chatroom() {
-  // const [text, setText] = React.useState("");
-  // const [username, setUsername] = React.useState("");
-  // const [chats, setChats] = React.useState([]);
-
-  // const handleTextChange = (e) => {
-  //   if (e.keyCode === 13) {
-  //     const payload = {
-  //       username: username,
-  //       message: text,
-  //     };
-  //     axios.post("http://localhost:8000/message", payload);
-  //   } else {
-  //     setText(e.target.value);
-  //   }
-  // };
-
-  // React.useEffect(() => {
-  //   const username = window.prompt("Username: ", "Anonymous");
-  //   setUsername(username);
-  //   const pusher = new Pusher("186e3ce0d881032f7ee9", {
-  //     cluster: "ap2",
-  //     encrypted: true,
-  //   });
-  //   const channel = pusher.subscribe("chat");
-  //   channel.bind("message", (data) => {
-  //     setChats([...chats, data]);
-  //   });
-  // }, []);
-
   return (
     <div className="chatroom__container">
-      {/* <ChatList chats={chats} />
-      <ChatBox
-        text={text}
-        username={username}
-        handleTextChange={handleTextChange}
-      /> */}
       <Helmet>
         <title>Chats | Playpoint</title>
       </Helmet>
@@ -61,201 +22,213 @@ export default function Chatroom() {
           </Button>
         </div>
 
-       <div className="roomsItems">
-       <Button className="chathead active">
-          <div className="imgHolder">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-              alt=""
-              loading="lazy"
-            />
-            <img
-              src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div className="username">
-            <p>Qatar vs England</p> <i className="ri-notification-off-line"></i>
-          </div>
-        </Button>
-        <Button className="chathead">
-          <div className="imgHolder">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-              alt=""
-              loading="lazy"
-            />
-            <img
-              src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div className="username">
-            <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>          </div>
-        </Button>
-        <Button className="chathead">
-          <div className="imgHolder">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-              alt=""
-              loading="lazy"
-            />
-            <img
-              src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div className="username">
-            <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>          </div>
-        </Button>
-        <Button className="chathead">
-          <div className="imgHolder">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-              alt=""
-              loading="lazy"
-            />
-            <img
-              src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div className="username">
-            <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>          </div>
-        </Button>
-        <Button className="chathead">
-          <div className="imgHolder">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-              alt=""
-              loading="lazy"
-            />
-            <img
-              src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div className="username">
-            <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>          </div>
-        </Button>
-        <Button className="chathead">
-          <div className="imgHolder">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-              alt=""
-              loading="lazy"
-            />
-            <img
-              src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div className="username">
-            <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>          </div>
-        </Button>
-        <Button className="chathead">
-          <div className="imgHolder">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-              alt=""
-              loading="lazy"
-            />
-            <img
-              src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div className="username">
-            <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>          </div>
-        </Button>
-        <Button className="chathead">
-          <div className="imgHolder">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-              alt=""
-              loading="lazy"
-            />
-            <img
-              src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div className="username">
-            <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>          </div>
-        </Button>
-        <Button className="chathead">
-          <div className="imgHolder">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-              alt=""
-              loading="lazy"
-            />
-            <img
-              src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div className="username">
-            <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>          </div>
-        </Button>
-        <Button className="chathead">
-          <div className="imgHolder">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-              alt=""
-              loading="lazy"
-            />
-            <img
-              src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div className="username">
-            <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>          </div>
-        </Button>
-        <Button className="chathead">
-          <div className="imgHolder">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-              alt=""
-              loading="lazy"
-            />
-            <img
-              src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div className="username">
-            <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>          </div>
-        </Button>
-        <Button className="chathead">
-          <div className="imgHolder">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-              alt=""
-              loading="lazy"
-            />
-            <img
-              src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-              alt=""
-              loading="lazy"
-            />
-          </div>
-          <div className="username">
-            <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>          </div>
-        </Button>
-       </div>
+        <div className="roomsItems">
+          <Button className="chathead active">
+            <div className="imgHolder">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div className="username">
+              <p>Qatar vs England</p>{" "}
+              <i className="ri-notification-off-line"></i>
+            </div>
+          </Button>
+          <Button className="chathead">
+            <div className="imgHolder">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div className="username">
+              <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>{" "}
+            </div>
+          </Button>
+          <Button className="chathead">
+            <div className="imgHolder">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div className="username">
+              <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>{" "}
+            </div>
+          </Button>
+          <Button className="chathead">
+            <div className="imgHolder">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div className="username">
+              <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>{" "}
+            </div>
+          </Button>
+          <Button className="chathead">
+            <div className="imgHolder">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div className="username">
+              <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>{" "}
+            </div>
+          </Button>
+          <Button className="chathead">
+            <div className="imgHolder">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div className="username">
+              <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>{" "}
+            </div>
+          </Button>
+          <Button className="chathead">
+            <div className="imgHolder">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div className="username">
+              <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>{" "}
+            </div>
+          </Button>
+          <Button className="chathead">
+            <div className="imgHolder">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div className="username">
+              <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>{" "}
+            </div>
+          </Button>
+          <Button className="chathead">
+            <div className="imgHolder">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div className="username">
+              <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>{" "}
+            </div>
+          </Button>
+          <Button className="chathead">
+            <div className="imgHolder">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div className="username">
+              <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>{" "}
+            </div>
+          </Button>
+          <Button className="chathead">
+            <div className="imgHolder">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div className="username">
+              <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>{" "}
+            </div>
+          </Button>
+          <Button className="chathead">
+            <div className="imgHolder">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
+                alt=""
+                loading="lazy"
+              />
+              <img
+                src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+            <div className="username">
+              <p>Qatar vs England</p> <i className="ri-notification-4-line"></i>{" "}
+            </div>
+          </Button>
+        </div>
       </div>
       <div className="chatbox">
         <div className="topbar">

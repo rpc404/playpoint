@@ -130,6 +130,10 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+.chatroom__container .rooms .roomsItems .chathead .username p {
+  font-weight: 400;
+  font-size: 15px;
+}
 .chatroom__container .rooms .roomsItems .chathead .username i {
   font-size: 16px;
 }

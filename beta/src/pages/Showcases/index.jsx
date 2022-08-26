@@ -56,7 +56,6 @@ export default function Showcases() {
    * @dev states for the tab panel
    */
   const [groupValue, setGroupValue] = React.useState(0);
-  const [opened,setOpened] = React.useState(false)
   const groups = [
     "all",
     "group a",
@@ -83,15 +82,13 @@ export default function Showcases() {
   const handleModalOpen = (data) => {
     localStorage.setItem("quickViewItem", JSON.stringify(data));
     setModalOpen(true);
-    setOpened(true)
+    handleModel();
   };
 
-  React.useEffect(() => {
-    if(opened){
-      document.body.style.overflow = "hidden"
-      document.body.style.height = "100vh"
-    }
-  },[opened])
+  const handleModel = () => {
+    document.body.style.overflow = "hidden";
+    document.body.style.height = "100vh";
+  };
 
   /**
    * @dev convert game dates to more readable format
@@ -162,11 +159,14 @@ export default function Showcases() {
                         <div className="home__Image">
                           {CountryFlags.map((country, i) => {
                             return (
-                              country.name === data.HomeTeam && (
+                              (country?.name === data?.HomeTeam ||
+                                (country?.name === "United States" &&
+                                  data?.HomeTeam === "USA") ||
+                                (country?.name === "South Korea" &&
+                                  data?.HomeTeam === "Korea Republic")) && (
                                 <img
-                                  src={country.image}
+                                  src={country?.image}
                                   alt={country.name}
-                                  style={{ width: "3vw" }}
                                   key={i}
                                   loading="lazy"
                                 />
@@ -182,9 +182,13 @@ export default function Showcases() {
                         <div className="Away__Image">
                           {CountryFlags.map((country, i) => {
                             return (
-                              country.name === data.AwayTeam && (
+                              (country.name === data.AwayTeam ||
+                                (country.name === "United States" &&
+                                  data.AwayTeam === "USA") ||
+                                (country.name === "South Korea" &&
+                                  data.AwayTeam === "Korea Republic")) && (
                                 <img
-                                  src={country.image}
+                                  src={country?.image}
                                   alt={country.name}
                                   key={i}
                                   loading="lazy"

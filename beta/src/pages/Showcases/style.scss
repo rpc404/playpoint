@@ -9,6 +9,14 @@
     background-size: cover;
     box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
     color: #fff;
+<<<<<<< HEAD
+=======
+
+    @media (max-width: 576px) {
+      font-size: 1.5em;
+      padding: 50px 5vw;
+    }
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
   }
 
   h2 {
@@ -18,9 +26,23 @@
   .MuiBox-root {
     padding: 0 5vw;
 
+<<<<<<< HEAD
     .gameDetails {
       padding: 25px 0;
 
+=======
+    @media (max-width: 576px) {
+      padding: 0;
+    }
+
+    .gameDetails {
+      padding: 25px 0;
+
+      @media (max-width: 576px) {
+        padding: 15px 5vw;
+      }
+
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
       h3 {
         font-weight: 500;
         margin-bottom: 10px;
@@ -28,6 +50,14 @@
         display: flex;
         align-items: center;
         gap: 5px;
+<<<<<<< HEAD
+=======
+
+        @media (max-width: 576px) {
+          margin-bottom: 0;
+          font-size: 18px;
+        }
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
       }
 
       .gameDetails__item {
@@ -40,6 +70,7 @@
         padding: 15px 0;
         position: relative;
 
+<<<<<<< HEAD
         .gameDetails__location{
             display: flex;
             align-items: center;
@@ -48,6 +79,20 @@
             top: 50%;
             gap: 5px;
             transform: translate3d(-50%, -50%, 0);
+=======
+        .gameDetails__location {
+          display: flex;
+          align-items: center;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          gap: 5px;
+          transform: translate3d(-50%, -50%, 0);
+
+          @media (max-width: 576px) {
+            display: none;
+          }
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
         }
 
         .gameDetails__teamDetails {
@@ -55,25 +100,48 @@
           align-items: center;
           gap: 10px;
 
+<<<<<<< HEAD
+=======
+          @media (max-width: 576px) {
+            gap: 3px;
+            text-transform: capitalize;
+          }
+
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
           .teamName {
             font-weight: 500;
             color: #4a4a4a;
             font-size: 18px;
             display: flex;
             align-items: center;
+<<<<<<< HEAD
           }
 
           .gameTime{
+=======
+
+            @media (max-width: 576px) {
+              font-size: 16px;
+            }
+          }
+
+          .gameTime {
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
             border: 1px solid #9a9a9a;
             padding: 3px;
           }
 
+<<<<<<< HEAD
           img{
+=======
+          img {
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
             width: 30px;
             object-fit: contain;
           }
         }
 
+<<<<<<< HEAD
         .gameDetails__action{
             .MuiButton-root{
                 text-transform: capitalize;
@@ -84,26 +152,65 @@
                     border: 1px solid #9a9a9a;
                 }
             }
+=======
+        .gameDetails__action {
+          .MuiButton-root {
+            text-transform: capitalize;
+            padding: 1px 5px;
+            color: #000;
+
+            @media (max-width: 576px) {
+              padding: 1px 2px;
+              min-width: 30px;
+
+              i {
+                font-size: 18px;
+              }
+            }
+
+            &.quickView {
+              border: 1px solid #9a9a9a;
+
+              @media (max-width: 576px) {
+                display: none;
+              }
+            }
+          }
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
         }
       }
     }
   }
 
+<<<<<<< HEAD
   .quickViewModal__container{
     position: absolute;
     top: 0;
+=======
+  .quickViewModal__container {
+    position: absolute;
+    top: 10px;
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
     left: 0;
     z-index: 2;
     background: #0009;
     width: 100vw;
     height: 100vh;
 
+<<<<<<< HEAD
     .container{
+=======
+    .container {
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
       position: relative;
       width: 100vw;
       height: 70vh;
 
+<<<<<<< HEAD
       .item{
+=======
+      .item {
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
         position: absolute;
         top: 50%;
         left: 50%;
@@ -112,34 +219,53 @@
         padding: 20px 30px;
         border-radius: 16px;
 
+<<<<<<< HEAD
         .closeBtn{
+=======
+        .closeBtn {
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
           display: flex;
           align-items: center;
           gap: 8px;
         }
 
+<<<<<<< HEAD
         .info__container{
+=======
+        .info__container {
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
           display: flex;
           align-items: center;
           justify-content: space-between;
         }
 
+<<<<<<< HEAD
         .topBar{
+=======
+        .topBar {
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
           display: flex;
           align-items: center;
           gap: 20px;
           justify-content: center;
         }
 
+<<<<<<< HEAD
         .stadiumInformation{
+=======
+        .stadiumInformation {
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
           text-align: center;
         }
       }
     }
   }
 }
+<<<<<<< HEAD
 
 #root > div.showcases__container > div > div.MuiBox-root.css-1gsv261 > div > div > div {
   align-items: center;
   justify-content: center;
 }
+=======
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41

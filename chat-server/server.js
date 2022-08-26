@@ -11,6 +11,7 @@ const webpush = require("web-push");
 
 // deepcode ignore DisablePoweredBy: <please specify a reason of ignoring this>
 const app = express();
+
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -21,8 +22,7 @@ const pusher = new Pusher({
   cluster: 'ap2',
   encrypted: true
 });
-app.set('PORT', process.env.PORT || 8000);
-
+app.set('PORT', process.env.PORT || 8000)
 app.get('/',(req,res)=> res.status(200).send("Hello from backend"));
 app
 	.route('/chats/create-new-room')

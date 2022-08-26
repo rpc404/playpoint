@@ -25,6 +25,7 @@ ul {
     right: 50px;
   }
 
+
   .rooms, .chats__rooms{
     height: 100vh;
     overflow-y: scroll;
@@ -36,3 +37,4 @@ ul {
     z-index: 2;
 
   }
+

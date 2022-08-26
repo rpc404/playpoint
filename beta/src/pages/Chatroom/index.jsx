@@ -97,6 +97,8 @@ useEffect(() => {
       <ChatList setActive={setActiveRoom} />
       {/* chat box */}
       <ChatBox chats={Messages} room_id={room_id} />
+
+    
       <div className="rightbar">
         <div className="leaderboards">
           <h3>
@@ -141,8 +143,12 @@ useEffect(() => {
                   </div>
 
                   <div className="actions">
-                    <Button><i className="ri-message-3-line"></i> Join Chat</Button>
-                    <Button><i className="ri-chat-poll-line"></i> Predict Now</Button>
+                    <Button>
+                      <i className="ri-message-3-line"></i> Join Chat
+                    </Button>
+                    <Button>
+                      <i className="ri-chat-poll-line"></i> Predict Now
+                    </Button>
                   </div>
                 </div>
               );

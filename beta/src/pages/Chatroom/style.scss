@@ -5,12 +5,27 @@
   max-height: 82vh;
   height: 82vh;
   padding: 15px 0;
+<<<<<<< HEAD
+=======
+  overflow-y: hidden;
+
+  @media (max-width: 576px){
+    height: 80vh;
+  }
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
 
   .rooms {
     width: 23vw;
     border-right: 0.5px solid #9a9a9a;
     height: 100%;
 
+<<<<<<< HEAD
+=======
+    @media (max-width: 576px) {
+      width: 100vw;
+    }
+
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
     .topbar {
       display: flex;
       align-items: center;
@@ -26,7 +41,10 @@
       }
 
       .MuiButton-root {
+<<<<<<< HEAD
         color: #000;
+=======
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
         justify-content: right;
         min-width: 0;
 
@@ -36,6 +54,7 @@
       }
     }
 
+<<<<<<< HEAD
     .chathead {
       display: flex;
       align-items: center;
@@ -105,6 +124,38 @@
       .chathead__info {
         display: flex;
         align-items: center;
+=======
+    .roomsItems {
+      overflow-y: scroll;
+      height: 91%;
+      @media (max-width: 576px) {
+        height: 70vh;
+      }
+      .chathead {
+        display: flex;
+        align-items: center;
+        padding: 18px 15px;
+        text-transform: capitalize;
+        font-weight: 400;
+        width: 92%;
+        text-align: left;
+        justify-content: left;
+        margin: 0 10px;
+        color: #000;
+        border-radius: 0;
+
+        @media (max-width: 576px) {
+          border-top: 0.5px solid #9a9a9a;
+        }
+        &.active {
+          background: #f4f4f5;
+
+          @media (max-width: 576px) {
+            background: #fff;
+          }
+        }
+
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
         .imgHolder {
           position: relative;
 
@@ -116,6 +167,10 @@
             height: 40px;
             object-fit: cover;
             border-radius: 50%;
+<<<<<<< HEAD
+=======
+            background: #fff;
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
 
             &:first-child {
               left: 0;
@@ -131,9 +186,104 @@
           }
         }
 
+<<<<<<< HEAD
         h3 {
           margin-left: 70px;
           font-weight: 500;
+=======
+        .username {
+          width: 90%;
+          margin-left: 70px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          p {
+            font-weight: 400;
+            font-size: 15px;
+          }
+
+          i {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .chatbox {
+    border-right: 0.5px solid #9a9a9a;
+    height: 100%;
+    width: 53vw;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    @media (max-width: 576px) {
+      width: 100vw;
+      height: 75vh;
+    }
+
+    .topbar {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      padding-top: 0;
+      border-bottom: 0.5px solid #9a9a9a;
+
+      @media (max-width: 576px) {
+        font-size: 14px;
+      }
+
+      .chathead__info {
+        display: flex;
+        align-items: center;
+        .imgHolder {
+          position: relative;
+
+          img {
+            position: absolute;
+            top: 50%;
+            transform: translate3d(0, -50%, 0);
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+            background: #fff;
+
+            @media (max-width: 576px) {
+              width: 25px;
+              height: 25px;
+            }
+
+            &:first-child {
+              left: 0;
+              z-index: 0;
+            }
+            &:last-child {
+              left: 25px;
+              z-index: 1;
+              box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
+              -webkit-box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
+              -moz-box-shadow: -4px 4px 5px 0px rgba(0, 0, 0, 0.13);
+
+              @media (max-width: 576px) {
+                left: 20px;
+              }
+            }
+          }
+        }
+
+        h3 {
+          margin-left: 70px;
+          font-weight: 500;
+
+          @media (max-width: 576px) {
+            margin-left: 53px;
+          }
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
         }
       }
       .MuiButton-root {
@@ -156,6 +306,13 @@
         max-height: 100%;
         overflow-y: scroll;
 
+<<<<<<< HEAD
+=======
+        @media (max-width: 576px) {
+          gap: 15px;
+        }
+
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
         .message {
           display: flex;
           align-items: flex-start;
@@ -173,6 +330,13 @@
             color: #3a3a3a;
             line-height: 1.5;
             font-size: 15px;
+<<<<<<< HEAD
+=======
+
+            @media (max-width: 576px) {
+              font-size: 14px;
+            }
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
           }
         }
       }
@@ -182,8 +346,24 @@
       display: flex;
       align-items: center;
       width: 100%;
+<<<<<<< HEAD
       .MuiButton-root {
         font-size: 20px;
+=======
+
+      @media (max-width: 576px) {
+        padding: 0 2vw;
+      }
+
+      .MuiButton-root {
+        font-size: 20px;
+        min-width: 0;
+        
+
+        @media (max-width: 576px) {
+          padding: 3px 5px;
+        }
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
       }
 
       input {
@@ -207,6 +387,13 @@
     height: 100%;
     flex: 1;
 
+<<<<<<< HEAD
+=======
+    @media (max-width: 576px) {
+      display: none;
+    }
+
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
     h3 {
       font-weight: 500;
       display: flex;
@@ -268,19 +455,35 @@
           .feeds {
             display: flex;
             justify-content: space-between;
+<<<<<<< HEAD
           }
 
           .actions{
+=======
+            padding: 0 8px;
+            color: #7a7a7a;
+          }
+
+          .actions {
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
             display: flex;
             align-items: center;
             gap: 8px;
             margin-top: 10px;
 
+<<<<<<< HEAD
             .MuiButton-root{
               text-transform: capitalize;
               color: #000;
               gap: 5px;
               background: #0001;
+=======
+            .MuiButton-root {
+              text-transform: capitalize;
+              color: #000;
+              gap: 5px;
+              background: #dbf1ff;
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
               padding: 2px 15px;
             }
           }

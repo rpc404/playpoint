@@ -274,7 +274,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 }
 .chatroom__container .rightbar .matches .matchItems .MuiButton-root {
   color: #4a4a4a;

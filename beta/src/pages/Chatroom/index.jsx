@@ -265,7 +265,12 @@ export default function Chatroom() {
           </h3>
 
           <div className="leaderboardItems">
+            <div className="item">
+              <div>
+                Brazil VS England
+              </div>
             <Button></Button>
+            </div>
           </div>
         </div>
         <div className="matches">

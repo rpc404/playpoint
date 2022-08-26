@@ -10,6 +10,7 @@ import "./style.css";
 
 import WorldCupFixtures from "../../helpers/WorldCupFixtures.json";
 import QuickView from "./QuickView";
+import { Helmet } from "react-helmet";
 
 /**
  *
@@ -113,6 +114,9 @@ export default function Showcases() {
 
   return (
     <div className="showcases__container">
+      <Helmet>
+        <title>Showcases | Playpoint</title>
+      </Helmet>
       {modalOpen && <QuickView handleModalClose={setModalOpen}/>}
       <h1>Showcases</h1>
 

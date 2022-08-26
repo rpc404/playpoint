@@ -10,10 +10,11 @@ export default function Navbar() {
         <h3>Playpoint</h3>
       </div>
       <div className="navbar__authentication">
-        <Button><i className="ri-fingerprint-line"></i> Login / Register</Button>
+        <Button className="notificationBtn"><i className="ri-notification-2-line"></i>Notifications</Button>
         <Button className="search-button">
           <i className="ri-search-line"></i>Search
         </Button>
+        <Button><i className="ri-fingerprint-line"></i> Login / Register</Button>
       </div>
     </div>
   );

@@ -31,7 +31,7 @@
       padding: 25px 0;
 
       @media (max-width: 576px) {
-        padding: 25px 5vw;
+        padding: 15px 5vw;
       }
 
       h3 {
@@ -41,6 +41,11 @@
         display: flex;
         align-items: center;
         gap: 5px;
+
+        @media (max-width: 576px) {
+          margin-bottom: 0;
+          font-size: 18px;
+        }
       }
 
       .gameDetails__item {

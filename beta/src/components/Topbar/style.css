@@ -7,3 +7,14 @@
   display: flex;
   gap: 2vw;
 }
+.topbar__container .image__container {
+  overflow-x: scroll;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.topbar__container .image__container img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

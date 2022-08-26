@@ -1,8 +1,16 @@
-.topbar__container{
-    padding: 5px 5vw;
-    // color: #fff;
-    background: #fff;
-    font-size: 15px;
+.topbar__container {
+  padding: 5px 5vw;
+  background: #fff;
+  font-size: 15px;
+  display: flex;
+  gap: 2vw;
+  .image__container {
+    overflow-x: scroll;
     display: flex;
-    gap: 2vw;
+    img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+  }
 }

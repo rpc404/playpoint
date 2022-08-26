@@ -152,7 +152,7 @@ export default function Showcases() {
                     <div className="gameDetails__item" key={index}>
                       <div className="gameDetails__teamDetails">
                         <div className="teamName">{data.HomeTeam}</div>
-                        <div>
+                        <div  className="home__Image">
                           {CountryFlags.map((country, i) => {
                             return (
                               country.name === data.HomeTeam && (
@@ -162,6 +162,7 @@ export default function Showcases() {
                                   style={{ width: "3vw" }}
                                   key={i}
                                   loading="lazy"
+                                 
                                 />
                               )
                             );
@@ -172,14 +173,14 @@ export default function Showcases() {
                             ":" +
                             data.DateUtc.split(" ")[1].split(":")[1]}
                         </div>
-                        <div>
+                        <div className="Away__Image">
                           {CountryFlags.map((country, i) => {
                             return (
                               country.name === data.AwayTeam && (
                                 <img
                                   src={country.image}
                                   alt={country.name}
-                                  style={{ width: "3vw" }}
+                                  style={{ width: "3vw",borderRadius:"50%" }}
                                   key={i}
                                   loading = "lazy"
                                 />

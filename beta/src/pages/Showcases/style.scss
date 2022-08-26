@@ -63,9 +63,35 @@
             align-items: center;
           }
 
+          .home__Image{
+            width: 3vw;
+            height: 5vh;
+            display: flex;
+            align-items: center;
+            // overflow: hidden;
+            img {
+              border-radius: 50%;
+              // width: 100px;
+              // height: 100px;
+            }
+          }
+
           .gameTime{
             border: 1px solid #9a9a9a;
             padding: 3px;
+          }
+
+          .Away__Image{
+            width: 3vw;
+            height: 5vh;
+            display: flex;
+            align-items: center;
+            img {
+              width: 100px;
+              height: 100px;
+              border-radius: 50%;
+              // clip-path: circle();
+            }
           }
         }
 

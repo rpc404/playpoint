@@ -6,10 +6,10 @@ import WorldCupFixtures from "../../helpers/WorldCupFixtures.json";
 export default function Topbar() {
   return (
     <div className="topbar__container">
-      <div style={{display:"flex"}}>
+      <div>
         Club Sites <i className="ri-attachment-line"></i>
       </div>
-      <div>
+      <div className="image__container">
         {WorldCupFixtures.map((data) => {
           return CountryFlags.map((country, i) => {
             return (
@@ -19,7 +19,7 @@ export default function Topbar() {
                   alt={country.name}
                   loading="lazy"
                   key={i}
-                  style = {{width:"2vw"}}
+                  style={{width:"2.1vw",borderRadius:"50%"}}
                 />
               )
             );

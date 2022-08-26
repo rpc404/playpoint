@@ -9,6 +9,7 @@ export default function PageRoutes() {
     <Routes>
       <Route path="/" element={<Showcases />}/>
       <Route path="/chats" element={<Chatroom />}/>
+      <Route path="/profile" element={<Chatroom />}/>
     </Routes>
   );
 }

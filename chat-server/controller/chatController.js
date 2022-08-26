@@ -54,10 +54,26 @@ exports.addChat = asyncHandler(async (req,res,next)=>{
 	});
 })
 
+
+
 exports.deleteRoom = asyncHandler(async (req,res,next)=>{
     const chat = await Message.deleteOne({room_id: req.params.id})
     res.status(201).json({
 		status: true,
 		chat: chat,
+	});
+})
+
+// @desc  subscribe to a room
+//@route  POST /chats/subscribe/room-id
+exports.subscribe = asyncHandler(async (req,res,next)=>{
+    const user = req.user;
+    await Room.updateOne({room_id: req.params.id},{
+        $push:{
+            subscribers: user
+        }
+    })
+    res.status(201).json({
+		status: true,
 	});
 })

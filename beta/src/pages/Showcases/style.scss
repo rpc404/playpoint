@@ -9,6 +9,11 @@
     background-size: cover;
     box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
     color: #fff;
+
+    @media (max-width: 576px) {
+      font-size: 1.5em;
+      padding: 50px 5vw;
+    }
   }
 
   h2 {
@@ -18,8 +23,16 @@
   .MuiBox-root {
     padding: 0 5vw;
 
+    @media (max-width: 576px) {
+      padding: 0;
+    }
+
     .gameDetails {
       padding: 25px 0;
+
+      @media (max-width: 576px) {
+        padding: 15px 5vw;
+      }
 
       h3 {
         font-weight: 500;
@@ -28,6 +41,11 @@
         display: flex;
         align-items: center;
         gap: 5px;
+
+        @media (max-width: 576px) {
+          margin-bottom: 0;
+          font-size: 18px;
+        }
       }
 
       .gameDetails__item {
@@ -40,14 +58,18 @@
         padding: 15px 0;
         position: relative;
 
-        .gameDetails__location{
-            display: flex;
-            align-items: center;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            gap: 5px;
-            transform: translate3d(-50%, -50%, 0);
+        .gameDetails__location {
+          display: flex;
+          align-items: center;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          gap: 5px;
+          transform: translate3d(-50%, -50%, 0);
+
+          @media (max-width: 576px) {
+            display: none;
+          }
         }
 
         .gameDetails__teamDetails {
@@ -55,55 +77,77 @@
           align-items: center;
           gap: 10px;
 
+          @media (max-width: 576px) {
+            gap: 3px;
+            text-transform: capitalize;
+          }
+
           .teamName {
             font-weight: 500;
             color: #4a4a4a;
             font-size: 18px;
             display: flex;
             align-items: center;
+
+            @media (max-width: 576px) {
+              font-size: 16px;
+            }
           }
 
-          .gameTime{
+          .gameTime {
             border: 1px solid #9a9a9a;
             padding: 3px;
           }
 
-          img{
+          img {
             width: 30px;
             object-fit: contain;
           }
         }
 
-        .gameDetails__action{
-            .MuiButton-root{
-                text-transform: capitalize;
-                padding: 1px 5px;
-                color: #000;
+        .gameDetails__action {
+          .MuiButton-root {
+            text-transform: capitalize;
+            padding: 1px 5px;
+            color: #000;
 
-                &.quickView{
-                    border: 1px solid #9a9a9a;
-                }
+            @media (max-width: 576px) {
+              padding: 1px 2px;
+              min-width: 30px;
+
+              i {
+                font-size: 18px;
+              }
             }
+
+            &.quickView {
+              border: 1px solid #9a9a9a;
+
+              @media (max-width: 576px) {
+                display: none;
+              }
+            }
+          }
         }
       }
     }
   }
 
-  .quickViewModal__container{
+  .quickViewModal__container {
     position: absolute;
-    top: 0;
+    top: 10px;
     left: 0;
     z-index: 2;
     background: #0009;
     width: 100vw;
     height: 100vh;
 
-    .container{
+    .container {
       position: relative;
       width: 100vw;
       height: 70vh;
 
-      .item{
+      .item {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -112,34 +156,29 @@
         padding: 20px 30px;
         border-radius: 16px;
 
-        .closeBtn{
+        .closeBtn {
           display: flex;
           align-items: center;
           gap: 8px;
         }
 
-        .info__container{
+        .info__container {
           display: flex;
           align-items: center;
           justify-content: space-between;
         }
 
-        .topBar{
+        .topBar {
           display: flex;
           align-items: center;
           gap: 20px;
           justify-content: center;
         }
 
-        .stadiumInformation{
+        .stadiumInformation {
           text-align: center;
         }
       }
     }
   }
-}
-
-#root > div.showcases__container > div > div.MuiBox-root.css-1gsv261 > div > div > div {
-  align-items: center;
-  justify-content: center;
 }

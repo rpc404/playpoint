@@ -35,5 +35,14 @@
       text-transform: capitalize;
     }
 
+    @media (max-width: 576px){
+      display: none;
+    }
+  }
+
+  .drawer{
+    i{
+      font-size: 22px;
+    }
   }
 }

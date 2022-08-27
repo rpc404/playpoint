@@ -31,7 +31,9 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography component={"div"} variant={"p"}>{children}</Typography>
+          <Typography component={"div"} variant={"p"}>
+            {children}
+          </Typography>
         </Box>
       )}
     </div>
@@ -83,7 +85,7 @@ export default function Showcases() {
     setGroupValue(newValue);
   };
 
-  /**
+    /**
    * @dev states for quick view modal
    */
   // eslint-disable-next-line
@@ -92,6 +94,12 @@ export default function Showcases() {
   const handleModalOpen = (data) => {
     localStorage.setItem("quickViewItem", JSON.stringify(data));
     setModalOpen(true);
+    handleModel();
+  };
+
+  const handleModel = () => {
+    document.body.style.overflow = "hidden";
+    document.body.style.height = "100vh";
   };
 
   /**
@@ -211,7 +219,11 @@ export default function Showcases() {
                           <div className="teamName">{data.HomeTeam}</div>
                           {CountryFlags.map((country, i) => {
                             return (
-                              country.name === data.HomeTeam && (
+                              (country.name === data.HomeTeam ||
+                                (country.name === "United States" &&
+                                  data.HomeTeam === "USA") ||
+                                (country.name === "South Korea" &&
+                                  data.HomeTeam === "Korea Republic")) && (
                                 <img
                                   src={country.image}
                                   alt={country.name}
@@ -228,9 +240,13 @@ export default function Showcases() {
                           </div>
                           {CountryFlags.map((country, i) => {
                             return (
-                              country.name === data.AwayTeam && (
+                              (country.name === data.AwayTeam ||
+                                (country.name === "United States" &&
+                                  data.AwayTeam === "USA") ||
+                                (country.name === "South Korea" &&
+                                  data.AwayTeam === "Korea Republic")) && (
                                 <img
-                                  src={country.image}
+                                  src={country?.image}
                                   alt={country.name}
                                   key={i}
                                   loading="lazy"
@@ -245,7 +261,11 @@ export default function Showcases() {
                           <div className="teamName">{data.HomeTeam}</div>
                           {CountryFlags.map((country, i) => {
                             return (
-                              country.name === data.HomeTeam && (
+                              (country.name === data.HomeTeam ||
+                                (country.name === "United States" &&
+                                  data.HomeTeam === "USA") ||
+                                (country.name === "South Korea" &&
+                                  data.HomeTeam === "Korea Republic")) && (
                                 <img
                                   src={country.image}
                                   alt={country.name}
@@ -262,9 +282,13 @@ export default function Showcases() {
                           </div>
                           {CountryFlags.map((country, i) => {
                             return (
-                              country.name === data.AwayTeam && (
+                              (country.name === data.AwayTeam ||
+                                (country.name === "United States" &&
+                                  data.AwayTeam === "USA") ||
+                                (country.name === "South Korea" &&
+                                  data.AwayTeam === "Korea Republic")) && (
                                 <img
-                                  src={country.image}
+                                  src={country?.image}
                                   alt={country.name}
                                   key={i}
                                   loading="lazy"
@@ -315,7 +339,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -332,9 +360,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -349,7 +381,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -366,9 +402,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -419,7 +459,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -436,9 +480,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -453,7 +501,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -470,9 +522,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -523,7 +579,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -540,9 +600,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -557,7 +621,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -574,9 +642,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -627,7 +699,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -644,9 +720,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -661,7 +741,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -678,9 +762,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -731,7 +819,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -748,9 +840,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -765,7 +861,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -782,9 +882,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -835,7 +939,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -852,9 +960,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -869,7 +981,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -886,9 +1002,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -939,7 +1059,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -956,9 +1080,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -973,7 +1101,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -990,9 +1122,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -1043,7 +1179,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -1060,9 +1200,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"
@@ -1077,7 +1221,11 @@ export default function Showcases() {
                             <div className="teamName">{data.HomeTeam}</div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.HomeTeam && (
+                                (country.name === data.HomeTeam ||
+                                  (country.name === "United States" &&
+                                    data.HomeTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.HomeTeam === "Korea Republic")) && (
                                   <img
                                     src={country.image}
                                     alt={country.name}
@@ -1094,9 +1242,13 @@ export default function Showcases() {
                             </div>
                             {CountryFlags.map((country, i) => {
                               return (
-                                country.name === data.AwayTeam && (
+                                (country.name === data.AwayTeam ||
+                                  (country.name === "United States" &&
+                                    data.AwayTeam === "USA") ||
+                                  (country.name === "South Korea" &&
+                                    data.AwayTeam === "Korea Republic")) && (
                                   <img
-                                    src={country.image}
+                                    src={country?.image}
                                     alt={country.name}
                                     key={i}
                                     loading="lazy"

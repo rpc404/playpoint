@@ -1,11 +1,11 @@
 import { Button } from "@mui/material";
 import React from "react";
 import CountryFlags from "../../helpers/CountryFlags.json";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function QuickView({ handleModalClose }) {
   const [gameData, setGameData] = React.useState(null);
-  const naviagtion = useNavigate();
+  // const naviagtion = useNavigate();
 
   // eslint-disable-next-line
   const handleModal = () => {
@@ -29,7 +29,7 @@ export default function QuickView({ handleModalClose }) {
         {gameData && (
           <div className="item">
             <div className="info__container">
-              <div>Football/Worldcup</div>
+              <div>Football / <span>Worldcup</span></div>
               <Button onClick={handleModal} className="closeBtn">
                 <i className="ri-close-line"></i> Close
               </Button>
@@ -70,9 +70,9 @@ export default function QuickView({ handleModalClose }) {
               <i className="ri-map-pin-2-line"></i> {gameData?.Location}
             </div>
             <div className="actions">
-              <Button>Predict Now</Button>
-              <Button onClick={()=>naviagtion(`/chats/${generateId(gameData)}`)}>Join Chat</Button>
-              <Button>Leaderboards</Button>
+              <Button><i className="ri-boxing-line"></i>Predict Now</Button>
+              <Button><i className="ri-message-3-line"></i> Join Chat</Button>
+              <Button><i className="ri-bar-chart-grouped-line"></i> Leaderboards</Button>
             </div>
           </div>
         )}

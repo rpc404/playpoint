@@ -117,7 +117,7 @@ export default function Navbar() {
               <i className="ri-user-line"></i> {user.name}
             </Button>
             <Button
-              onClick={() => logout({ returnTo: "http://localhost:5173" })}
+              onClick={() => logout({ returnTo: window.location.origin })}
             >
               <i className="ri-logout-box-line"></i> Logout
             </Button>

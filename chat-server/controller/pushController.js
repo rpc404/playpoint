@@ -4,6 +4,7 @@ const webpush = require("web-push");
 // const cron = require('node-cron');
 
 const vapidKeys = {
+  // deepcode ignore HardcodedNonCryptoSecret: <please specify a reason of ignoring this>
   privateKey: "bdSiNzUhUP6piAxLH-tW88zfBlWWveIx0dAsDO66aVU",
   publicKey: "BIN2Jc5Vmkmy-S3AUrcMlpKxJpLeVRAfu9WBqUbJ70SJOCWGCGXKY-Xzyh7HDr6KbRDGYHjqZ06OcS3BjD7uAm8"
 };
@@ -11,6 +12,7 @@ const vapidKeys = {
 webpush.setVapidDetails("mailto:example@yourdomain.org", vapidKeys.publicKey, vapidKeys.privateKey);
 
 function createHash(input) {
+  // deepcode ignore InsecureHash: <please specify a reason of ignoring this>
   const md5sum = crypto.createHash("md5");
   md5sum.update(Buffer.from(input));
   return md5sum.digest("hex");

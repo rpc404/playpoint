@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 const pusher = new Pusher({
   appId: '1467435',
   key: '186e3ce0d881032f7ee9',
+  // deepcode ignore HardcodedNonCryptoSecret: <please specify a reason of ignoring this>
   secret: '5585844b15388803f6e7',
   cluster: 'ap2',
   encrypted: true

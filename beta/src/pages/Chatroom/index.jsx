@@ -4,89 +4,101 @@ import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import ChatBox from "./components/ChatBox";
 import ChatList from "./components/ChatList";
-import "./style.css";
-import { useNavigate } from "react-router-dom"
-import Pusher from 'pusher-js'
-import axios from "axios"
+import { useNavigate } from "react-router-dom";
+import Pusher from "pusher-js";
+import axios from "axios";
 import usePushNotifications from "../../utils/usePushNotification";
+import "./style.css";
 
 const User = {
-  uid:parseInt(Math.random()*1000),
-  name: "demo"
-}
+  uid: parseInt(Math.random() * 1000),
+  name: "demo",
+};
 
 export default function Chatroom() {
   let navigation = useNavigate();
-  const {room_id} = useParams();
-  const [activeRoom, setActiveRoom] = useState(0)
-  const [Messages, setMessages] = useState([])
-
-  useEffect(()=>{
-    if(room_id){
-        axios.get(`http://127.0.0.1:8000/chats/${room_id}`).then(res=>{
-          if(res.data.status){
-            setMessages(res.data.chat)
-          }else{
-            setMessages([])
-          }
-        })
-    }
-  },[room_id])
+  const { room_id } = useParams();
+  const [activeRoom, setActiveRoom] = useState(0);
+  const [Messages, setMessages] = useState([]);
 
   useEffect(() => {
+    if (room_id) {
+      axios
+        .get(`http://127.0.0.1:8000/chats/${room_id}`)
+        .then((res) => {
+          if (res.data.status) {
+            setMessages(res.data.chat);
+          } else {
+            setMessages([]);
+          }
+        })
+        .catch((err) => console.error(err));
+    }
+  }, [room_id]);
 
+  useEffect(() => {
     // Enable pusher logging - don't include this in production
     // Pusher.logToConsole = true;
-    const pusher = new Pusher('186e3ce0d881032f7ee9', {
-        cluster: 'ap2',
-        key: '186e3ce0d881032f7ee9',
-        secret: '5585844b15388803f6e7',
-        encrypted: true
+    const pusher = new Pusher("186e3ce0d881032f7ee9", {
+      cluster: "ap2",
+      key: "186e3ce0d881032f7ee9",
+      // deepcode ignore HardcodedNonCryptoSecret: <please specify a reason of ignoring this>
+      secret: "5585844b15388803f6e7",
+      encrypted: true,
     });
 
-    const channel = pusher.subscribe('messages');
-    channel.bind('inserted', function (data) {
-      console.log(data)
-        if(data.room_id===room_id){
-            if(data.sender!==User.uid){
-                setMessages([...Messages, data]);
-            }
+    const channel = pusher.subscribe("messages");
+    channel.bind("inserted", function (data) {
+      console.log(data);
+      if (data.room_id === room_id) {
+        if (data.sender !== User.uid) {
+          setMessages([...Messages, data]);
         }
+      }
     });
     return () => {
-        channel.unbind_all()
-        channel.unsubscribe()
-    }
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
+  }, [Messages, room_id]);
 
-}, [Messages, room_id])
+  const {
+    userConsent,
+    pushNotificationSupported,
+    onClickAskUserPermission,
+    onClickSusbribeToPushNotification,
+    onClickSendSubscriptionToPushServer,
+  } = usePushNotifications();
 
-const {
-  userConsent,
-  pushNotificationSupported,
-  onClickAskUserPermission,
-  onClickSusbribeToPushNotification,
-  onClickSendSubscriptionToPushServer,
-} = usePushNotifications();
-
-const isConsentGranted = userConsent === "granted";
-const connectPushServer = async () => {
-  await onClickSusbribeToPushNotification().then(async (userSubscription) => {
-    if (userSubscription) {
-      await onClickSendSubscriptionToPushServer(userSubscription).then(
-        async (PSSID) => {
-          console.log(PSSID)
+  const isConsentGranted = userConsent === "granted";
+  const connectPushServer = async () => {
+    try {
+      // deepcode ignore PromiseNotCaughtGeneral: <please specify a reason of ignoring this>, deepcode ignore PromiseNotCaughtGeneral: <please specify a reason of ignoring this>
+      await onClickSusbribeToPushNotification().then(
+        async (userSubscription) => {
+          try {
+            if (userSubscription) {
+              await onClickSendSubscriptionToPushServer(userSubscription).then(
+                async (PSSID) => {
+                  console.log(PSSID);
+                }
+              );
+            }
+          } catch (error) {
+            console.log(error);
+          }
         }
       );
+    } catch (error) {
+      console.error(error);
     }
-  });
-};
-useEffect(() => {
-  !isConsentGranted && onClickAskUserPermission();
-  if (pushNotificationSupported && isConsentGranted) {
-    connectPushServer();
-  }
-}, [isConsentGranted]);
-
+  };
+  useEffect(() => {
+    !isConsentGranted && onClickAskUserPermission();
+    if (pushNotificationSupported && isConsentGranted) {
+      connectPushServer();
+    }
+  }, [isConsentGranted]);
 
   return (
     <div className="chatroom__container">
@@ -98,7 +110,6 @@ useEffect(() => {
       {/* chat box */}
       <ChatBox chats={Messages} room_id={room_id} />
 
-    
       <div className="rightbar">
         <div className="leaderboards">
           <h3>

@@ -11,7 +11,7 @@ export default function App() {
     <Auth0Provider
       domain="playpoint.jp.auth0.com"
       clientId="qs9xU3pkFHRcjfv67cfqmKMN5P70AoQp"
-      redirectUri="http://localhost:5173"
+      redirectUri={window.location.origin}
     >
       <BrowserRouter>
         <div className="fixedBars__container">

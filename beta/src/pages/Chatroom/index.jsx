@@ -1,798 +1,115 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
+import ChatBox from "./components/ChatBox";
+import ChatList from "./components/ChatList";
+import { useNavigate } from "react-router-dom";
+import Pusher from "pusher-js";
+import axios from "axios";
+import usePushNotifications from "../../utils/usePushNotification";
 import "./style.css";
 
-export default function Chatroom() {
-  const [isChatActive, setIsChatActive] = React.useState(false);
+const User = {
+  uid: parseInt(Math.random() * 1000),
+  name: "demo",
+};
 
-  const handleChatActivation = () => {
-    setIsChatActive(true);
+export default function Chatroom() {
+  let navigation = useNavigate();
+  const { room_id } = useParams();
+  const [activeRoom, setActiveRoom] = useState(0);
+  const [Messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    if (room_id) {
+      axios
+        .get(`http://127.0.0.1:8000/chats/${room_id}`)
+        .then((res) => {
+          if (res.data.status) {
+            setMessages(res.data.chat);
+          } else {
+            setMessages([]);
+          }
+        })
+        .catch((err) => console.error(err));
+    }
+  }, [room_id]);
+
+  useEffect(() => {
+    // Enable pusher logging - don't include this in production
+    // Pusher.logToConsole = true;
+    const pusher = new Pusher("186e3ce0d881032f7ee9", {
+      cluster: "ap2",
+      key: "186e3ce0d881032f7ee9",
+      // deepcode ignore HardcodedNonCryptoSecret: <please specify a reason of ignoring this>
+      secret: "5585844b15388803f6e7",
+      encrypted: true,
+    });
+
+    const channel = pusher.subscribe("messages");
+    channel.bind("inserted", function (data) {
+      console.log(data);
+      if (data.room_id === room_id) {
+        if (data.sender !== User.uid) {
+          setMessages([...Messages, data]);
+        }
+      }
+    });
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
+  }, [Messages, room_id]);
+
+  const {
+    userConsent,
+    pushNotificationSupported,
+    onClickAskUserPermission,
+    onClickSusbribeToPushNotification,
+    onClickSendSubscriptionToPushServer,
+  } = usePushNotifications();
+
+  const isConsentGranted = userConsent === "granted";
+  const connectPushServer = async () => {
+    try {
+      // deepcode ignore PromiseNotCaughtGeneral: <please specify a reason of ignoring this>, deepcode ignore PromiseNotCaughtGeneral: <please specify a reason of ignoring this>
+      await onClickSusbribeToPushNotification().then(
+        async (userSubscription) => {
+          try {
+            if (userSubscription) {
+              await onClickSendSubscriptionToPushServer(userSubscription).then(
+                async (PSSID) => {
+                  console.log(PSSID);
+                }
+              );
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
+  useEffect(() => {
+    !isConsentGranted && onClickAskUserPermission();
+    if (pushNotificationSupported && isConsentGranted) {
+      connectPushServer();
+    }
+  }, [isConsentGranted]);
 
   return (
     <div className="chatroom__container">
       <Helmet>
         <title>Chats | Playpoint</title>
       </Helmet>
-      {window.innerWidth > 576 && (
-        <div className="rooms">
-          <div className="topbar">
-            <img
-              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-              alt=""
-              loading="lazy"
-            />
-            <b>Chats</b>
-            <Button>
-              <i className="ri-surgical-mask-line"></i>
-            </Button>
-          </div>
+      {/* chat list */}
+      <ChatList setActive={setActiveRoom} />
+      {/* chat box */}
+      <ChatBox chats={Messages} room_id={room_id} />
 
-          <div className="roomsItems">
-            <Button className="chathead active" onClick={handleChatActivation}>
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-off-line"></i>
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-          </div>
-        </div>
-      )}
-
-      {window.innerWidth < 576 && !isChatActive && (
-        <div className="rooms">
-          <div className="topbar">
-            <img
-              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-              alt=""
-              loading="lazy"
-            />
-            <b>Chats</b>
-            <Button>
-              <i className="ri-surgical-mask-line"></i>
-            </Button>
-          </div>
-
-          <div className="roomsItems">
-            <Button className="chathead active" onClick={handleChatActivation}>
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-off-line"></i>
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-            <Button className="chathead">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div className="username">
-                <p>Qatar vs England</p>{" "}
-                <i className="ri-notification-4-line"></i>{" "}
-              </div>
-            </Button>
-          </div>
-        </div>
-      )}
-      {window.innerWidth > 576 && (
-        <div className="chatbox">
-          <div className="topbar">
-            <div className="chathead__info">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <h3>Qatar vs England</h3>
-            </div>
-            <div>
-              <Button>
-                <i className="ri-ancient-gate-line"></i> Subscribe
-              </Button>
-            </div>
-          </div>
-          <div className="chats">
-            <div className="messageItems">
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Have you seen the guy scoring so good? It's miraculous!
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="inputField">
-            <Button>
-              <i className="ri-attachment-line"></i>
-            </Button>
-            <input type="text" placeholder="Aa" />
-            <Button>
-              <i className="ri-thumb-up-line"></i>
-            </Button>
-          </div>
-        </div>
-      )}
-      {window.innerWidth < 576 && isChatActive && (
-        <div className="chatbox">
-          <div className="topbar">
-            <div className="chathead__info">
-              <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <h3>Qatar vs England</h3>
-            </div>
-            <div>
-              <Button>
-                <i className="ri-ancient-gate-line"></i> Subscribe
-              </Button>
-            </div>
-          </div>
-          <div className="chats">
-            <div className="messageItems">
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Have you seen the guy scoring so good? It's miraculous!
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-              <div className="message">
-                <img
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-                  alt=""
-                  loading="lazy"
-                />
-                <div className="messageContent">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium illo suscipit, quam aperiam, porro explicabo
-                  inventore quod dolor totam et distinctio. Delectus ex tempore
-                  veniam incidunt nihil rerum quaerat voluptatem?
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="inputField">
-            <Button>
-              <i className="ri-attachment-line"></i>
-            </Button>
-            <input type="text" placeholder="Aa" />
-            <Button>
-              <i className="ri-thumb-up-line"></i>
-            </Button>
-            <Button>
-              <i className="ri-arrow-left-line"></i>
-            </Button>
-          </div>
-        </div>
-      )}
       <div className="rightbar">
         <div className="leaderboards">
           <h3>

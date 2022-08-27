@@ -1,7 +1,7 @@
 import React from "react";
-import "./style.css";
 import WorldCupFixtures from "../../helpers/WorldCupFixtures.json";
 import CountryFlags from "../../helpers/CountryFlags.json";
+import "./style.css";
 
 export default function Topbar() {
   return (
@@ -19,6 +19,7 @@ export default function Topbar() {
                   alt={country.name}
                   loading="lazy"
                   key={i}
+                  style={{ width: "2vw" }}
                 />
               )
             );

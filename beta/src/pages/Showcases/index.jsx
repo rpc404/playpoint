@@ -31,11 +31,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-<<<<<<< HEAD
-          <Typography>{children}</Typography>
-=======
           <Typography component={"div"} variant={"p"}>{children}</Typography>
->>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
         </Box>
       )}
     </div>
@@ -71,9 +67,6 @@ export default function Showcases() {
     "group g",
     "group h",
   ];
-<<<<<<< HEAD
-  const [gameDates, setGameDates] = React.useState([]);
-=======
   const [gameDates, setGameDates] = React.useState({
     all: [],
     groupA: [],
@@ -85,7 +78,6 @@ export default function Showcases() {
     groupG: [],
     groupH: [],
   });
->>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
 
   const handleGroupChange = (event, newValue) => {
     setGroupValue(newValue);
@@ -107,8 +99,6 @@ export default function Showcases() {
    */
   React.useEffect(() => {
     var dates = [];
-<<<<<<< HEAD
-=======
     var groupADates = [];
     var groupBDates = [];
     var groupCDates = [];
@@ -117,16 +107,11 @@ export default function Showcases() {
     var groupFDates = [];
     var groupGDates = [];
     var groupHDates = [];
->>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
 
     WorldCupFixtures.forEach((data) => {
       dates.push(Moment(data.DateUtc).format("LL"));
     });
 
-<<<<<<< HEAD
-    const uniqueDates = [...new Set(dates)];
-    setGameDates(uniqueDates);
-=======
     WorldCupFixtures.forEach((data) => {
       if (data.Group === "Group A")
         groupADates.push(Moment(data.DateUtc).format("LL"));
@@ -171,7 +156,6 @@ export default function Showcases() {
       groupG: [...new Set(groupGDates)],
       groupH: [...new Set(groupHDates)],
     });
->>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
   }, []);
 
   /**
@@ -196,25 +180,14 @@ export default function Showcases() {
       </Helmet>
       {modalOpen && <QuickView handleModalClose={setModalOpen} />}
       <h1>Showcases</h1>
-<<<<<<< HEAD
-
-      {/* <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRoI1jUI6TmNhKEDpDBzwkh2dtMJrxxzcZxw&usqp=CAU" alt="" /> */}
-      {/* <h3>Prepared for Fifa WorldCup 2022</h3> */}
-      {/* <div>Fixtures Per Groups</div> */}
-=======
->>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
       <Box sx={{ width: "100%" }}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
             value={groupValue}
             onChange={handleGroupChange}
-<<<<<<< HEAD
-            aria-label="basic tabs example"
-=======
             variant="scrollable"
             scrollButtons="auto"
             aria-label="scrollable auto tabs example"
->>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
           >
             {groups.map((value, index) => {
               return <Tab label={value} {...a11yProps(index)} key={index} />;
@@ -223,53 +196,6 @@ export default function Showcases() {
         </Box>
 
         <TabPanel value={groupValue} index={0}>
-<<<<<<< HEAD
-          {gameDates.map((data, index) => {
-            // console.log(data)
-            return (
-              <div className="gameDetails" key={index}>
-                <h3>
-                  <i className="ri-calendar-line"></i> {data}
-                </h3>
-
-                {getGamesByDate(data).map((data, index) => {
-                  // console.log(data)
-                  return (
-                    <div className="gameDetails__item" key={index}>
-                      <div className="gameDetails__teamDetails">
-                        <div className="teamName">{data.HomeTeam}</div>
-                        {CountryFlags.map((country, i) => {
-                          return (
-                            country.name === data.HomeTeam && (
-                              <img
-                                src={country.image}
-                                alt={country.name}
-                                key={i}
-                                loading="lazy"
-                              />
-                            )
-                          );
-                        })}
-                        <div className="gameTime">
-                          {data.DateUtc.split(" ")[1].split(":")[0] +
-                            ":" +
-                            data.DateUtc.split(" ")[1].split(":")[1]}
-                        </div>
-                        {CountryFlags.map((country, i) => {
-                          return (
-                            country.name === data.AwayTeam && (
-                              <img
-                                src={country.image}
-                                alt={country.name}
-                                key={i}
-                                loading="lazy"
-                              />
-                            )
-                          );
-                        })}
-                        <div className="teamName">{data.AwayTeam}</div>
-                      </div>
-=======
           {gameDates.all.map((data, index) => {
             return (
               <div className="gameDetails" key={index}>
@@ -349,7 +275,6 @@ export default function Showcases() {
                           <div className="teamName">{data.AwayTeam}</div>
                         </Button>
                       )}
->>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
 
                       <div className="gameDetails__location">
                         <i className="ri-map-pin-2-line"></i> {data.Location}
@@ -374,30 +299,6 @@ export default function Showcases() {
           })}
         </TabPanel>
         <TabPanel value={groupValue} index={1}>
-<<<<<<< HEAD
-          Group A
-        </TabPanel>
-        <TabPanel value={groupValue} index={2}>
-          hello
-        </TabPanel>
-        <TabPanel value={groupValue} index={3}>
-          hello
-        </TabPanel>
-        <TabPanel value={groupValue} index={4}>
-          hello
-        </TabPanel>
-        <TabPanel value={groupValue} index={5}>
-          hello
-        </TabPanel>
-        <TabPanel value={groupValue} index={6}>
-          hello
-        </TabPanel>
-        <TabPanel value={groupValue} index={7}>
-          hello
-        </TabPanel>
-        <TabPanel value={groupValue} index={8}>
-          hello
-=======
           {gameDates.groupA.map((data, index) => {
             return (
               <div className="gameDetails" key={index}>
@@ -1228,7 +1129,6 @@ export default function Showcases() {
               </div>
             );
           })}
->>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
         </TabPanel>
       </Box>
     </div>

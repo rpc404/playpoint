@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import { Button } from "@mui/material";
-import React from "react";
-import "./style.css";
-
-export default function Navbar() {
-  return (
-    <div className="navbar__container">
-      <div className="logo__container">
-=======
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -71,19 +61,10 @@ export default function Navbar() {
   return (
     <div className="navbar__container">
       <div onClick={() => navigate("/")} className="logo__container">
->>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
         <img src="https://ik.imagekit.io/lexworld/Logo.png" alt="" />
         <h3>Playpoint</h3>
       </div>
       <div className="navbar__authentication">
-<<<<<<< HEAD
-        <Button className="notificationBtn"><i className="ri-notification-2-line"></i>Notifications</Button>
-        <Button className="search-button">
-          <i className="ri-search-line"></i>Search
-        </Button>
-        <Button><i className="ri-fingerprint-line"></i> Login / Register</Button>
-      </div>
-=======
         <Button className="notificationBtn">
           <i className="ri-notification-2-line"></i>Notifications
         </Button>
@@ -115,7 +96,6 @@ export default function Navbar() {
           </Drawer>
         </div>
       )}
->>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41
     </div>
   );
 }

@@ -24,3 +24,17 @@ ul {
     top: 20px;
     right: 50px;
   }
+
+
+  .rooms, .chats__rooms{
+    height: 100vh;
+    overflow-y: scroll;
+  }
+
+  .topbar_chatlist{
+    position: fixed;
+    display: block;
+    z-index: 2;
+
+  }
+

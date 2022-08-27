@@ -1,15 +1,21 @@
 import { Button } from "@mui/material";
 import React from "react";
 import CountryFlags from "../../helpers/CountryFlags.json";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function QuickView({ handleModalClose }) {
   const [gameData, setGameData] = React.useState(null);
+  const naviagtion = useNavigate();
 
   // eslint-disable-next-line
   const handleModal = () => {
     handleModalClose(false);
     document.body.style = "";
   };
+
+  const generateId = (fixture)=>{
+    return `${String(fixture.HomeTeam).toLowerCase()}-${String(fixture.AwayTeam).toLowerCase()}-${String(fixture.MatchNumber)}`
+  }
 
   React.useEffect(() => {
     const tempGame = JSON.parse(localStorage.getItem("quickViewItem"));
@@ -65,7 +71,7 @@ export default function QuickView({ handleModalClose }) {
             </div>
             <div className="actions">
               <Button>Predict Now</Button>
-              <Button>Join Chat</Button>
+              <Button onClick={()=>naviagtion(`/chats/${generateId(gameData)}`)}>Join Chat</Button>
               <Button>Leaderboards</Button>
             </div>
           </div>

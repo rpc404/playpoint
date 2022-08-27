@@ -19,6 +19,7 @@ export default function Topbar() {
                   alt={country.name}
                   loading="lazy"
                   key={i}
+                  style = {{width:"2vw"}}
                 />
               )
             );

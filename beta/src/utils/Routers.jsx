@@ -6,14 +6,23 @@ import Showcases from "../pages/Showcases";
 export default function PageRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Showcases />}/>
-      {/* @dev
-          issue in react-router-dom v6 https://github.com/remix-run/react-router/issues/7285
-      */}
+      <Route path="/" element={<Showcases />} />
       <Route path="/chats">
         <Route path=":room_id" element={<Chatroom />}/>
         <Route path="" element={<Chatroom />}/>
       </Route>
+      <Route path="/profile" element={<Chatroom />} />
+      {/**
+       * @dev 404 Page
+       */}
+      <Route
+        path="*"
+        element={
+          <main style={{ padding: "1rem" }}>
+            <p>There's nothing here!</p>
+          </main>
+        }
+      />
     </Routes>
   );
 }

@@ -12,6 +12,6 @@
     "web-push": "^3.5.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "2.0.19"
   }
 }

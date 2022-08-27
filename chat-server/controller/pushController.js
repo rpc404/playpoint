@@ -18,10 +18,11 @@ function createHash(input) {
 
 async function handlePushNotificationSubscription(req, res) {
 // console.log("llll")
-  const subscriptionRequest = req.body;
-  subscriptionRequest.userid = "kkkkkkk";
+
+  const subscriptionRequest = req.body.userSubscription;
   const susbscriptionId = createHash(JSON.stringify(subscriptionRequest));
   subscriptionRequest.id = susbscriptionId;
+  subscriptionRequest.userid = req.body.userid;
   const subs = await subscriptions.findOne({id: susbscriptionId}).catch(err =>err);
   if(!subs){
     await subscriptions.create(subscriptionRequest).catch(err =>

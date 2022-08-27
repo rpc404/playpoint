@@ -64,42 +64,11 @@ async function createNotificationSubscription() {
   //wait for service worker installation to be ready, and then
    return registerServiceWorker().then(async function(){
         let deferredPrompt;
-        const addBtn = document.querySelector('.add-button');
-        const addD = document.querySelector('.install-dialog')
-        const prompt = document.querySelector('.install-dialog-content')
-        const cancel = document.querySelector('.cancel')
-
-        // addBtn ? addBtn.style.display = 'none';
-        
         window.addEventListener('beforeinstallprompt', (e) => {
           // Prevent Chrome 67 and earlier from automatically showing the prompt
           e.preventDefault();
           // Stash the event so it can be triggered later.
           deferredPrompt = e;
-          // Update UI to notify the user they can add to home screen
-          // addBtn.style.display = 'block';
-          // addD.style.display = 'grid';
-          // prompt.style.display="flex";
-          // cancel.addEventListener('click',(e)=>{
-          //   e.preventDefault();
-          //   addD.style.display = 'none';
-          // })
-          // addBtn.addEventListener('click', (e) => {
-          //   // hide our user interface that shows our A2HS button
-         
-          //   addD.style.display = 'none';
-          //   // Show the prompt
-          //   deferredPrompt.prompt();
-          //   // Wait for the user to respond to the prompt
-          //   deferredPrompt.userChoice.then((choiceResult) => {
-          //       if (choiceResult.outcome === 'accepted') {
-          //         console.log('User accepted the A2HS prompt');
-          //       } else {
-          //         console.log('User dismissed the A2HS prompt');
-          //       }
-          //       deferredPrompt = null;
-          //     });
-          // });
         });
       return await navigator.serviceWorker.ready.then(function(serviceWorker) {
         return serviceWorker.pushManager.getSubscription();

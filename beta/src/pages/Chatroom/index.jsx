@@ -9,17 +9,14 @@ import { useNavigate } from "react-router-dom"
 import Pusher from 'pusher-js'
 import axios from "axios"
 import usePushNotifications from "../../utils/usePushNotification";
-
-const User = {
-  uid:parseInt(Math.random()*1000),
-  name: "demo"
-}
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Chatroom() {
   let navigation = useNavigate();
   const {room_id} = useParams();
   const [activeRoom, setActiveRoom] = useState(0)
   const [Messages, setMessages] = useState([])
+  const { user, isAuthenticated } = useAuth0();
 
   useEffect(()=>{
     if(room_id){
@@ -37,28 +34,30 @@ export default function Chatroom() {
 
     // Enable pusher logging - don't include this in production
     // Pusher.logToConsole = true;
-    const pusher = new Pusher('186e3ce0d881032f7ee9', {
-        cluster: 'ap2',
-        key: '186e3ce0d881032f7ee9',
-        secret: '5585844b15388803f6e7',
-        encrypted: true
-    });
-
-    const channel = pusher.subscribe('messages');
-    channel.bind('inserted', function (data) {
-      console.log(data)
-        if(data.room_id===room_id){
-            if(data.sender!==User.uid){
-                setMessages([...Messages, data]);
-            }
-        }
-    });
-    return () => {
-        channel.unbind_all()
-        channel.unsubscribe()
+    if(isAuthenticated){
+      const pusher = new Pusher('186e3ce0d881032f7ee9', {
+          cluster: 'ap2',
+          key: '186e3ce0d881032f7ee9',
+          secret: '5585844b15388803f6e7',
+          encrypted: true
+      });
+  
+      const channel = pusher.subscribe('messages');
+      channel.bind('inserted', function (data) {
+        console.log(data)
+          if(data.room_id===room_id){
+              if(data.sender!==user.email){
+                  setMessages([...Messages, data]);
+              }
+          }
+      });
+      return () => {
+          channel.unbind_all()
+          channel.unsubscribe()
+      }
     }
 
-}, [Messages, room_id])
+}, [Messages, room_id, isAuthenticated])
 
 const {
   userConsent,
@@ -70,15 +69,19 @@ const {
 
 const isConsentGranted = userConsent === "granted";
 const connectPushServer = async () => {
-  await onClickSusbribeToPushNotification().then(async (userSubscription) => {
-    if (userSubscription) {
-      await onClickSendSubscriptionToPushServer(userSubscription).then(
-        async (PSSID) => {
-          console.log(PSSID)
-        }
-      );
-    }
-  });
+  if(isAuthenticated){
+    await onClickSusbribeToPushNotification().then(async (userSubscription) => {
+      if (userSubscription) {
+       
+        // console.log(userSubscription)
+        await onClickSendSubscriptionToPushServer({userSubscription, userid: user.email}).then(
+          async (PSSID) => {
+            console.log(PSSID)
+          }
+        );
+      }
+    });
+  }
 };
 useEffect(() => {
   !isConsentGranted && onClickAskUserPermission();

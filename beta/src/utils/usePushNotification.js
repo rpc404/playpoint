@@ -110,10 +110,10 @@ export default function usePushNotifications() {
    * Once the subscription ics created on the server, it saves the id using the hook setPushServerSubscriptionId
    */
   async function onClickSendSubscriptionToPushServer(userSubscription){
-
+  
     setLoading(true);
     setError(false);
-   
+    console.log(userSubscription)
     let serverSubscriptionId = {}
     await http.post("/subscription", userSubscription)
       .then(function(response) {

@@ -34,7 +34,7 @@
         padding: 15px 5vw;
       }
 
-      h3 {
+      span {
         font-weight: 500;
         margin-bottom: 10px;
         font-size: 22px;
@@ -134,8 +134,9 @@
   }
 
   .quickViewModal__container {
-    position: absolute;
-    top: 10px;
+    position: fixed;
+    // position: ;
+    top: 0;
     left: 0;
     z-index: 2;
     background: #0009;
@@ -145,7 +146,7 @@
     .container {
       position: relative;
       width: 100vw;
-      height: 70vh;
+      height: 100vh;
 
       .item {
         position: absolute;
@@ -166,6 +167,14 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+
+          div {
+            font-size: 1.2em;
+          }
+
+          button {
+            font-size: 1.2em;
+          }
         }
 
         .topBar {
@@ -173,10 +182,30 @@
           align-items: center;
           gap: 20px;
           justify-content: center;
+
+          div {
+            font-size: 1.1em;
+          }
+
+          img {
+            width: 60px;
+            height: 60px;
+          }
         }
 
         .stadiumInformation {
           text-align: center;
+          font-size: 1.2em;
+          padding: 15px 0;
+        }
+        .actions {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          button {
+            font-size: 18px;
+          }
         }
       }
     }

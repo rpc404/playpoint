@@ -9,6 +9,11 @@
     background-size: cover;
     box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
     color: #fff;
+
+    @media (max-width: 576px) {
+      font-size: 1.5em;
+      padding: 50px 5vw;
+    }
   }
 
   h2 {
@@ -18,16 +23,29 @@
   .MuiBox-root {
     padding: 0 5vw;
 
+    @media (max-width: 576px) {
+      padding: 0;
+    }
+
     .gameDetails {
       padding: 25px 0;
 
-      h3 {
+      @media (max-width: 576px) {
+        padding: 15px 5vw;
+      }
+
+      span {
         font-weight: 500;
         margin-bottom: 10px;
         font-size: 22px;
         display: flex;
         align-items: center;
         gap: 5px;
+
+        @media (max-width: 576px) {
+          margin-bottom: 0;
+          font-size: 18px;
+        }
       }
 
       .gameDetails__item {
@@ -40,14 +58,18 @@
         padding: 15px 0;
         position: relative;
 
-        .gameDetails__location{
-            display: flex;
-            align-items: center;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            gap: 5px;
-            transform: translate3d(-50%, -50%, 0);
+        .gameDetails__location {
+          display: flex;
+          align-items: center;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          gap: 5px;
+          transform: translate3d(-50%, -50%, 0);
+
+          @media (max-width: 576px) {
+            display: none;
+          }
         }
 
         .gameDetails__teamDetails {
@@ -55,37 +77,64 @@
           align-items: center;
           gap: 10px;
 
+          @media (max-width: 576px) {
+            gap: 3px;
+            text-transform: capitalize;
+          }
+
           .teamName {
             font-weight: 500;
             color: #4a4a4a;
             font-size: 18px;
             display: flex;
             align-items: center;
+
+            @media (max-width: 576px) {
+              font-size: 16px;
+            }
           }
 
-          .gameTime{
+          .gameTime {
             border: 1px solid #9a9a9a;
             padding: 3px;
           }
+
+          img {
+            width: 30px;
+            object-fit: contain;
+          }
         }
 
-        .gameDetails__action{
-            .MuiButton-root{
-                text-transform: capitalize;
-                padding: 1px 5px;
-                color: #000;
+        .gameDetails__action {
+          .MuiButton-root {
+            text-transform: capitalize;
+            padding: 1px 5px;
+            color: #000;
 
-                &.quickView{
-                    border: 1px solid #9a9a9a;
-                }
+            @media (max-width: 576px) {
+              padding: 1px 2px;
+              min-width: 30px;
+
+              i {
+                font-size: 18px;
+              }
             }
+
+            &.quickView {
+              border: 1px solid #9a9a9a;
+
+              @media (max-width: 576px) {
+                display: none;
+              }
+            }
+          }
         }
       }
     }
   }
 
-  .quickViewModal__container{
-    position: absolute;
+  .quickViewModal__container {
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 2;
@@ -93,12 +142,12 @@
     width: 100vw;
     height: 100vh;
 
-    .container{
+    .container {
       position: relative;
       width: 100vw;
-      height: 70vh;
+      height: 100vh;
 
-      .item{
+      .item {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -107,27 +156,53 @@
         padding: 20px 30px;
         border-radius: 16px;
 
-        .closeBtn{
+        .closeBtn {
           display: flex;
           align-items: center;
           gap: 8px;
+          color: red;
+          text-transform: capitalize;
         }
 
-        .info__container{
+        .info__container {
           display: flex;
           align-items: center;
           justify-content: space-between;
+
+          span{
+            color: #7a7a7a;
+          }
         }
 
-        .topBar{
+        .topBar {
+          margin-top: 5px;
           display: flex;
           align-items: center;
-          gap: 20px;
+          gap: 10px;
           justify-content: center;
+
+          img {
+            width: 60px;
+            height: 60px;
+          }
         }
 
-        .stadiumInformation{
+        .stadiumInformation {
           text-align: center;
+          padding: 10px 0 25px 0;
+        }
+        .actions {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 18px;
+
+          .MuiButton-root{
+            background: #000;
+            color: #fff;
+            text-transform: capitalize;
+            gap: 5px;
+          }
         }
       }
     }

@@ -21,7 +21,14 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+yarn.lock
 
 .dccache
 
+<<<<<<< HEAD
 yarn.lock
+=======
+yarn.lock
+package-lock.json
+dist
+>>>>>>> 6bdf6ce1fbc4d0b40d3f0d58e925424bb5d54c41

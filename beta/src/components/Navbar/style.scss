@@ -20,6 +20,29 @@
     h3 {
       font-weight: 500;
     }
+
+    .navLinks {
+      margin-left: 25px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: 25px;
+
+      @media (max-width: 576px) {
+        display: none;
+      }
+
+      a {
+        color: rgba(254, 254, 254, 0.7);
+        text-decoration: none;
+        transition: 0.2s all ease-in-out;
+        font-weight: 300;
+        font-size: 15px;
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
   }
 
   .navbar__authentication {
@@ -31,9 +54,22 @@
       color: #fff;
       display: flex;
       align-items: center;
-      gap:5px;
+      gap: 5px;
       text-transform: capitalize;
     }
 
+    @media (max-width: 576px) {
+      display: none;
+    }
+  }
+
+  .drawer {
+    i {
+      font-size: 22px;
+    }
+
+    .MuiListItemText-root {
+      margin-left: 5px;
+    }
   }
 }

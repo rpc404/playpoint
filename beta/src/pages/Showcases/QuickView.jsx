@@ -23,7 +23,7 @@ export default function QuickView({ handleModalClose }) {
         {gameData && (
           <div className="item">
             <div className="info__container">
-              <div>Football/Worldcup</div>
+              <div>Football / <span>Worldcup</span></div>
               <Button onClick={handleModal} className="closeBtn">
                 <i className="ri-close-line"></i> Close
               </Button>
@@ -64,9 +64,9 @@ export default function QuickView({ handleModalClose }) {
               <i className="ri-map-pin-2-line"></i> {gameData?.Location}
             </div>
             <div className="actions">
-              <Button>Predict Now</Button>
-              <Button>Join Chat</Button>
-              <Button>Leaderboards</Button>
+              <Button><i className="ri-boxing-line"></i>Predict Now</Button>
+              <Button><i className="ri-message-3-line"></i> Join Chat</Button>
+              <Button><i className="ri-bar-chart-grouped-line"></i> Leaderboards</Button>
             </div>
           </div>
         )}

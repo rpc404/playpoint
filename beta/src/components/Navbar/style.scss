@@ -4,7 +4,6 @@
   justify-content: space-between;
   padding: 13px 5vw;
   background: #000;
-
   color: #fff;
 
   .logo__container {
@@ -32,7 +31,7 @@
         display: none;
       }
 
-      a {
+      div {
         color: rgba(254, 254, 254, 0.7);
         text-decoration: none;
         transition: 0.2s all ease-in-out;

@@ -9,9 +9,9 @@ import { Auth0Provider } from "@auth0/auth0-react";
 export default function App() {
   return (
     <Auth0Provider
-      domain="playpoint.jp.auth0.com"
-      clientId="qs9xU3pkFHRcjfv67cfqmKMN5P70AoQp"
-      redirectUri={window.location.origin}
+    domain="playpoint.jp.auth0.com"
+    clientId="g6vCXAPzs30RyjWgJK4zu4JuxmKxMUsC"
+    redirectUri="http://localhost:5173"
     >
       <BrowserRouter>
         <div className="fixedBars__container">

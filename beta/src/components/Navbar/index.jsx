@@ -8,14 +8,15 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 import "./style.css";
+import rpcAPI from "../../utils/RPC";
 
 export default function Navbar() {
-  /**
-   * @dev Auth0 Provider utils
-   */
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+  const [hotReloadState, setHotReloadState] = React.useState(false)
+
+  const handleLogin = () => {
+    rpcAPI.rpcChecks() && rpcAPI.authenticate() && setHotReloadState(!hotReloadState);
+  };
 
   /**
    * @dev navbar small drawer utils
@@ -97,27 +98,27 @@ export default function Navbar() {
         <h3>Playpoint</h3>
 
         <div className="navLinks">
-          <Link to="/">Leaderbords</Link>
-          <Link to="/chats">Chats</Link>
-          <Link to="/leagues">Leagues</Link>
+          <div onClick={() => navigate("/chats")}>Leaderbords</div>
+          <div onClick={() => navigate("/chats")}>Chats</div>
+          <div onClick={() => navigate("/chats")}>Leagues</div>
         </div>
       </div>
       <div className="navbar__authentication">
         <Button className="notificationBtn">
           <i className="ri-notification-2-line"></i>Notifications
         </Button>
-        {!isAuthenticated && (
-          <Button onClick={() => loginWithRedirect()}>
+        {rpcAPI.activeAccount === null && (
+          <Button onClick={() => handleLogin()}>
             <i className="ri-fingerprint-line"></i> Login / Register
           </Button>
         )}
-        {isAuthenticated && (
+        {rpcAPI.activeAccount !== null && (
           <>
             <Button>
-              <i className="ri-user-line"></i> {user.name}
+              <i className="ri-user-line"></i> {rpcAPI.activeAccount}
             </Button>
             <Button
-              onClick={() => logout({ returnTo: window.location.origin })}
+              onClick={() => logout({ returnTo: "http://localhost:5173" })}
             >
               <i className="ri-logout-box-line"></i> Logout
             </Button>

@@ -31,7 +31,7 @@ export default function QuickView({ handleModalClose }) {
             <div className="info__container">
               <div>Football / <span>Worldcup</span></div>
               <Button onClick={handleModal} className="closeBtn">
-                <i className="ri-close-line"></i> Close
+                Close <i className="ri-close-line"></i>
               </Button>
             </div>
             <div className="topBar">
@@ -50,7 +50,7 @@ export default function QuickView({ handleModalClose }) {
               <div className="gameTime">
                 {gameData?.DateUtc.split(" ")[1].split(":")[0] +
                   ":" +
-                  gameData?.DateUtc.split(" ")[1].split(":")[1]}
+                  gameData?.DateUtc.split(" ")[1].split(":")[1]} UTC
               </div>
               {CountryFlags.map((country, index) => {
                 return (
@@ -70,9 +70,9 @@ export default function QuickView({ handleModalClose }) {
               <i className="ri-map-pin-2-line"></i> {gameData?.Location}
             </div>
             <div className="actions">
-              <Button><i className="ri-boxing-line"></i>Predict Now</Button>
-              <Button><i className="ri-message-3-line"></i> Join Chat</Button>
-              <Button><i className="ri-bar-chart-grouped-line"></i> Leaderboards</Button>
+              <Button className="predictNow"><i className="ri-boxing-line"></i>Predict Now</Button>
+              <Button className="joinChat"><i className="ri-message-3-line"></i> Join Chat</Button>
+              <Button className="leaderboards"><i className="ri-bar-chart-grouped-line"></i> Leaderboards</Button>
             </div>
           </div>
         )}

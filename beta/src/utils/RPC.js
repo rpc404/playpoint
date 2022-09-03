@@ -1,65 +1,86 @@
-const { ethereum } = window;
-var activeAccount = "";
+import { ethers } from "ethers";
 
-const connectWalletRPC = async () => {
-  try {
-    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    activeAccount = accounts[0];
+function RPC() {
+  this.activeAccount = null;
+  this.ethereum = null;
+  this.provider = null;
+  this.signer = null;
+  /**
+  @dev This is checking if the user has metamask installed 
+  and if it is the only wallet installed. 
+  */
+  this.rpcChecks = () => {
+    const { ethereum } = window;
+    let status;
+    if (typeof ethereum !== "undefined") {
+      console.log("MetaMask is installed!");
+      status = true;
+    }
+    if (ethereum.isMetaMask)
+      console.log("Other EVM Compatible Wallets not detected!");
+    else {
+      console.log("Other EVM Compatible wallets maybe installed!");
+      status = false;
+    }
 
-    // ethereum.on("accountsChanged", function (accounts) {
-    //   activeAccount = accounts[0];
-    //   console.log(activeAccount);
-    // });
+    if (status) this.ethereum = ethereum;
+    return status;
+  };
 
-    /**
-     * @dev check if avalanche
-     * if not then alert
-     * else ignore
-     */
-    // ethereum.on('chainChanged', (chainId) => {
-    //   /* handle the chainId */
-    // });
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const initRPC = async () => {
-  try {
-    await ethereum.request({
-      method: "wallet_switchEthereumChain",
-      params: [{ chainId: "0xA869" }],
-    });
-
-    connectWalletRPC()
-  } catch (switchError) {
-    // This error code indicates that the chain has not been added to MetaMask.
-    if (switchError.code === 4902) {
-      try {
-        await ethereum.request({
-          method: "wallet_addEthereumChain",
-          params: [
-            {
-              chainId: "0xA869",
-              chainName: "Avalanche Fuji Testnet",
-              rpcUrls: ["https://api.avax-test.network/ext/bc/C/rpc"],
-            },
-          ],
-        });
-
-        connectWalletRPC()
-      } catch (addError) {
-        // handle "add" error
+  this.authenticate = async () => {
+    try {
+      const accounts = await this.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      this.activeAccount = accounts[0];
+      const tempProvider = new ethers.providers.Web3Provider(this.ethereum);
+      this.provider = tempProvider;
+      this.signer = tempProvider.getSigner();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  this.handleChainSwitches = async () => {
+    try {
+      /**
+       * @dev check if avalanche
+       * if not then alert
+       * else ignore
+       */
+      await this.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0xA869" }],
+      });
+    } catch (switchError) {
+      // This error code indicates that the chain has not been added to MetaMask.
+      if (switchError.code === 4902) {
+        try {
+          await this.ethereum.request({
+            method: "wallet_addEthereumChain",
+            params: [
+              {
+                chainId: "0xA869",
+                chainName: "Avalanche Fuji Testnet",
+                rpcUrls: ["https://api.avax-test.network/ext/bc/C/rpc"],
+              },
+            ],
+          });
+        } catch (addError) {
+          // handle "add" error
+          console.error(addError);
+        }
       }
     }
-    // handle other "switch" errors
-  }
-};
+  };
+}
 
-if (typeof ethereum !== "undefined") console.log("MetaMask is installed!");
+const rpcAPI = new RPC();
 
-if (ethereum.isMetaMask)
-  console.log("Other EVM Compatible Wallets not detected!");
-else console.log("Other EVM Compatible wallets maybe installed!");
+window?.ethereum.on("accountsChanged", (accounts) => {
+  rpcAPI.activeAccount = accounts[0];
+  const tempProvider = new ethers.providers.Web3Provider(rpcAPI.ethereum);
+  rpcAPI.provider = tempProvider;
+  rpcAPI.signer = tempProvider.getSigner();;
+});
 
-initRPC();
+export default rpcAPI;

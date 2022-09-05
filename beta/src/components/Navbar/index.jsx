@@ -7,24 +7,48 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
-import rpcAPI from "../../utils/RPC";
 
 export default function Navbar() {
-  const [hotReloadState, setHotReloadState] = React.useState(false)
+  const navigate = useNavigate();
+  const [accountAddress, setAccountAddress] = React.useState("");
 
   const handleLogin = () => {
-    rpcAPI.rpcChecks() && rpcAPI.authenticate() && setHotReloadState(!hotReloadState);
+    const { ethereum } = window;
+
+    if (typeof ethereum !== "undefined") {
+      console.log("MetaMask is installed!");
+      ethereum
+        .request({
+          method: "eth_requestAccounts",
+        })
+        .then((accounts) => {
+          const tempProvider = new ethers.providers.Web3Provider(ethereum);
+
+          return {
+            rpcAccount: accounts[0],
+            rpcProvider: tempProvider,
+            rpcSigner: tempProvider.getSigner(),
+          };
+        })
+        .then(() => {
+          console.log(state);
+        })
+        .catch((err) => console.error(err));
+    }
+
+    if (ethereum.isMetaMask)
+      console.log("Other EVM Compatible Wallets not detected!");
+    else console.log("Other EVM Compatible wallets maybe installed!");
   };
 
   /**
    * @dev navbar small drawer utils
    */
-  const [state, setState] = React.useState({
+  const [navSMState, setnavSMState] = React.useState({
     right: false,
   });
-  const navigate = useNavigate();
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -34,7 +58,7 @@ export default function Navbar() {
       return;
     }
 
-    setState({ ...state, [anchor]: open });
+    setnavSMState({ ...navSMState, [anchor]: open });
   };
 
   const list = (anchor) => (
@@ -107,23 +131,17 @@ export default function Navbar() {
         <Button className="notificationBtn">
           <i className="ri-notification-2-line"></i>Notifications
         </Button>
-        {rpcAPI.activeAccount === null && (
-          <Button onClick={() => handleLogin()}>
-            <i className="ri-fingerprint-line"></i> Login / Register
-          </Button>
-        )}
-        {rpcAPI.activeAccount !== null && (
-          <>
-            <Button>
-              <i className="ri-user-line"></i> {rpcAPI.activeAccount}
-            </Button>
-            <Button
-              onClick={() => logout({ returnTo: "http://localhost:5173" })}
-            >
-              <i className="ri-logout-box-line"></i> Logout
-            </Button>
-          </>
-        )}
+
+        <Button onClick={() => handleLogin()}>
+          <i className="ri-fingerprint-line"></i> Login / Register
+        </Button>
+
+        <Button>
+          <i className="ri-user-line"></i> Account Address Here
+        </Button>
+        <Button>
+          <i className="ri-logout-box-line"></i> Logout
+        </Button>
       </div>
       {window.innerWidth < 576 && (
         <div className="drawer">
@@ -132,7 +150,7 @@ export default function Navbar() {
           </div>
           <Drawer
             anchor={"right"}
-            open={state["right"]}
+            open={navSMState["right"]}
             onClose={toggleDrawer("right", false)}
           >
             {list("right")}

@@ -3,16 +3,12 @@ import { BrowserRouter, Routes } from "react-router-dom";
 import Helpbar from "./components/Helpbar";
 import Navbar from "./components/Navbar";
 import Topbar from "./components/Topbar";
+import RPCDataLayer from "./contexts/RPCDataLayer";
 import PageRoutes from "./utils/Routers";
-import { Auth0Provider } from "@auth0/auth0-react";
 
 export default function App() {
   return (
-    <Auth0Provider
-    domain="playpoint.jp.auth0.com"
-    clientId="g6vCXAPzs30RyjWgJK4zu4JuxmKxMUsC"
-    redirectUri="http://localhost:5173"
-    >
+    <RPCDataLayer>
       <BrowserRouter>
         <div className="fixedBars__container">
           <Topbar />
@@ -21,6 +17,6 @@ export default function App() {
         </div>
         <PageRoutes />
       </BrowserRouter>
-    </Auth0Provider>
+    </RPCDataLayer>
   );
 }

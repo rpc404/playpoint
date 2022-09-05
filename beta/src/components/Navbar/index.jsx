@@ -7,23 +7,20 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-export default function Navbar() {
-  /**
-   * @dev Auth0 Provider utils
-   */
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+export default function Navbar({rpcAPI}) {
+
+  const navigate = useNavigate();
+  const {rpcData, handleLogin, handleLogout} = rpcAPI;
 
   /**
    * @dev navbar small drawer utils
    */
-  const [state, setState] = React.useState({
+  const [navSMState, setnavSMState] = React.useState({
     right: false,
   });
-  const navigate = useNavigate();
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -33,7 +30,7 @@ export default function Navbar() {
       return;
     }
 
-    setState({ ...state, [anchor]: open });
+    setnavSMState({ ...navSMState, [anchor]: open });
   };
 
   const list = (anchor) => (
@@ -97,28 +94,26 @@ export default function Navbar() {
         <h3>Playpoint</h3>
 
         <div className="navLinks">
-          <Link to="/">Leaderbords</Link>
-          <Link to="/chats">Chats</Link>
-          <Link to="/leagues">Leagues</Link>
+          <div onClick={() => navigate("/chats")}>Leaderbords</div>
+          <div onClick={() => navigate("/chats")}>Chats</div>
+          <div onClick={() => navigate("/chats")}>Leagues</div>
         </div>
       </div>
       <div className="navbar__authentication">
         <Button className="notificationBtn">
           <i className="ri-notification-2-line"></i>Notifications
         </Button>
-        {!isAuthenticated && (
-          <Button onClick={() => loginWithRedirect()}>
+
+        {rpcData?.rpcAccountAddress === "" ? (
+          <Button onClick={() => handleLogin()}>
             <i className="ri-fingerprint-line"></i> Login / Register
           </Button>
-        )}
-        {isAuthenticated && (
+        ) : (
           <>
             <Button>
-              <i className="ri-user-line"></i> {user.name}
+              <i className="ri-user-line"></i> {rpcData?.rpcAccountAddress.substring(0, 9) + "..." + rpcData?.rpcAccountAddress.slice(-5)}
             </Button>
-            <Button
-              onClick={() => logout({ returnTo: window.location.origin })}
-            >
+            <Button onClick={() => handleLogout()}>
               <i className="ri-logout-box-line"></i> Logout
             </Button>
           </>
@@ -131,7 +126,7 @@ export default function Navbar() {
           </div>
           <Drawer
             anchor={"right"}
-            open={state["right"]}
+            open={navSMState["right"]}
             onClose={toggleDrawer("right", false)}
           >
             {list("right")}

@@ -10,38 +10,10 @@ import ListItemText from "@mui/material/ListItemText";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-export default function Navbar() {
+export default function Navbar({rpcAPI}) {
+
   const navigate = useNavigate();
-  const [accountAddress, setAccountAddress] = React.useState("");
-
-  const handleLogin = () => {
-    const { ethereum } = window;
-
-    if (typeof ethereum !== "undefined") {
-      console.log("MetaMask is installed!");
-      ethereum
-        .request({
-          method: "eth_requestAccounts",
-        })
-        .then((accounts) => {
-          const tempProvider = new ethers.providers.Web3Provider(ethereum);
-
-          return {
-            rpcAccount: accounts[0],
-            rpcProvider: tempProvider,
-            rpcSigner: tempProvider.getSigner(),
-          };
-        })
-        .then(() => {
-          console.log(state);
-        })
-        .catch((err) => console.error(err));
-    }
-
-    if (ethereum.isMetaMask)
-      console.log("Other EVM Compatible Wallets not detected!");
-    else console.log("Other EVM Compatible wallets maybe installed!");
-  };
+  const {rpcData, handleLogin, handleLogout} = rpcAPI;
 
   /**
    * @dev navbar small drawer utils
@@ -132,16 +104,20 @@ export default function Navbar() {
           <i className="ri-notification-2-line"></i>Notifications
         </Button>
 
-        <Button onClick={() => handleLogin()}>
-          <i className="ri-fingerprint-line"></i> Login / Register
-        </Button>
-
-        <Button>
-          <i className="ri-user-line"></i> Account Address Here
-        </Button>
-        <Button>
-          <i className="ri-logout-box-line"></i> Logout
-        </Button>
+        {rpcData?.rpcAccountAddress === "" ? (
+          <Button onClick={() => handleLogin()}>
+            <i className="ri-fingerprint-line"></i> Login / Register
+          </Button>
+        ) : (
+          <>
+            <Button>
+              <i className="ri-user-line"></i> {rpcData?.rpcAccountAddress.substring(0, 9) + "..." + rpcData?.rpcAccountAddress.slice(-5)}
+            </Button>
+            <Button onClick={() => handleLogout()}>
+              <i className="ri-logout-box-line"></i> Logout
+            </Button>
+          </>
+        )}
       </div>
       {window.innerWidth < 576 && (
         <div className="drawer">

@@ -137,8 +137,7 @@ export default function ShowcaseCard({ data, handleModalOpen, group }) {
               </div>
             </div>
           );
-        }
-        else if (data.Group === group)
+        } else if (data.Group === group)
           return (
             <div className="gameDetails__item" key={index}>
               {window.innerWidth > 576 ? (

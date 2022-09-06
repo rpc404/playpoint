@@ -85,8 +85,8 @@
 
           .teamName {
             font-weight: 500;
-            color: #4a4a4a;
-            font-size: 18px;
+            color: #2a2a2a;
+            font-size: 17px;
             display: flex;
             align-items: center;
             width: 6.5vw;
@@ -99,7 +99,7 @@
           }
 
           .home__Image{
-            width: 40px;
+            width: 35px;
             display: flex;
             align-items: center;
             align-items: center;
@@ -112,10 +112,11 @@
           .gameTime{
             border: 1px solid #9a9a9a;
             padding: 3px;
+            font-size: 14px;
           }
 
           .Away__Image{
-            width: 40px;
+            width: 35px;
             display: flex;
             align-items: center;
             justify-content: center;

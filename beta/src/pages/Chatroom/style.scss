@@ -1,5 +1,5 @@
 .chatroom__container {
-  margin-top: 145px;
+  margin-top: 155px;
   display: flex;
   align-items: flex-start;
   max-height: 82vh;
@@ -306,16 +306,7 @@
         display: flex;
         height: 100%;
         flex-direction: column;
-<<<<<<< HEAD
-        gap: 8px;
-        .MuiButton-root {
-          color: #4a4a4a;
-          width: 100%;
-          justify-content: left;
-          gap: 10px;
-=======
         overflow-y: scroll;
->>>>>>> 83916599306400dcb7b253db653ea8dd05ef79e0
 
         .item {
           border-top: 0.5px solid #9a9a9a;

@@ -10,13 +10,12 @@ import ListItemText from "@mui/material/ListItemText";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-export default function Navbar({rpcAPI}) {
-
+export default function Navbar({ rpcAPI }) {
   const navigate = useNavigate();
-  const {rpcData, handleLogin, handleLogout} = rpcAPI;
+  const { rpcData, handleLogin, handleLogout } = rpcAPI;
 
   /**
-   * @dev navbar small drawer utils
+   * @dev NavbarSM Devices drawer utils
    */
   const [navSMState, setnavSMState] = React.useState({
     right: false,
@@ -87,6 +86,7 @@ export default function Navbar({rpcAPI}) {
       <Divider />
     </Box>
   );
+
   return (
     <div className="navbar__container">
       <div onClick={() => navigate("/")} className="logo__container">
@@ -111,7 +111,10 @@ export default function Navbar({rpcAPI}) {
         ) : (
           <>
             <Button>
-              <i className="ri-user-line"></i> {rpcData?.rpcAccountAddress.substring(0, 9) + "..." + rpcData?.rpcAccountAddress.slice(-5)}
+              <i className="ri-user-line"></i>{" "}
+              {rpcData?.rpcAccountAddress.substring(0, 9) +
+                "..." +
+                rpcData?.rpcAccountAddress.slice(-5)}
             </Button>
             <Button onClick={() => handleLogout()}>
               <i className="ri-logout-box-line"></i> Logout

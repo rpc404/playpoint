@@ -76,6 +76,7 @@
           display: flex;
           align-items: center;
           gap: 10px;
+          justify-content: right;
 
           @media (max-width: 576px) {
             gap: 3px;
@@ -84,24 +85,42 @@
 
           .teamName {
             font-weight: 500;
-            color: #4a4a4a;
-            font-size: 18px;
+            color: #2a2a2a;
+            font-size: 17px;
             display: flex;
             align-items: center;
+            width: 6.5vw;
+            justify-content: center;
+            text-align: center;
 
             @media (max-width: 576px) {
               font-size: 16px;
             }
           }
 
-          .gameTime {
-            border: 1px solid #9a9a9a;
-            padding: 3px;
+          .home__Image{
+            width: 35px;
+            display: flex;
+            align-items: center;
+            align-items: center;
+
+            img{
+              width: 100%;
+            }
           }
 
-          img {
-            width: 30px;
-            object-fit: contain;
+          .gameTime{
+            border: 1px solid #9a9a9a;
+            padding: 3px;
+            font-size: 14px;
+          }
+
+          .Away__Image{
+            width: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
           }
         }
 

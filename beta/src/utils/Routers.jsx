@@ -1,6 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Chatroom from "../pages/Chatroom";
+import Leaderboards from "../pages/Leaderboards";
+import Profile from "../pages/Profile";
 import Showcases from "../pages/Showcases";
 
 export default function PageRoutes() {
@@ -11,7 +13,8 @@ export default function PageRoutes() {
         <Route path=":room_id" element={<Chatroom />}/>
         <Route path="" element={<Chatroom />}/>
       </Route>
-      <Route path="/profile" element={<Chatroom />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/leaderboards" element={<Leaderboards />} />
       {/**
        * @dev 404 Page
        */}

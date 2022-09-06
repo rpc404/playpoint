@@ -229,6 +229,7 @@ export default function Showcases() {
                                   alt={country.name}
                                   key={i}
                                   loading="lazy"
+                                  className="home__Image"
                                 />
                               )
                             );
@@ -250,6 +251,7 @@ export default function Showcases() {
                                   alt={country.name}
                                   key={i}
                                   loading="lazy"
+                                  className="Away__Image"
                                 />
                               )
                             );

@@ -76,6 +76,7 @@
           display: flex;
           align-items: center;
           gap: 10px;
+          justify-content: right;
 
           @media (max-width: 576px) {
             gap: 3px;
@@ -88,20 +89,37 @@
             font-size: 18px;
             display: flex;
             align-items: center;
+            width: 6.5vw;
+            justify-content: center;
+            text-align: center;
 
             @media (max-width: 576px) {
               font-size: 16px;
             }
           }
 
-          .gameTime {
+          .home__Image{
+            width: 40px;
+            display: flex;
+            align-items: center;
+            align-items: center;
+
+            img{
+              width: 100%;
+            }
+          }
+
+          .gameTime{
             border: 1px solid #9a9a9a;
             padding: 3px;
           }
 
-          img {
-            width: 30px;
-            object-fit: contain;
+          .Away__Image{
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
           }
         }
 

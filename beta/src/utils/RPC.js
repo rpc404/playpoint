@@ -1,52 +1,44 @@
-import { ethers } from "ethers";
+const { ethereum } = window;
 
-function RPC() {
-  this.activeAccount = null;
-  this.ethereum = null;
-  this.provider = null;
-  this.signer = null;
+export const handleRPCLogin = async (dispatch) => {
+  try {
+    if (typeof ethereum !== "undefined") {
+      console.log("MetaMask is installed!");
 
-  this.handleChainSwitches = async () => {
-    try {
-      /**
-       * @dev check if avalanche
-       * if not then alert
-       * else ignore
-       */
-      await this.ethereum.request({
-        method: "wallet_switchEthereumChain",
-        params: [{ chainId: "0xA869" }],
+      const userAddress = await ethereum.request({
+        method: "eth_requestAccounts",
       });
-    } catch (switchError) {
-      // This error code indicates that the chain has not been added to MetaMask.
-      if (switchError.code === 4902) {
-        try {
-          await this.ethereum.request({
-            method: "wallet_addEthereumChain",
-            params: [
-              {
-                chainId: "0xA869",
-                chainName: "Avalanche Fuji Testnet",
-                rpcUrls: ["https://api.avax-test.network/ext/bc/C/rpc"],
-              },
-            ],
-          });
-        } catch (addError) {
-          // handle "add" error
-          console.error(addError);
-        }
-      }
+
+      if (ethereum.isMetaMask)
+        console.log("Other EVM Compatible Wallets not detected!");
+      else console.log("Other EVM Compatible wallets maybe installed!");
+
+      // const tempProvider = new ethers.providers.Web3Provider(ethereum);
+      // const signer = tempProvider.getSigner();
+
+      const tempRpcData = {
+        rpcAccountAddress: userAddress[0],
+        // rpcProvider: tempProvider,
+        // rpcSigner: signer,
+        isWalletSet: true,
+      };
+
+      localStorage.setItem("rpcUserData", JSON.stringify(tempRpcData));
+      localStorage.setItem("isRPCUserAuthenticated", true);
+
+      dispatch(tempRpcData);
     }
-  };
-}
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-const rpcAPI = new RPC();
+export const handleRPCLogout = (dispatch) => {
+  localStorage.removeItem("isRPCUserAuthenticated");
+  localStorage.removeItem("rpcUserData");
 
-window?.ethereum.on("accountsChanged", (accounts) => {
-  rpcAPI.activeAccount = accounts[0];
-  const tempProvider = new ethers.providers.Web3Provider(rpcAPI.ethereum);
-  rpcAPI.provider = tempProvider;
-  rpcAPI.signer = tempProvider.getSigner();;
-});
-
-export default rpcAPI;
+  dispatch({
+    rpcAccountAddress: "",
+    isWalletSet: false,
+  });
+};

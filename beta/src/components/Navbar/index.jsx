@@ -89,14 +89,41 @@ export default function Navbar({ rpcAPI }) {
 
   return (
     <div className="navbar__container">
-      <div onClick={() => navigate("/")} className="logo__container">
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+          navigate("/");
+        }}
+        className="logo__container"
+      >
         <img src="https://ik.imagekit.io/lexworld/Logo.png" alt="" />
         <h3>Playpoint</h3>
 
         <div className="navLinks">
-          <div onClick={() => navigate("/chats")}>Leaderbords</div>
-          <div onClick={() => navigate("/chats")}>Marketplace</div>
-          <div onClick={() => navigate("/chats")}>Leagues</div>
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate("/leaderboards");
+            }}
+          >
+            Leaderboards
+          </div>
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate("/marketplace");
+            }}
+          >
+            Marketplace
+          </div>
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate("/leagues");
+            }}
+          >
+            Leagues
+          </div>
         </div>
       </div>
       <div className="navbar__authentication">

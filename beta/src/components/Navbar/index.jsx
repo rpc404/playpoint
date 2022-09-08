@@ -127,10 +127,6 @@ export default function Navbar({ rpcAPI }) {
         </div>
       </div>
       <div className="navbar__authentication">
-        <Button className="notificationBtn">
-          <i className="ri-notification-2-line"></i>Notifications
-        </Button>
-
         {rpcData?.rpcAccountAddress === "" ? (
           <Button onClick={() => handleLogin()}>
             <i className="ri-fingerprint-line"></i> Login / Register
@@ -139,9 +135,9 @@ export default function Navbar({ rpcAPI }) {
           <>
             <Button>
               <i className="ri-user-line"></i>{" "}
-              {rpcData?.rpcAccountAddress.substring(0, 9) +
+              {rpcData?.rpcAccountAddress.substring(0, 12) +
                 "..." +
-                rpcData?.rpcAccountAddress.slice(-5)}
+                rpcData?.rpcAccountAddress.slice(-8)}
             </Button>
             <Button onClick={() => handleLogout()}>
               <i className="ri-logout-box-line"></i> Logout

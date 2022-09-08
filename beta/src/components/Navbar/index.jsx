@@ -95,7 +95,7 @@ export default function Navbar({ rpcAPI }) {
 
         <div className="navLinks">
           <div onClick={() => navigate("/chats")}>Leaderbords</div>
-          <div onClick={() => navigate("/chats")}>Chats</div>
+          <div onClick={() => navigate("/chats")}>Marketplace</div>
           <div onClick={() => navigate("/chats")}>Leagues</div>
         </div>
       </div>

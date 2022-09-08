@@ -20,7 +20,7 @@
       }
 
       .prediction__items {
-        height: 70vh;
+        height: 75vh;
         overflow-y: scroll;
 
         .predictedCard__container {
@@ -88,7 +88,6 @@
       flex: 1;
       border-left: 0.5px solid #0001;
       border-right: 0.5px solid #0001;
-      max-height: 75vh;
       overflow-y: hidden;
 
       .predictionTable__topBar {
@@ -134,7 +133,7 @@
 
       .predictionTable__mainContainer {
         flex-direction: column;
-        height: 68vh;
+        height: 73vh;
         overflow-y: scroll;
         padding-bottom: 10px;
 
@@ -299,7 +298,7 @@
       
       .leaderboardItems{
         font-size: 14px;
-        height: 66vh;
+        height: 71vh;
         overflow-y: scroll;
         padding-bottom: 10px;
         .leaderboardItem__container{

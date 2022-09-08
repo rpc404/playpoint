@@ -79,6 +79,13 @@ export default function PredictionTabs() {
   const [activeAmount, setActiveAmount] = React.useState(5);
   const [activeQuestionaire, setActiveQuestionaire] = React.useState(3);
 
+  const handleActiveAmount = (amount) => {
+    setActiveAmount(amount)
+  }
+  const handleActiveQuestionaire = (questionaire) => {
+    setActiveQuestionaire(questionaire)
+  }
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -101,14 +108,14 @@ export default function PredictionTabs() {
         <div className="topBar">
           <div>
             <div>Price:</div>
-            <Button className={activeAmount === 5 && "active"}>$5</Button>
-            <Button className={activeAmount === 20 && "active"}>$20</Button>
-            <Button className={activeAmount === 50 && "active"}>$50</Button>
+            <Button className={activeAmount === 5 && "active"} onClick={() => handleActiveAmount(5)}>$5</Button>
+            <Button className={activeAmount === 20 && "active"} onClick={() => handleActiveAmount(20)}>$20</Button>
+            <Button className={activeAmount === 50 && "active"} onClick={() => handleActiveAmount(50)}>$50</Button>
           </div>
           <div>
             <div>Questionaires:</div>
-            <Button className={activeQuestionaire === 3 && "active"}>3</Button>
-            <Button className={activeQuestionaire === 4 && "active"}>4</Button>
+            <Button onClick={() => handleActiveQuestionaire(3)} className={activeQuestionaire === 3 && "active"}>3</Button>
+            <Button onClick={() => handleActiveQuestionaire(4)} className={activeQuestionaire === 4 && "active"}>4</Button>
           </div>
         </div>
 

@@ -5,15 +5,11 @@
     display: flex;
     align-items: flex-start;
 
-    .recentPredictions,
-    .leaderboards {
-      padding: 0 1.5vw;
-      width: 23vw;
-      height: 75vh;
-    }
-
     .recentPredictions {
+      width: 23vw;
+
       h3 {
+        padding: 0 1.5vw;
         margin-top: 10px;
         margin-bottom: 10px;
         font-weight: 500;
@@ -28,7 +24,12 @@
           align-items: flex-start;
           gap: 8px;
           border-bottom: 0.5px solid #0001;
-          padding: 7px 0 10px 0;
+          padding: 7px 1.5vw 10px 1.5vw;
+
+          &:hover{
+            background: #f1f2f6;
+            cursor: pointer;
+          }
 
           .info {
             display: flex;
@@ -274,9 +275,11 @@
     }
 
     .leaderboards{
+      width: 20vw;
+
       .leaderboardsTitle{
         font-weight: 500;
-        margin: 10px 0;
+        margin: 10px 8px;
         margin-bottom: 15px;
       }
       
@@ -287,6 +290,7 @@
         padding-bottom: 10px;
         font-size: 14px;
         font-weight: 500;
+        margin: 0 8px;
 
         p{
           flex: 1 1 0;
@@ -301,12 +305,18 @@
         height: 71vh;
         overflow-y: scroll;
         padding-bottom: 10px;
+
         .leaderboardItem__container{
+          background: #f1f2f6;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 8px 0;
+          padding: 8px;
           border-bottom: .5px solid #0001;
+
+          &:hover{
+            background: rgb(216, 216, 216);
+          }
 
           p{
             flex: 1 1 0;

@@ -3,11 +3,20 @@ import "./style.css";
 import { Button } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import UserHistory from '../../helpers/UserHistory.json'
+import { Helmet } from "react-helmet";
+import UserHistory from "../../helpers/UserHistory.json";
 
 export default function Profile() {
+  const [result, setResult] = React.useState("");
+
+  const handleResultChange = (event) => {
+    setResult(event.target.value);
+  };
   return (
     <div className="profile__container">
+      <Helmet>
+        <title>Profile | Playpoint</title>
+      </Helmet>
       <div className="blob1"></div>
       <div className="summary__container">
         <div className="summaryItem">
@@ -53,17 +62,26 @@ export default function Profile() {
           <p>match</p>
           <p>date/time</p>
         </div>
-        <div className="filters">
-
-        </div>
 
         <div className="history__items">
           {UserHistory.map((data, index) => (
             <div className="history__item" key={index}>
               <p>{data.id}</p>
-              <p className={data.result}><span>{data.result}</span></p>
-              <p>${data.amount}~{data.amount} PPTT</p>
-              <p className={data.result}>${data.resultAmount}~{data.resultAmount*0.015} PPTT</p>
+              <p className={data.result}>
+                <span>{data.result}</span>
+              </p>
+              <p>
+                ${data.amount}~{data.amount} PPTT
+              </p>
+              <p className={data.result}>
+                {data.result === "win" || data.result === "lose" ? (
+                  <>
+                    ${data.resultAmount}~{data.resultAmount * 0.015} PPTT
+                  </>
+                ) : (
+                  <></>
+                )}
+              </p>
               <p>
                 <b>{data.match.home}</b> VS <b>{data.match.away}</b>
               </p>

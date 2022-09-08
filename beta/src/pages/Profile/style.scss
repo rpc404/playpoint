@@ -154,6 +154,15 @@
               }
             }
           }
+          &:nth-child(4) {
+            &.win {
+              color: #2ecc71;
+              font-weight: 500;
+            }
+            &.lose {
+              color: #e74c3c;
+            }
+          }
         }
 
         &:nth-child(2n) {

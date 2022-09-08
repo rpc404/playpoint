@@ -7,11 +7,6 @@ import { Helmet } from "react-helmet";
 import UserHistory from "../../helpers/UserHistory.json";
 
 export default function Profile() {
-  const [result, setResult] = React.useState("");
-
-  const handleResultChange = (event) => {
-    setResult(event.target.value);
-  };
   return (
     <div className="profile__container">
       <Helmet>

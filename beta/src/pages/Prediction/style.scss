@@ -197,19 +197,24 @@
             }
 
             .questionaires {
-              .questionItem{
-                border-top: .5px solid #0001;
+              .questionItem {
+                border-top: 0.5px solid #0001;
                 padding: 10px 5px;
+                font-size: 15px;
                 .top {
                   display: flex;
                   align-items: flex-start;
                   justify-content: space-between;
-  
+
                   p:first-child {
                     flex: 1;
                   }
+
+                  p:last-child {
+                    color: #2ecc71;
+                  }
                 }
-  
+
                 .answers {
                   display: flex;
                   margin-top: 5px;
@@ -220,12 +225,34 @@
                     align-items: center;
                     font-size: 14px;
                     gap: 8px;
-  
+
                     .MuiCheckbox-root {
                       padding: 0;
                     }
                   }
                 }
+              }
+            }
+
+            .predictionAmount {
+              border-top: 0.5px solid #0001;
+              align-items: flex-start;
+              gap: 25px;
+              display: flex;
+
+              h4 {
+                font-weight: 500;
+                font-size: 16px;
+              }
+
+              .MuiSlider-root {
+                width: 23vw;
+                margin-left: 11px;
+              }
+
+              .MuiButton-root {
+                background: #000;
+                width: 100%;
               }
             }
           }

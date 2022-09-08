@@ -6,7 +6,41 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
+import Slider from "@mui/material/Slider";
 
+/**
+ * @dev utils for slider
+ */
+function valuetext(value) {
+  return `${value}°C`;
+}
+
+const marks = [
+  {
+    value: 1,
+    label: "x1",
+  },
+  {
+    value: 2,
+    label: "x2",
+  },
+  {
+    value: 3,
+    label: "x3",
+  },
+  {
+    value: 4,
+    label: "x4",
+  },
+  {
+    value: 5,
+    label: "x5",
+  },
+];
+
+/**
+ * @dev utils for tabs
+ */
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -170,6 +204,28 @@ export default function PredictionTabs() {
               </div>
             </div>
           )}
+        </div>
+
+        <div className="predictionAmount">
+          <div>
+          <h4>Prediction Count:</h4>
+          <Slider
+            aria-label="Custom marks"
+            defaultValue={1}
+            getAriaValueText={valuetext}
+            step={1}
+            valueLabelDisplay="auto"
+            marks={marks}
+            max={5}
+            min={1}
+          />
+          </div>
+          <div>
+            <h4>
+            Total Amount: $5
+            </h4>
+            <Button>Predict</Button>
+          </div>
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>

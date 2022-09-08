@@ -1,65 +1,44 @@
 const { ethereum } = window;
-var activeAccount = "";
 
-const connectWalletRPC = async () => {
+export const handleRPCLogin = async (dispatch) => {
   try {
-    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    activeAccount = accounts[0];
+    if (typeof ethereum !== "undefined") {
+      console.log("MetaMask is installed!");
 
-    // ethereum.on("accountsChanged", function (accounts) {
-    //   activeAccount = accounts[0];
-    //   console.log(activeAccount);
-    // });
+      const userAddress = await ethereum.request({
+        method: "eth_requestAccounts",
+      });
 
-    /**
-     * @dev check if avalanche
-     * if not then alert
-     * else ignore
-     */
-    // ethereum.on('chainChanged', (chainId) => {
-    //   /* handle the chainId */
-    // });
+      if (ethereum.isMetaMask)
+        console.log("Other EVM Compatible Wallets not detected!");
+      else console.log("Other EVM Compatible wallets maybe installed!");
+
+      // const tempProvider = new ethers.providers.Web3Provider(ethereum);
+      // const signer = tempProvider.getSigner();
+
+      const tempRpcData = {
+        rpcAccountAddress: userAddress[0],
+        // rpcProvider: tempProvider,
+        // rpcSigner: signer,
+        isWalletSet: true,
+      };
+
+      localStorage.setItem("rpcUserData", JSON.stringify(tempRpcData));
+      localStorage.setItem("isRPCUserAuthenticated", true);
+
+      dispatch(tempRpcData);
+    }
   } catch (error) {
     console.error(error);
   }
 };
 
-const initRPC = async () => {
-  try {
-    await ethereum.request({
-      method: "wallet_switchEthereumChain",
-      params: [{ chainId: "0xA869" }],
-    });
+export const handleRPCLogout = (dispatch) => {
+  localStorage.removeItem("isRPCUserAuthenticated");
+  localStorage.removeItem("rpcUserData");
 
-    connectWalletRPC()
-  } catch (switchError) {
-    // This error code indicates that the chain has not been added to MetaMask.
-    if (switchError.code === 4902) {
-      try {
-        await ethereum.request({
-          method: "wallet_addEthereumChain",
-          params: [
-            {
-              chainId: "0xA869",
-              chainName: "Avalanche Fuji Testnet",
-              rpcUrls: ["https://api.avax-test.network/ext/bc/C/rpc"],
-            },
-          ],
-        });
-
-        connectWalletRPC()
-      } catch (addError) {
-        // handle "add" error
-      }
-    }
-    // handle other "switch" errors
-  }
+  dispatch({
+    rpcAccountAddress: "",
+    isWalletSet: false,
+  });
 };
-
-if (typeof ethereum !== "undefined") console.log("MetaMask is installed!");
-
-if (ethereum.isMetaMask)
-  console.log("Other EVM Compatible Wallets not detected!");
-else console.log("Other EVM Compatible wallets maybe installed!");
-
-initRPC();

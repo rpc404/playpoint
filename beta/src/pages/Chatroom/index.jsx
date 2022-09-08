@@ -4,10 +4,9 @@ import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";
 import ChatBox from "./components/ChatBox";
 import ChatList from "./components/ChatList";
-import "./style.css";
-import { useNavigate } from "react-router-dom"
-import Pusher from 'pusher-js'
-import axios from "axios"
+import { useNavigate } from "react-router-dom";
+import Pusher from "pusher-js";
+import axios from "axios";
 import usePushNotifications from "../../utils/usePushNotification";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -18,20 +17,22 @@ export default function Chatroom() {
   const [Messages, setMessages] = useState([])
   const { user, isAuthenticated } = useAuth0();
 
-  useEffect(()=>{
-    if(room_id){
-        axios.get(`http://127.0.0.1:8000/chats/${room_id}`).then(res=>{
-          if(res.data.status){
-            setMessages(res.data.chat)
-          }else{
-            setMessages([])
+  useEffect(() => {
+    if (room_id) {
+      axios
+        .get(`http://127.0.0.1:8000/chats/${room_id}`)
+        .then((res) => {
+          if (res.data.status) {
+            setMessages(res.data.chat);
+          } else {
+            setMessages([]);
           }
         })
+        .catch((err) => console.error(err));
     }
-  },[room_id])
+  }, [room_id]);
 
   useEffect(() => {
-
     // Enable pusher logging - don't include this in production
     // Pusher.logToConsole = true;
     if(isAuthenticated){
@@ -90,7 +91,6 @@ useEffect(() => {
   }
 }, [isConsentGranted]);
 
-
   return (
     <div className="chatroom__container">
       <Helmet>
@@ -101,7 +101,6 @@ useEffect(() => {
       {/* chat box */}
       <ChatBox chats={Messages} room_id={room_id} />
 
-    
       <div className="rightbar">
         <div className="leaderboards">
           <h3>

@@ -1,17 +1,21 @@
 import { Button } from "@mui/material";
 import React from "react";
 import CountryFlags from "../../helpers/CountryFlags.json";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function QuickView({ handleModalClose }) {
+  const navigate = useNavigate()
   const [gameData, setGameData] = React.useState(null);
-  const naviagtion = useNavigate();
+  // const naviagtion = useNavigate();
 
   // eslint-disable-next-line
   const handleModal = () => {
     handleModalClose(false);
     document.body.style = "";
   };
+
+  const code = CountryFlags.map(i => i.code)
+  // console.log(code)
 
   const generateId = (fixture)=>{
     return `${String(fixture.HomeTeam).toLowerCase()}-${String(fixture.AwayTeam).toLowerCase()}-${String(fixture.MatchNumber)}`
@@ -29,9 +33,9 @@ export default function QuickView({ handleModalClose }) {
         {gameData && (
           <div className="item">
             <div className="info__container">
-              <div>Football/Worldcup</div>
+              <div>Football / <span>Worldcup</span></div>
               <Button onClick={handleModal} className="closeBtn">
-                <i className="ri-close-line"></i> Close
+                Close <i className="ri-close-line"></i>
               </Button>
             </div>
             <div className="topBar">
@@ -50,7 +54,7 @@ export default function QuickView({ handleModalClose }) {
               <div className="gameTime">
                 {gameData?.DateUtc.split(" ")[1].split(":")[0] +
                   ":" +
-                  gameData?.DateUtc.split(" ")[1].split(":")[1]}
+                  gameData?.DateUtc.split(" ")[1].split(":")[1]} UTC
               </div>
               {CountryFlags.map((country, index) => {
                 return (
@@ -70,9 +74,9 @@ export default function QuickView({ handleModalClose }) {
               <i className="ri-map-pin-2-line"></i> {gameData?.Location}
             </div>
             <div className="actions">
-              <Button>Predict Now</Button>
-              <Button onClick={()=>naviagtion(`/chats/${generateId(gameData)}`)}>Join Chat</Button>
-              <Button>Leaderboards</Button>
+              <Button className="predictNow" onClick={() => navigate(`/predict/1`)} ><i className="ri-boxing-line"  ></i>Predict Now</Button>
+              <Button className="joinChat" onClick={() => navigate("/chats")} ><i className="ri-message-3-line"></i> Join Chat</Button>
+              <Button className="leaderboards" onClick={() => navigate("/leaderboards")} ><i className="ri-bar-chart-grouped-line"></i> Leaderboards</Button>
             </div>
           </div>
         )}

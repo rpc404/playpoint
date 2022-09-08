@@ -7,7 +7,7 @@
 
     .recentPredictions,
     .leaderboards {
-      padding: 0 2vw;
+      padding: 0 1.5vw;
       width: 23vw;
       height: 75vh;
     }
@@ -275,7 +275,45 @@
     }
 
     .leaderboards{
+      .leaderboardsTitle{
+        font-weight: 500;
+        margin: 10px 0;
+        margin-bottom: 15px;
+      }
       
+      .leaderboardItemsTitle{
+        display: flex;
+        justify-content: space-between;
+        border-bottom: .5px solid #0001;
+        padding-bottom: 10px;
+        font-size: 14px;
+        font-weight: 500;
+
+        p{
+          flex: 1 1 0;
+          display: flex;
+          align-items: center;
+          gap: 2px;
+        }
+      }
+      
+      .leaderboardItems{
+        font-size: 14px;
+        height: 66vh;
+        overflow-y: scroll;
+        padding-bottom: 10px;
+        .leaderboardItem__container{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 8px 0;
+          border-bottom: .5px solid #0001;
+
+          p{
+            flex: 1 1 0;
+          }
+        }
+      }
     }
   }
 }

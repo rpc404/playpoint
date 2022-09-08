@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import "./style.css";
 import { Button } from "@mui/material";
 import Identicon from "react-identicons";
-import { LineChart, LinearXAxis, LineSeries } from "reaviz";
+import { LineChart, LineSeries } from "reaviz";
 import PredictionTabs from "./PredictionTabs";
 
 export default function Prediction() {
@@ -91,16 +91,42 @@ export default function Prediction() {
             />
             <div className="eventDetails">
               <p>
-              <i className="ri-calendar-todo-line"></i> Event Details: 22nd November, 2022
+                <i className="ri-calendar-todo-line"></i> Event Details: 22nd
+                November, 2022
               </p>
               <p>
-              <i className="ri-bar-chart-2-line"></i> Pool Size: Unlimited
+                <i className="ri-bar-chart-2-line"></i> Pool Size: Unlimited
               </p>
             </div>
             <PredictionTabs />
           </div>
         </div>
-        <div className="leaderboards">Leaderboards</div>
+        <div className="leaderboards">
+          <h3 className="leaderboardsTitle">Leaderboards</h3>
+          <div className="leaderboardItemsTitle">
+            <p>
+            Game<i className="ri-game-line"></i>
+            </p>
+            <p>
+            Users<i className="ri-magic-line"></i>
+            </p>
+            <p>
+            Volume<i className="ri-money-dollar-circle-line"></i>
+            </p>
+          </div>
+          <div className="leaderboardItems">
+            {[
+              0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+              19, 20, 21, 22, 23, 24,
+            ].map((data) => (
+              <div className="leaderboardItem__container" key={data}>
+                <p>AUS/QTR</p>
+                <p>123k</p>
+                <p>$432k</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

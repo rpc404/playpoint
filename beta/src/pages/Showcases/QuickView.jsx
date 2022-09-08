@@ -4,6 +4,7 @@ import CountryFlags from "../../helpers/CountryFlags.json";
 import { useNavigate } from "react-router-dom";
 
 export default function QuickView({ handleModalClose }) {
+  const navigate = useNavigate()
   const [gameData, setGameData] = React.useState(null);
   // const naviagtion = useNavigate();
 
@@ -12,6 +13,9 @@ export default function QuickView({ handleModalClose }) {
     handleModalClose(false);
     document.body.style = "";
   };
+
+  const code = CountryFlags.map(i => i.code)
+  // console.log(code)
 
   const generateId = (fixture)=>{
     return `${String(fixture.HomeTeam).toLowerCase()}-${String(fixture.AwayTeam).toLowerCase()}-${String(fixture.MatchNumber)}`
@@ -70,9 +74,9 @@ export default function QuickView({ handleModalClose }) {
               <i className="ri-map-pin-2-line"></i> {gameData?.Location}
             </div>
             <div className="actions">
-              <Button className="predictNow"><i className="ri-boxing-line"></i>Predict Now</Button>
-              <Button className="joinChat"><i className="ri-message-3-line"></i> Join Chat</Button>
-              <Button className="leaderboards"><i className="ri-bar-chart-grouped-line"></i> Leaderboards</Button>
+              <Button className="predictNow" onClick={() => navigate(`/predict/1`)} ><i className="ri-boxing-line"  ></i>Predict Now</Button>
+              <Button className="joinChat" onClick={() => navigate("/chats")} ><i className="ri-message-3-line"></i> Join Chat</Button>
+              <Button className="leaderboards" onClick={() => navigate("/leaderboards")} ><i className="ri-bar-chart-grouped-line"></i> Leaderboards</Button>
             </div>
           </div>
         )}

@@ -208,22 +208,24 @@ export default function PredictionTabs() {
 
         <div className="predictionAmount">
           <div>
-          <h4>Prediction Count:</h4>
-          <Slider
-            aria-label="Custom marks"
-            defaultValue={1}
-            getAriaValueText={valuetext}
-            step={1}
-            valueLabelDisplay="auto"
-            marks={marks}
-            max={5}
-            min={1}
-          />
+            <h4>Prediction Count:</h4>
+            <Slider
+              aria-label="Custom marks"
+              defaultValue={1}
+              getAriaValueText={valuetext}
+              step={1}
+              valueLabelDisplay="auto"
+              marks={marks}
+              max={5}
+              min={1}
+            />
           </div>
+          
           <div>
-            <h4>
-            Total Amount: $5
-            </h4>
+            <div className="top">
+              <h4>Total Amount: $5</h4>
+              <h4>Available: $10</h4>
+            </div>
             <Button>Predict</Button>
           </div>
         </div>

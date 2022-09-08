@@ -136,7 +136,7 @@
         flex-direction: column;
         height: 68vh;
         overflow-y: scroll;
-        padding-bottom: 30px;
+        padding-bottom: 10px;
 
         .graphData {
           margin: 3vh auto;
@@ -237,8 +237,20 @@
             .predictionAmount {
               border-top: 0.5px solid #0001;
               align-items: flex-start;
+              padding-top: 10px;
               gap: 25px;
               display: flex;
+
+              div {
+                flex: 1 1 0;
+              }
+
+              .top {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              }
 
               h4 {
                 font-weight: 500;
@@ -251,13 +263,19 @@
               }
 
               .MuiButton-root {
-                background: #000;
+                background: #2ecc71;
                 width: 100%;
+                margin-top: 5px;
+                color: #fff;
               }
             }
           }
         }
       }
+    }
+
+    .leaderboards{
+      
     }
   }
 }

@@ -13,7 +13,7 @@ export default function Profile() {
         <title>Profile | Playpoint</title>
       </Helmet>
       <div className="blob1"></div>
-      <div className="summary__container">
+      <div className="summary__container"  >
         <div className="summaryItem">
           <i className="ri-money-dollar-circle-line"></i>
           <div>

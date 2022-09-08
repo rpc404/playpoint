@@ -11,8 +11,8 @@
 *::-webkit-scrollbar {
     display: none;
     -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-  }
+    scrollbar-width: none;  /* Firefox */
+}
 
 .fixedBars__container{
     position: fixed;
@@ -25,4 +25,15 @@
 body{
     position: relative;
     overflow-x: hidden;
+    --color-background: rgb(51, 51, 51);
+    --color-on-background:#fff;
+
+    --color-tooltip:rgba(0,5,11,0.9);
+    --color-on-tooltip: #fff;
+
+    --color-handle-fill: #2c343a;
+    --color-handle-stroke: #67c2e4;
+    --color-handle-drag-fill: transparent;
+    --color-handle-dots: #67c2e4;
+    --color-handle-line: #67c2e4;
 }

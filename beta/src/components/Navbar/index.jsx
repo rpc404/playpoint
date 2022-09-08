@@ -89,32 +89,58 @@ export default function Navbar({ rpcAPI }) {
 
   return (
     <div className="navbar__container">
-      <div onClick={() => navigate("/")} className="logo__container">
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+          navigate("/");
+        }}
+        className="logo__container"
+      >
         <img src="https://ik.imagekit.io/lexworld/Logo.png" alt="" />
         <h3>Playpoint</h3>
 
         <div className="navLinks">
-          <div onClick={() => navigate("/chats")}>Leaderbords</div>
-          <div onClick={() => navigate("/chats")}>Chats</div>
-          <div onClick={() => navigate("/chats")}>Leagues</div>
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate("/leaderboards");
+            }}
+          >
+            Leaderboards
+          </div>
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate("/marketplace");
+            }}
+          >
+            Marketplace
+          </div>
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate("/leagues");
+            }}
+          >
+            Leagues
+          </div>
         </div>
       </div>
       <div className="navbar__authentication">
-        <Button className="notificationBtn">
-          <i className="ri-notification-2-line"></i>Notifications
-        </Button>
-
         {rpcData?.rpcAccountAddress === "" ? (
           <Button onClick={() => handleLogin()}>
             <i className="ri-fingerprint-line"></i> Login / Register
           </Button>
         ) : (
           <>
-            <Button>
+            <Button onClick={(e) => {
+              e.stopPropagation();
+              navigate("/profile");
+            }}>
               <i className="ri-user-line"></i>{" "}
-              {rpcData?.rpcAccountAddress.substring(0, 9) +
+              {rpcData?.rpcAccountAddress.substring(0, 12) +
                 "..." +
-                rpcData?.rpcAccountAddress.slice(-5)}
+                rpcData?.rpcAccountAddress.slice(-8)}
             </Button>
             <Button onClick={() => handleLogout()}>
               <i className="ri-logout-box-line"></i> Logout

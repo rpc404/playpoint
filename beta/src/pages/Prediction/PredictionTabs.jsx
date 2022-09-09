@@ -54,7 +54,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component = {"div"} variant = "p" >{children}</Typography>
         </Box>
       )}
     </div>
@@ -89,7 +89,7 @@ export default function PredictionTabs() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  
   return (
     <Box sx={{ width: "100%" }} className="predictionTabs__container">
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>

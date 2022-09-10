@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Fixtures from "../../../helpers/WorldCupFixtures.json";
+import CountryFlags from "../../../helpers/CountryFlags.json";
 
 const ChatList = ({ setActive }) => {
   let navigation = useNavigate();
@@ -34,16 +35,38 @@ const ChatList = ({ setActive }) => {
               key={key}
             >
               <div className="imgHolder">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Emblem_of_Qatar.svg/800px-Emblem_of_Qatar.svg.png"
-                  alt=""
-                  loading="lazy"
-                />
-                <img
-                  src="https://brandlogos.net/wp-content/uploads/2013/09/the-fa-england-vector-logo.png"
-                  alt=""
-                  loading="lazy"
-                />
+                {CountryFlags.map((country, i) => {
+                  return (
+                    (country.name === fixture.HomeTeam ||
+                      (country.name === "United States" &&
+                        fixture.HomeTeam === "USA") ||
+                      (country.name === "South Korea" &&
+                        fixture.HomeTeam === "Korea Republic")) && (
+                      <img
+                        src={country.image}
+                        alt={country.name}
+                        key={i}
+                        loading="lazy"
+                      />
+                    )
+                  );
+                })}
+                {CountryFlags.map((country, i) => {
+                  return (
+                    (country.name === fixture.AwayTeam ||
+                      (country.name === "United States" &&
+                        fixture.HomeTeam === "USA") ||
+                      (country.name === "South Korea" &&
+                        fixture.HomeTeam === "Korea Republic")) && (
+                      <img
+                        src={country.image}
+                        alt={country.name}
+                        key={i}
+                        loading="lazy"
+                      />
+                    )
+                  );
+                })}
               </div>
               <div className="username">
                 {fixture?.HomeTeam} Vs {fixture?.AwayTeam}

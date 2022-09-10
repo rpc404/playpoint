@@ -15,7 +15,6 @@ export default function QuickView({ handleModalClose }) {
   };
 
   const code = CountryFlags.map(i => i.code)
-  // console.log(code)
 
   const generateId = (fixture)=>{
     return `${String(fixture.HomeTeam).toLowerCase()}-${String(fixture.AwayTeam).toLowerCase()}-${String(fixture.MatchNumber)}`

@@ -24,7 +24,6 @@ export default function QuickView({ handleModalClose }) {
     const tempGame = JSON.parse(localStorage.getItem("quickViewItem"));
     setGameData(tempGame);
   }, []);
-  console.log(gameData)
 
   return (
     <div className="quickViewModal__container">

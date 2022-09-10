@@ -4,7 +4,18 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="https://ik.imagekit.io/lexworld/Logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>Playpoint | Sports Prediction Pool Platform</title>
+    <script>
+      window.global = window;
+    </script>
+    <script type="module">
+      import process from "process";
+      import EventEmitter from "events";
+      import {Buffer} from "buffer";
+      window.Buffer = Buffer;
+      window.process = process;
+      window.EventEmitter = EventEmitter;
+    </script>
   </head>
   <body>
     <div id="root"></div>

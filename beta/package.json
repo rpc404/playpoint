@@ -6,10 +6,14 @@
     "@auth0/auth0-react": "1.10.2",
     "@emotion/react": "11.10.4",
     "@emotion/styled": "11.10.4",
+    "@esbuild-plugins/node-modules-polyfill": "^0.1.4",
     "@mui/material": "5.10.4",
     "axios": "0.27.2",
+    "buffer": "^6.0.3",
     "ethers": "5.7.0",
+    "events": "^3.3.0",
     "moment": "2.29.4",
+    "process": "^0.11.10",
     "pusher-js": "7.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -18,6 +22,7 @@
     "react-router-dom": "6.3.0",
     "reaviz": "13.1.8",
     "remixicon": "2.5.0",
+    "util": "^0.12.4",
     "web-vitals": "3.0.1"
   },
   "scripts": {

@@ -11,13 +11,14 @@ export default function PageRoutes() {
     <Routes>
       <Route path="/" element={<Showcases />} />
       <Route path="/chats">
-        <Route path=":room_id" element={<Chatroom />}/>
-        <Route path="" element={<Chatroom />}/>
+        <Route path=":room_id" element={<Chatroom />} />
+        <Route path="" element={<Chatroom />} />
       </Route>
       <Route path="/profile" element={<Profile />} />
-      <Route path="/predict" >
-        <Route path=":prediction_id" element={<Prediction />}/>
-        </Route>
+      <Route path="/predict">
+        <Route path=":prediction_id" element={<Prediction />} />
+        <Route path="" element={<Prediction />} />
+      </Route>
       <Route path="/leaderboards" element={<Leaderboards />} />
       {/**
        * @dev 404 Page

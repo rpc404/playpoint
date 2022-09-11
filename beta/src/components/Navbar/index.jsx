@@ -136,7 +136,10 @@ export default function Navbar({ rpcAPI }) {
           </Button>
         ) : (
           <>
-            <Button onClick={() => navigate("/profile")}>
+            <Button onClick={(e) => {
+              e.stopPropagation();
+              navigate("/profile");
+            }}>
               <i className="ri-user-line"></i>{" "}
               {rpcData?.rpcAccountAddress.substring(0, 12) +
                 "..." +

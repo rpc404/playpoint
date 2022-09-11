@@ -13,6 +13,7 @@ export default function QuickView({ handleModalClose }) {
     document.body.style = "";
   };
 
+  const code = CountryFlags.map(i => i.code)
   const generateId = (fixture)=>{
     return `${String(fixture.HomeTeam).toLowerCase()}-${String(fixture.AwayTeam).toLowerCase()}-${String(fixture.MatchNumber)}`
   }
@@ -21,7 +22,6 @@ export default function QuickView({ handleModalClose }) {
     const tempGame = JSON.parse(localStorage.getItem("quickViewItem"));
     setGameData(tempGame);
   }, []);
-  console.log(gameData)
 
   return (
     <div className="quickViewModal__container">

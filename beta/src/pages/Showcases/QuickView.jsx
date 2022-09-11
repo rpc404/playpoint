@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 export default function QuickView({ handleModalClose }) {
   const navigate = useNavigate()
   const [gameData, setGameData] = React.useState(null);
-  // const naviagtion = useNavigate();
 
   // eslint-disable-next-line
   const handleModal = () => {
@@ -15,7 +14,6 @@ export default function QuickView({ handleModalClose }) {
   };
 
   const code = CountryFlags.map(i => i.code)
-
   const generateId = (fixture)=>{
     return `${String(fixture.HomeTeam).toLowerCase()}-${String(fixture.AwayTeam).toLowerCase()}-${String(fixture.MatchNumber)}`
   }

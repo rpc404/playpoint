@@ -11,6 +11,7 @@ const ChatList = ({ setActive }) => {
       fixture.AwayTeam
     ).toLowerCase()}-${String(fixture.MatchNumber)}`;
   };
+
   return (
     <div className="rooms">
       <div className="topbar">

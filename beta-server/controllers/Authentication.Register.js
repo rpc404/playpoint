@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const crypto = require("crypto");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 module.exports = {
   RegisterUser: (req, res, next) => {

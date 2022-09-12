@@ -35,4 +35,4 @@ const userSchema = new Schema({
   updated_at: Date,
 });
 
-module.exports = Model("user", userSchema);
+module.exports = Model("user", userSchema, "Admin");

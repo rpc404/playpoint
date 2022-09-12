@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const crypto = require("crypto");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { sanitizeQueryInput } = require("../utils/QuerySanitizer");
 
 module.exports = {

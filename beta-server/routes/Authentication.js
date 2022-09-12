@@ -10,7 +10,6 @@ const {
 const {
   RegisterUserMiddleware,
 } = require("../middlewares/Authentication.Register");
-const { VerifyUser } = require("../controllers/Authentication.VerifyUser");
 
 AuthenticationRouter.post(
   "/register",

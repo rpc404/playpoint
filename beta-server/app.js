@@ -47,7 +47,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("Database => Connected Node.JS Authentication..."))
+  .then(() => console.log("Database => Connected Admin Authentication..."))
   .catch((err) => {
     console.log("database connection failed. exiting now...");
     console.error(err);

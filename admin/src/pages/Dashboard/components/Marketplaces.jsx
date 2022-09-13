@@ -1,11 +1,19 @@
 import React from "react";
 import { Button } from "@mui/material";
+import MarketplaceItems from "../utils/Marketplaces.json";
 
 export default function Marketplaces() {
   const [focusedMarketplace, setFocusedMarketplace] = React.useState({
     isFocused: false,
     marketplaceId: "",
   });
+
+  const handleFocusedMarketplace = (marketplaceId) => {
+    setFocusedMarketplace({
+      isFocused: true,
+      marketplaceId,
+    });
+  };
   return (
     <div className="marketplaces__container">
       <div className="title">
@@ -23,37 +31,46 @@ export default function Marketplaces() {
 
       {!focusedMarketplace.isFocused && (
         <div className="marketplace__items">
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((data) => {
+          {MarketplaceItems.map((data, index) => {
+            const { coverImage, slug, name, summary } = data;
+            const {
+              fixturesCount,
+              questionsCount,
+              resultsCount,
+              predictionCount,
+            } = summary;
             return (
-              <div key={data} className="marketplaceItem">
+              <div key={index} className="marketplaceItem">
                 <img
                   className="marketplaceCoverImage"
-                  src="https://i.ytimg.com/vi/hgq2g4EPI2Y/maxresdefault.jpg"
-                  alt=""
+                  src={coverImage}
+                  alt={slug}
                   loading="lazy"
                 />
                 <div className="details">
                   <div className="marketplaceItem__title">
-                    <h4>World Cup 2022 - Qatar</h4>
+                    <h4 onClick={() => handleFocusedMarketplace(slug)}>
+                      {name}
+                    </h4>
                     <Button>
                       <i className="ri-edit-line"></i> Edit
                     </Button>
                   </div>
                   <div className="info">
                     <p>
-                      13 <br />
+                      {fixturesCount} <br />
                       Fixtures
                     </p>
                     <p>
-                      19 <br />
+                      {questionsCount} <br />
                       Questions
                     </p>
                     <p>
-                      19 <br />
+                      {resultsCount} <br />
                       Results
                     </p>
                     <p>
-                      1325 <br />
+                      {predictionCount} <br />
                       Predictions
                     </p>
                   </div>
@@ -61,6 +78,24 @@ export default function Marketplaces() {
               </div>
             );
           })}
+        </div>
+      )}
+
+      {focusedMarketplace.isFocused && (
+        <div className="focusedMarketplace__container">
+          <p>Marketplaces / {focusedMarketplace.marketplaceId}</p>
+          {MarketplaceItems.map(
+            (data, index) =>
+              data.slug === focusedMarketplace.marketplaceId && (
+                <img
+                  className="coverImage"
+                  key={index}
+                  src={data.coverImage}
+                  alt={data.slug}
+                  loading="lazy"
+                />
+              )
+          )}
         </div>
       )}
     </div>

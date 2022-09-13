@@ -9,15 +9,25 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@auth0/auth0-react": "^1.10.2",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.4",
+    "add": "^2.0.6",
+    "imagekitio-react": "^1.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "reactjs-calendar-heatmap": "^0.2.3",
+    "reaviz": "^13.1.8",
+    "remixicon": "^2.5.0",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",
+    "d3": "^7.6.1",
+    "moment": "^2.29.4",
     "vite": "^3.1.0"
   }
 }

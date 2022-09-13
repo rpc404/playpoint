@@ -1,0 +1,213 @@
+.dashboard__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  height: 100vh;
+}
+.dashboard__container .dashboardSidebar,
+.dashboard__container .dashboardMain {
+  height: 100%;
+  overflow-y: scroll;
+  padding: 12px;
+}
+.dashboard__container .dashboardSidebar {
+  min-width: 22vw;
+  background: #f1f2f6;
+  padding: 22px 15px;
+}
+.dashboard__container .dashboardSidebar .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.0666666667);
+  padding-bottom: 12px;
+  margin-bottom: 10px;
+}
+.dashboard__container .dashboardSidebar .title img {
+  width: 35px;
+  height: 35px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.dashboard__container .dashboardSidebar .sidebarMenuItems__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.dashboard__container .dashboardSidebar .sidebarMenuItems__container .MuiButton-root {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  width: 100%;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  padding: 12px 15px;
+  color: #000;
+  text-transform: capitalize;
+  font-size: 16px;
+  gap: 10px;
+}
+.dashboard__container .dashboardSidebar .sidebarMenuItems__container .MuiButton-root.active {
+  background: rgba(5, 168, 255, 0.2);
+}
+.dashboard__container .dashboardMain {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  overflow: hidden;
+}
+.dashboard__container .dashboardMain .dashboardMain__topbar {
+  background: rgba(0, 170, 255, 0.4274509804);
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px 15px;
+  gap: 10px;
+  border-radius: 3px;
+}
+.dashboard__container .dashboardMain .dashboardMain__topbar .MuiButton-root {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 8px;
+  text-transform: capitalize;
+  color: #000;
+  font-size: 15px;
+  font-weight: 500;
+}
+.dashboard__container .dashboardMain .dashboardMain__topbar .MuiButton-root img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 1px solid #fff;
+  padding: 3px;
+}
+.dashboard__container .dashboardMain .dashboardMain__topbar .MuiButton-root h2 {
+  font-weight: 500;
+}
+.dashboard__container .dashboardMain .home__container {
+  padding: 15px;
+}
+.dashboard__container .dashboardMain .home__container .userheatmap__container h3 {
+  margin-bottom: 10px;
+}
+.dashboard__container .dashboardMain .marketplaces__container .title {
+  padding: 15px 15px 0 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.dashboard__container .dashboardMain .marketplaces__container .title h2 {
+  font-weight: 500;
+}
+.dashboard__container .dashboardMain .marketplaces__container .title .MuiButton-root {
+  gap: 5px;
+  color: #fff;
+  background: rgba(39, 174, 95, 0.8);
+}
+.dashboard__container .dashboardMain .marketplaces__container .marketplace__items {
+  padding: 15px;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 30px;
+  height: 82vh;
+  overflow-y: scroll;
+  padding-bottom: 30px;
+}
+.dashboard__container .dashboardMain .marketplaces__container .marketplace__items .marketplaceItem {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0;
+  max-width: 23vw;
+  min-width: 20vw;
+  margin-bottom: 8px;
+  color: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 4px 6px 10px 8px rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 4px 6px 10px 8px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 4px 6px 10px 8px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  -webkit-transition: 0.3s all ease-in-out;
+  transition: 0.3s all ease-in-out;
+}
+.dashboard__container .dashboardMain .marketplaces__container .marketplace__items .marketplaceItem:hover {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+}
+.dashboard__container .dashboardMain .marketplaces__container .marketplace__items .marketplaceItem img {
+  width: 100%;
+  height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.dashboard__container .dashboardMain .marketplaces__container .marketplace__items .marketplaceItem .details {
+  padding: 10px 12px 16px 12px;
+}
+.dashboard__container .dashboardMain .marketplaces__container .marketplace__items .marketplaceItem .details .marketplaceItem__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.dashboard__container .dashboardMain .marketplaces__container .marketplace__items .marketplaceItem .details .marketplaceItem__title h3 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.dashboard__container .dashboardMain .marketplaces__container .marketplace__items .marketplaceItem .details .marketplaceItem__title .MuiButton-root {
+  gap: 5px;
+}
+.dashboard__container .dashboardMain .marketplaces__container .marketplace__items .marketplaceItem .details .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 8px;
+  gap: 10px;
+}
+.dashboard__container .dashboardMain .marketplaces__container .marketplace__items .marketplaceItem .details .info p {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0;
+  font-size: 14px;
+}

@@ -1,0 +1,31 @@
+.login__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+
+    
+    .logoImage{
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+    }
+
+    .MuiTextField-root, .MuiButton-root{
+        min-width: 25vw;
+        max-width: 80vw;
+    }
+
+    .MuiButton-root{
+        padding: 12px;
+        background: #34495e;
+        color: #fff;
+        
+        &:hover{
+            background: #34495e;
+        }
+    }
+}

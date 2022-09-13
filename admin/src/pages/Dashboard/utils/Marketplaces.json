@@ -1,0 +1,90 @@
+[
+    {
+        "slug": "worldcup-123",
+        "coverImage": "https://i.ytimg.com/vi/hgq2g4EPI2Y/maxresdefault.jpg",
+        "name": "World Cup 2022 - Qatar",
+        "summary": {
+            "fixturesCount": 13,
+            "questionsCount": 11,
+            "resultsCount": 9,
+            "predictionCount": 78
+        }
+    },
+    {
+        "slug": "champions-league-321",
+        "coverImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPWfrd7phqHBtLEQPQqSM9dc6BB50Xbt4csGYld0R1M76KFeElh3uPksQ4SZosbrqQmNg&usqp=CAU",
+        "name": "Champions League",
+        "summary": {
+            "fixturesCount": 30,
+            "questionsCount": 20,
+            "resultsCount": 15,
+            "predictionCount": 99
+        }
+    },
+    {
+        "slug": "worldcup-1234",
+        "coverImage": "https://i.ytimg.com/vi/hgq2g4EPI2Y/maxresdefault.jpg",
+        "name": "World Cup 2022 - Qatar",
+        "summary": {
+            "fixturesCount": 13,
+            "questionsCount": 11,
+            "resultsCount": 9,
+            "predictionCount": 78
+        }
+    },
+    {
+        "slug": "champions-league-3214",
+        "coverImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPWfrd7phqHBtLEQPQqSM9dc6BB50Xbt4csGYld0R1M76KFeElh3uPksQ4SZosbrqQmNg&usqp=CAU",
+        "name": "Champions League",
+        "summary": {
+            "fixturesCount": 30,
+            "questionsCount": 20,
+            "resultsCount": 15,
+            "predictionCount": 99
+        }
+    },
+    {
+        "slug": "worldcup-1235",
+        "coverImage": "https://i.ytimg.com/vi/hgq2g4EPI2Y/maxresdefault.jpg",
+        "name": "World Cup 2022 - Qatar",
+        "summary": {
+            "fixturesCount": 13,
+            "questionsCount": 11,
+            "resultsCount": 9,
+            "predictionCount": 78
+        }
+    },
+    {
+        "slug": "champions-league-3215",
+        "coverImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPWfrd7phqHBtLEQPQqSM9dc6BB50Xbt4csGYld0R1M76KFeElh3uPksQ4SZosbrqQmNg&usqp=CAU",
+        "name": "Champions League",
+        "summary": {
+            "fixturesCount": 30,
+            "questionsCount": 20,
+            "resultsCount": 15,
+            "predictionCount": 99
+        }
+    },
+    {
+        "slug": "worldcup-1236",
+        "coverImage": "https://i.ytimg.com/vi/hgq2g4EPI2Y/maxresdefault.jpg",
+        "name": "World Cup 2022 - Qatar",
+        "summary": {
+            "fixturesCount": 13,
+            "questionsCount": 11,
+            "resultsCount": 9,
+            "predictionCount": 78
+        }
+    },
+    {
+        "slug": "champions-league-3216",
+        "coverImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPWfrd7phqHBtLEQPQqSM9dc6BB50Xbt4csGYld0R1M76KFeElh3uPksQ4SZosbrqQmNg&usqp=CAU",
+        "name": "Champions League",
+        "summary": {
+            "fixturesCount": 30,
+            "questionsCount": 20,
+            "resultsCount": 15,
+            "predictionCount": 99
+        }
+    }
+]

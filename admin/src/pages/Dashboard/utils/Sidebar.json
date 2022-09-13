@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Home",
+        "icon": "ri-home-2-line",
+        "tabName": "home"
+    },
+    {
+        "name": "Profile",
+        "icon": "ri-user-line",
+        "tabName": "profile"
+    },
+    {
+        "name": "Marketplaces",
+        "icon": "ri-store-2-line",
+        "tabName": "marketplaces"
+    },
+    {
+        "name": "Fixtures",
+        "icon": "ri-gamepad-line",
+        "tabName": "fixtures"
+    },
+    {
+        "name": "Questionaires",
+        "icon": "ri-question-answer-line",
+        "tabName": "questionaires"
+    },
+    {
+        "name": "Results",
+        "icon": "ri-cup-line",
+        "tabName": "results"
+    },
+    {
+        "name": "Settings",
+        "icon": "ri-settings-line",
+        "tabName": "settings"
+    }
+]

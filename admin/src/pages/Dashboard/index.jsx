@@ -6,6 +6,9 @@ import Marketplaces from "./components/Marketplaces";
 import Questionaires from "./components/Questionaires";
 import Results from "./components/Results";
 import Settings from "./components/Settings";
+import Profile from "./components/Profile";
+import Fixtures from "./components/Fixtures";
+import SidebarItems from "./utils/Sidebar.json";
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = React.useState("home");
@@ -26,36 +29,18 @@ export default function Dashboard() {
         </div>
 
         <div className="sidebarMenuItems__container">
-          <Button
-            onClick={() => handleActiveTabChange("home")}
-            className={activeTab === "home" ? "active" : ""}
-          >
-            <i className="ri-home-2-line"></i> Home
-          </Button>
-          <Button
-            onClick={() => handleActiveTabChange("marketplaces")}
-            className={activeTab === "marketplaces" ? "active" : ""}
-          >
-            <i className="ri-store-2-line"></i> Marketplaces
-          </Button>
-          <Button
-            onClick={() => handleActiveTabChange("questionaires")}
-            className={activeTab === "questionaires" ? "active" : ""}
-          >
-            <i className="ri-question-answer-line"></i> Questionaires
-          </Button>
-          <Button
-            onClick={() => handleActiveTabChange("results")}
-            className={activeTab === "results" ? "active" : ""}
-          >
-            <i className="ri-cup-line"></i> Results
-          </Button>
-          <Button
-            onClick={() => handleActiveTabChange("settings")}
-            className={activeTab === "settings" ? "active" : ""}
-          >
-            <i className="ri-settings-line"></i> Settings
-          </Button>
+          {SidebarItems.map((data, index) => {
+            const { name, icon, tabName } = data;
+            return (
+              <Button
+                key={index}
+                onClick={() => handleActiveTabChange(tabName)}
+                className={activeTab === tabName ? "active" : ""}
+              >
+                <i className={icon}></i> {name}
+              </Button>
+            );
+          })}
         </div>
       </div>
       <div className="dashboardMain">
@@ -75,8 +60,12 @@ export default function Dashboard() {
         <div className="scrollable__container">
           {activeTab === "home" ? (
             <Home />
+          ) : activeTab === "profile" ? (
+            <Profile />
           ) : activeTab === "marketplaces" ? (
             <Marketplaces />
+          ) : activeTab === "fixtures" ? (
+            <Fixtures />
           ) : activeTab === "questionaires" ? (
             <Questionaires />
           ) : activeTab === "results" ? (

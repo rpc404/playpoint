@@ -127,7 +127,35 @@
 .dashboard__container .dashboardMain .marketplaces__container .title h2 {
   font-weight: 500;
 }
-.dashboard__container .dashboardMain .marketplaces__container .title .MuiButton-root {
+.dashboard__container .dashboardMain .marketplaces__container .title .rightTitleBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+.dashboard__container .dashboardMain .marketplaces__container .title .rightTitleBar .searchInputs {
+  border: 0.5px solid rgba(0, 0, 0, 0.0666666667);
+  padding: 10px 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+}
+.dashboard__container .dashboardMain .marketplaces__container .title .rightTitleBar .searchInputs input {
+  border: none;
+  font-size: 16px;
+  min-width: 15vw;
+}
+.dashboard__container .dashboardMain .marketplaces__container .title .rightTitleBar .searchInputs input:focus {
+  outline: none;
+}
+.dashboard__container .dashboardMain .marketplaces__container .title .rightTitleBar .MuiButton-root {
   gap: 5px;
   color: #fff;
   background: rgba(39, 174, 95, 0.8);
@@ -177,7 +205,7 @@
      object-fit: cover;
 }
 .dashboard__container .dashboardMain .marketplaces__container .marketplace__items .marketplaceItem .details {
-  padding: 10px 12px 16px 12px;
+  padding: 0 12px 15px 12px;
 }
 .dashboard__container .dashboardMain .marketplaces__container .marketplace__items .marketplaceItem .details .marketplaceItem__title {
   display: -webkit-box;
@@ -187,7 +215,7 @@
       -ms-flex-align: center;
           align-items: center;
 }
-.dashboard__container .dashboardMain .marketplaces__container .marketplace__items .marketplaceItem .details .marketplaceItem__title h3 {
+.dashboard__container .dashboardMain .marketplaces__container .marketplace__items .marketplaceItem .details .marketplaceItem__title h4 {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;

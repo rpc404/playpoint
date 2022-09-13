@@ -108,10 +108,35 @@
         h2 {
           font-weight: 500;
         }
-        .MuiButton-root {
-          gap: 5px;
-          color: #fff;
-          background: #27ae5fcc;
+
+        .rightTitleBar{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            
+            .searchInputs{
+                border: .5px solid #0001;
+                padding: 10px 8px;
+
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                input{
+                    border: none;
+                    font-size: 16px;
+                    min-width: 15vw;
+    
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
+
+            .MuiButton-root {
+              gap: 5px;
+              color: #fff;
+              background: #27ae5fcc;
+            }
         }
       }
 
@@ -152,13 +177,13 @@
           }
 
           .details {
-            padding: 10px 12px 16px 12px;
+            padding: 0 12px 15px 12px;
 
             .marketplaceItem__title{
                 display: flex;
                 align-items: center;
 
-                h3{
+                h4{
                     flex: 1;
                 }
 

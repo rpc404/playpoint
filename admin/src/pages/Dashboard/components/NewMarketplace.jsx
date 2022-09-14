@@ -2,7 +2,10 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import React from "react";
 
-export default function NewMarketplace() {
+export default function NewMarketplace({
+  resetMarketplaceFocused,
+  getMarketplaces,
+}) {
   /**
    * @dev for new marketplace validation
    */
@@ -47,7 +50,12 @@ export default function NewMarketplace() {
         import.meta.env.VITE_SERVER_URI + "api/marketplace/new-marketplace",
         formData
       )
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.status === 200) {
+          getMarketplaces();
+          resetMarketplaceFocused();
+        }
+      })
       .catch((err) => console.error(err));
   };
   return (

@@ -13,12 +13,23 @@ const newMarketplaceStorage = multer.diskStorage({
 });
 
 const newMarketplaceUpload = multer({ storage: newMarketplaceStorage });
-const { newMarketplaceController, getMarketplacesController } = require("../controllers/Marketplace");
+const {
+  newMarketplaceController,
+  getMarketplacesController,
+  updateMarketplacesController,
+  deleteMarketplaceController,
+} = require("../controllers/Marketplace");
 
-MarketplaceRouter.post(
-  "/new-marketplace",
-  newMarketplaceUpload.single("marketplaceCoverImage"),
-  newMarketplaceController
-).get("/get-marketplaces", getMarketplacesController);
+MarketplaceRouter.get("/get-marketplaces", getMarketplacesController)
+  .post(
+    "/new-marketplace",
+    newMarketplaceUpload.single("marketplaceCoverImage"),
+    newMarketplaceController
+  )
+  .patch(
+    "/update-marketplace",
+    updateMarketplacesController
+  )
+  .delete("/delete-marketplace", deleteMarketplaceController);
 
 module.exports = MarketplaceRouter;

@@ -11,6 +11,7 @@ export default function Marketplaces() {
     isFocused: false,
     marketplaceSlug: "",
   });
+  console.log(focusedMarketplace.isFocused)
 
   const handleFocusedMarketplace = (marketplaceSlug) => {
     setFocusedMarketplace({
@@ -63,7 +64,7 @@ export default function Marketplaces() {
   }, []);
 
   return (
-    <div className="marketplaces__container">
+    <div className="marketplaces__container" id="marketplaces__container">
       <div className="title">
         <h2>Marketplaces - 10 Active Marketplaces</h2>
         <div className="rightTitleBar">
@@ -221,6 +222,7 @@ export default function Marketplaces() {
           <NewMarketplace
             resetMarketplaceFocused={resetMarketplaceFocused}
             getMarketplaces={getMarketplaces}
+            setFocusedMarketplace = {setFocusedMarketplace}
           />
         )}
     </div>

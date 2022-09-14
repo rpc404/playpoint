@@ -1,8 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
-// import MarketplaceItems from "../utils/Marketplaces.json";
 import axios from "axios";
-import { renderImage } from "../utils/renderImage";
+import NewMarketplace from "./NewMarketplace";
 
 export default function Marketplaces() {
   /**
@@ -17,26 +16,6 @@ export default function Marketplaces() {
     setFocusedMarketplace({
       isFocused: true,
       marketplaceSlug,
-    });
-  };
-
-  /**
-   * @dev for new marketplace validation
-   */
-  const [newMarketplaceItem, setNewMarketplaceItem] = React.useState({
-    marketplaceSlug: "",
-    marketplaceName: "",
-    marketplaceCoverImage: null,
-  });
-
-  /**
-   * @dev onchange marketplace id also check if it matches with other marketplace id's
-   */
-  const handleMarketplaceID = (e) => {
-    setNewMarketplaceItem({
-      ...newMarketplaceItem,
-      id: e.target.value,
-      name: e.target.value,
     });
   };
 
@@ -234,44 +213,7 @@ export default function Marketplaces() {
 
       {focusedMarketplace.isFocused &&
         focusedMarketplace.marketplaceSlug === "new-item" && (
-          <div className="newMarketplaceItem__container">
-            <form>
-              <h3>New Marketplace</h3>
-              <input
-                type="text"
-                value={newMarketplaceItem.marketplaceSlug}
-                placeholder="Marketplace ID"
-                disabled
-              />
-              <input
-                type="text"
-                placeholder="Marketplace Name"
-                value={newMarketplaceItem.marketplaceName}
-                onChange={handleMarketplaceID}
-              />
-              {newMarketplaceItem.marketplaceCoverImage && (
-                <img
-                  src={URL.createObjectURL(
-                    newMarketplaceItem.marketplaceCoverImage
-                  )}
-                />
-              )}
-              <input
-                type="file"
-                placeholder="Cover Image"
-                onChange={(e) =>
-                  setNewMarketplaceItem({
-                    ...newMarketplaceItem,
-                    marketplaceCoverImage: e.target.files[0],
-                  })
-                }
-              />
-              <div className="buttons">
-                <Button>Submit</Button>
-                <Button>Reset</Button>
-              </div>
-            </form>
-          </div>
+          <NewMarketplace/>
         )}
     </div>
   );

@@ -19,6 +19,12 @@ export default function Marketplaces() {
     });
   };
 
+  const resetMarketplaceFocused = () => {
+    setFocusedMarketplace({
+      isFocused: false,
+      marketplaceSlug: "marketplaces",
+    });
+  };
   const styles = {
     equal: {
       flex: "1 1 0",
@@ -42,14 +48,19 @@ export default function Marketplaces() {
     },
   ]);
 
-  React.useEffect(() => {
+  // first check if stored on localstorage else request
+  const getMarketplaces = () => {
     axios
       .get("http://localhost:4000/api/marketplace/get-marketplaces")
       .then((res) => {
         setMarketplaceItems(res?.data?.data);
       })
       .catch((err) => console.error(err));
-  },[]);
+  };
+
+  React.useEffect(() => {
+    getMarketplaces();
+  }, []);
 
   return (
     <div className="marketplaces__container">
@@ -68,65 +79,60 @@ export default function Marketplaces() {
 
       {!focusedMarketplace.isFocused && (
         <div className="marketplace__items">
-          {marketplaceItems.length > 1 &&
-            marketplaceItems.map((data, index) => {
-              const {
-                marketplaceCoverImage,
-                marketplaceSlug,
-                marketplaceName,
-                marketSummary,
-              } = data;
-              const {
-                fixturesCount,
-                questionairesCount,
-                resultsCount,
-                predictionsCount,
-              } = marketSummary;
-              return (
-                <div key={index} className="marketplaceItem">
-                  <img
-                    className="marketplaceCoverImage"
-                    src={
-                      import.meta.env.VITE_SERVER_URI+"uploads/"+marketplaceCoverImage
-                    }
-                    alt={marketplaceSlug}
-                    loading="lazy"
-                  />
-                  <div className="details">
-                    <div className="marketplaceItem__title">
-                      <h4
-                        onClick={() =>
-                          handleFocusedMarketplace(marketplaceSlug)
-                        }
-                      >
-                        {marketplaceName}
-                      </h4>
-                      <Button>
-                        <i className="ri-edit-line"></i> Edit
-                      </Button>
-                    </div>
-                    <div className="info">
-                      <p>
-                        {fixturesCount} <br />
-                        Fixtures
-                      </p>
-                      <p>
-                        {questionairesCount} <br />
-                        Questions
-                      </p>
-                      <p>
-                        {resultsCount} <br />
-                        Results
-                      </p>
-                      <p>
-                        {predictionsCount} <br />
-                        Predictions
-                      </p>
-                    </div>
+          {marketplaceItems.map((data, index) => {
+            const {
+              marketplaceCoverImage,
+              marketplaceSlug,
+              marketplaceName,
+              marketSummary,
+            } = data;
+            const {
+              fixturesCount,
+              questionairesCount,
+              resultsCount,
+              predictionsCount,
+            } = marketSummary;
+            return (
+              <div key={index} className="marketplaceItem">
+                <img
+                  className="marketplaceCoverImage"
+                  src={import.meta.env.VITE_SERVER_URI + marketplaceCoverImage}
+                  alt={marketplaceSlug}
+                  loading="lazy"
+                />
+                <div className="details">
+                  <div className="marketplaceItem__title">
+                    <h4
+                      onClick={() => handleFocusedMarketplace(marketplaceSlug)}
+                    >
+                      {marketplaceName}
+                    </h4>
+                    <Button>
+                      <i className="ri-edit-line"></i> Edit
+                    </Button>
+                  </div>
+                  <div className="info">
+                    <p>
+                      {fixturesCount} <br />
+                      Fixtures
+                    </p>
+                    <p>
+                      {questionairesCount} <br />
+                      Questions
+                    </p>
+                    <p>
+                      {resultsCount} <br />
+                      Results
+                    </p>
+                    <p>
+                      {predictionsCount} <br />
+                      Predictions
+                    </p>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
         </div>
       )}
 
@@ -134,86 +140,88 @@ export default function Marketplaces() {
         focusedMarketplace.marketplaceSlug !== "new-item" && (
           <div className="focusedMarketplace__container">
             <p>Marketplaces / {focusedMarketplace.marketplaceSlug}</p>
-            {marketplaceItems.length > 1 &&
-              marketplaceItems.map(
-                (data, index) =>
-                  data.slug === focusedMarketplace.marketplaceSlug && (
-                    <div key={index}>
-                      <img
-                        className="coverImage"
-                        key={index}
-                        src={
-                          import.meta.env.VITE_SERVER_URI +
-                          data.marketplaceCoverImage
-                        }
-                        alt={data.marketplaceSlug}
-                        loading="lazy"
-                      />
+            {marketplaceItems.map(
+              (data, index) =>
+                data.marketplaceSlug === focusedMarketplace.marketplaceSlug && (
+                  <div key={index}>
+                    <img
+                      className="coverImage"
+                      key={index}
+                      src={
+                        import.meta.env.VITE_SERVER_URI +
+                        data.marketplaceCoverImage
+                      }
+                      alt={data.marketplaceSlug}
+                      loading="lazy"
+                    />
 
-                      <div className="titleContainer">
-                        <h2>{data.marketplaceName}</h2>
-                        <Button>
-                          <i className="ri-edit-line"></i> Edit Marketplace
-                        </Button>
-                      </div>
+                    <div className="titleContainer">
+                      <h2>{data.marketplaceName}</h2>
+                      <Button>
+                        <i className="ri-edit-line"></i> Edit Marketplace
+                      </Button>
+                    </div>
 
-                      <div className="summaryDetails">
-                        <p>
-                          <i className="ri-gamepad-line"></i>{" "}
-                          {data.marketSummary.fixturesCount} Fixtures
-                        </p>
-                        <p>
-                          <i className="ri-question-answer-line"></i>{" "}
-                          {data.marketSummary.questionairesCount} Questionaires
-                        </p>
-                        <p>
-                          <i className="ri-cup-line"></i>{" "}
-                          {data.marketSummary.resultsCount} Results
-                        </p>
-                        <p>
-                          <i className="ri-magic-line"></i>{" "}
-                          {data.marketSummary.predictionsCount} Predictions
-                        </p>
-                      </div>
+                    <div className="summaryDetails">
+                      <p>
+                        <i className="ri-gamepad-line"></i>{" "}
+                        {data.marketSummary.fixturesCount} Fixtures
+                      </p>
+                      <p>
+                        <i className="ri-question-answer-line"></i>{" "}
+                        {data.marketSummary.questionairesCount} Questionaires
+                      </p>
+                      <p>
+                        <i className="ri-cup-line"></i>{" "}
+                        {data.marketSummary.resultsCount} Results
+                      </p>
+                      <p>
+                        <i className="ri-magic-line"></i>{" "}
+                        {data.marketSummary.predictionsCount} Predictions
+                      </p>
+                    </div>
 
-                      <div className="summaryDetailed__container">
-                        <div className="fixturesContainer" style={styles.equal}>
-                          <div className="title">
-                            <h3>Fixtures</h3>
-                            <Button>
-                              <i className="ri-fullscreen-line"></i>
-                            </Button>
-                          </div>
+                    <div className="summaryDetailed__container">
+                      <div className="fixturesContainer" style={styles.equal}>
+                        <div className="title">
+                          <h3>Fixtures</h3>
+                          <Button>
+                            <i className="ri-fullscreen-line"></i>
+                          </Button>
                         </div>
-                        <div
-                          className="questionaireContainer"
-                          style={styles.equal}
-                        >
-                          <div className="title">
-                            <h3>Questionaires</h3>
-                            <Button>
-                              <i className="ri-fullscreen-line"></i>
-                            </Button>
-                          </div>
+                      </div>
+                      <div
+                        className="questionaireContainer"
+                        style={styles.equal}
+                      >
+                        <div className="title">
+                          <h3>Questionaires</h3>
+                          <Button>
+                            <i className="ri-fullscreen-line"></i>
+                          </Button>
                         </div>
-                        <div className="resultsContainer" style={styles.equal}>
-                          <div className="title">
-                            <h3>Results</h3>
-                            <Button>
-                              <i className="ri-fullscreen-line"></i>
-                            </Button>
-                          </div>
+                      </div>
+                      <div className="resultsContainer" style={styles.equal}>
+                        <div className="title">
+                          <h3>Results</h3>
+                          <Button>
+                            <i className="ri-fullscreen-line"></i>
+                          </Button>
                         </div>
                       </div>
                     </div>
-                  )
-              )}
+                  </div>
+                )
+            )}
           </div>
         )}
 
       {focusedMarketplace.isFocused &&
         focusedMarketplace.marketplaceSlug === "new-item" && (
-          <NewMarketplace/>
+          <NewMarketplace
+            resetMarketplaceFocused={resetMarketplaceFocused}
+            getMarketplaces={getMarketplaces}
+          />
         )}
     </div>
   );

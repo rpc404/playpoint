@@ -12,7 +12,7 @@
 
   .dashboardSidebar {
     min-width: 22vw;
-    background: #f1f2f6;
+    background: #dff9fb3f;
     padding: 22px 15px;
 
     .title {
@@ -22,10 +22,11 @@
       border-bottom: 0.5px solid #0001;
       padding-bottom: 12px;
       margin-bottom: 10px;
+      justify-content: center;
 
       img {
-        width: 35px;
-        height: 35px;
+        width: 40px;
+        height: 40px;
         object-fit: contain;
       }
     }
@@ -46,7 +47,7 @@
         gap: 10px;
 
         &.active {
-          background: #05a8ff33;
+          background: #2e86de49;
         }
       }
     }
@@ -57,7 +58,7 @@
     overflow: hidden;
 
     .dashboardMain__topbar {
-      background: #00aaff6d;
+      background: #2e86de;
       width: 100%;
       display: flex;
       justify-content: space-between;
@@ -69,7 +70,7 @@
         display: flex;
         gap: 8px;
         text-transform: capitalize;
-        color: #000;
+        color: #fff;
         font-size: 15px;
         font-weight: 500;
 
@@ -109,34 +110,34 @@
           font-weight: 500;
         }
 
-        .rightTitleBar{
+        .rightTitleBar {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          .searchInputs {
+            border: 0.5px solid #0001;
+            padding: 10px 8px;
+
             display: flex;
             align-items: center;
-            gap: 10px;
-            
-            .searchInputs{
-                border: .5px solid #0001;
-                padding: 10px 8px;
+            gap: 5px;
+            input {
+              border: none;
+              font-size: 16px;
+              min-width: 15vw;
 
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                input{
-                    border: none;
-                    font-size: 16px;
-                    min-width: 15vw;
-    
-                    &:focus{
-                        outline: none;
-                    }
-                }
+              &:focus {
+                outline: none;
+              }
             }
+          }
 
-            .MuiButton-root {
-              gap: 5px;
-              color: #fff;
-              background: #27ae5fcc;
-            }
+          .MuiButton-root {
+            gap: 5px;
+            color: #fff;
+            background: #27ae5fcc;
+          }
         }
       }
 
@@ -179,17 +180,17 @@
           .details {
             padding: 0 12px 15px 12px;
 
-            .marketplaceItem__title{
-                display: flex;
-                align-items: center;
+            .marketplaceItem__title {
+              display: flex;
+              align-items: center;
 
-                h4{
-                    flex: 1;
-                }
+              h4 {
+                flex: 1;
+              }
 
-                .MuiButton-root{
-                    gap: 5px;
-                }
+              .MuiButton-root {
+                gap: 5px;
+              }
             }
 
             .info {
@@ -206,15 +207,100 @@
         }
       }
 
-      .focusedMarketplace__container{
+      .focusedMarketplace__container {
         padding: 15px;
 
-        .coverImage{
+        .coverImage {
           width: 100%;
           height: 200px;
           object-fit: cover;
           margin-top: 10px;
           border-radius: 5px;
+        }
+
+        .titleContainer {
+          display: flex;
+          align-content: center;
+          justify-content: space-between;
+          margin-top: 10px;
+
+          .MuiButton-root {
+            gap: 8px;
+          }
+        }
+
+        .summaryDetails {
+          display: flex;
+          align-items: center;
+          gap: 25px;
+
+          p {
+            display: flex;
+            align-content: center;
+            gap: 5px;
+            color: #5a5a5a;
+          }
+        }
+
+        .summaryDetailed__container {
+          display: flex;
+          margin-top: 20px;
+          height: 43vh;
+
+          .questionaireContainer {
+            border-left: 0.5px solid #0001;
+            height: 100%;
+            border-right: 0.5px solid #0001;
+          }
+
+          .title {
+            padding: 0 15px;
+            .MuiButton-root {
+              min-width: 0;
+            }
+          }
+        }
+      }
+
+      .newMarketplaceItem__container {
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          align-items: center;
+          justify-content: center;
+          margin-top: 30px;
+
+          h3 {
+            font-weight: 500;
+            font-size: 22px;
+          }
+
+          img {
+            width: 60%;
+            height: 300px;
+            object-fit: cover;
+          }
+
+          input {
+            font-size: 16px;
+            padding: 8px 10px;
+            min-width: 50vw;
+            max-width: 60vw;
+          }
+
+          .buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            .MuiButton-root {
+              background: #000;
+              width: 20vw;
+              padding: 10px 0;
+              color: #fff;
+            }
+          }
         }
       }
     }

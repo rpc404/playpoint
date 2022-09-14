@@ -1,0 +1,5 @@
+*.lock
+*.lockb
+.env
+.dccache
+node_modules/

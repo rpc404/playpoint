@@ -108,7 +108,7 @@ export default function Marketplaces() {
                   <img
                     className="marketplaceCoverImage"
                     src={
-                      import.meta.env.VITE_SERVER_URI + marketplaceCoverImage
+                      import.meta.env.VITE_SERVER_URI+"uploads/"+marketplaceCoverImage
                     }
                     alt={marketplaceSlug}
                     loading="lazy"

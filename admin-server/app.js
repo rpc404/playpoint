@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-
+const path = require("path");
 /**
  * @dev proper usage of node-cache must be added including apache kafka
  * or any other cache protocols can be impleted
@@ -17,6 +17,10 @@ const csrf = require("csurf");
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
 const csrfProtection = csrf({ cookie: true });
+
+
+
+
 app
   .use(cookieParser())
   /**
@@ -71,8 +75,11 @@ const MarketplaceRouter = require("./routes/Marketplace");
 /**
  * @dev folder listener
  */
-const statik = require("node-static");
-const public = new statik.Server("./public");
+// const statik = require("node-static");
+// const public = new statik.Server("./uploads");
+
+
+
 
 // for parsing application/json
 app.use(bodyParser.json());
@@ -92,9 +99,9 @@ app
   })
   .use(cors())
   .use(morgan("dev"))
-  .use(express.static('uploads'))
+  .use('/uploads', express.static(path.join(__dirname, 'uploads')))
   .use("/api/marketplace", apiLimiter, csrfProtection, MarketplaceRouter)
-  .get("*", (req, res) =>
+  .all("*", (req, res) =>
     res.json({
       msg: "404 Not Found!",
     })

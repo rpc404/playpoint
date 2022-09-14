@@ -7,7 +7,7 @@
     "dev": "nodemon index.js"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "2.0.19"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

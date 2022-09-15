@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@mui/material";
+import { Button, Skeleton } from "@mui/material";
 import axios from "axios";
 import NewMarketplace from "./NewMarketplace";
 
@@ -63,7 +63,7 @@ export default function Marketplaces() {
   }, []);
 
   return (
-    <div className="marketplaces__container">
+    <div className="marketplaces__container" id="marketplaces__container">
       <div className="title">
         <h2>Marketplaces - 10 Active Marketplaces</h2>
         <div className="rightTitleBar">
@@ -79,60 +79,68 @@ export default function Marketplaces() {
 
       {!focusedMarketplace.isFocused && (
         <div className="marketplace__items">
-          {marketplaceItems.map((data, index) => {
-            const {
-              marketplaceCoverImage,
-              marketplaceSlug,
-              marketplaceName,
-              marketSummary,
-            } = data;
-            const {
-              fixturesCount,
-              questionairesCount,
-              resultsCount,
-              predictionsCount,
-            } = marketSummary;
-            return (
-              <div key={index} className="marketplaceItem">
-                <img
-                  className="marketplaceCoverImage"
-                  src={import.meta.env.VITE_SERVER_URI + marketplaceCoverImage}
-                  alt={marketplaceSlug}
-                  loading="lazy"
-                />
-                <div className="details">
-                  <div className="marketplaceItem__title">
-                    <h4
-                      onClick={() => handleFocusedMarketplace(marketplaceSlug)}
-                    >
-                      {marketplaceName}
-                    </h4>
-                    <Button>
-                      <i className="ri-edit-line"></i> Edit
-                    </Button>
-                  </div>
-                  <div className="info">
-                    <p>
-                      {fixturesCount} <br />
-                      Fixtures
-                    </p>
-                    <p>
-                      {questionairesCount} <br />
-                      Questions
-                    </p>
-                    <p>
-                      {resultsCount} <br />
-                      Results
-                    </p>
-                    <p>
-                      {predictionsCount} <br />
-                      Predictions
-                    </p>
+          {marketplaceItems.length > 0 ? (
+            marketplaceItems.map((data, index) => {
+              const {
+                marketplaceCoverImage,
+                marketplaceSlug,
+                marketplaceName,
+                marketSummary,
+              } = data;
+              const {
+                fixturesCount,
+                questionairesCount,
+                resultsCount,
+                predictionsCount,
+              } = marketSummary;
+              return (
+                <div key={index} className="marketplaceItem">
+                  <img
+                    className="marketplaceCoverImage"
+                    src={
+                      import.meta.env.VITE_SERVER_URI + marketplaceCoverImage
+                    }
+                    alt={marketplaceSlug}
+                    loading="lazy"
+                  />
+                  <div className="details">
+                    <div className="marketplaceItem__title">
+                      <h4
+                        onClick={() =>
+                          handleFocusedMarketplace(marketplaceSlug)
+                        }
+                      >
+                        {marketplaceName}
+                      </h4>
+                      <Button>
+                        <i className="ri-edit-line"></i> Edit
+                      </Button>
+                    </div>
+                    <div className="info">
+                      <p>
+                        {fixturesCount} <br />
+                        Fixtures
+                      </p>
+                      <p>
+                        {questionairesCount} <br />
+                        Questions
+                      </p>
+                      <p>
+                        {resultsCount} <br />
+                        Results
+                      </p>
+                      <p>
+                        {predictionsCount} <br />
+                        Predictions
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          ) : (
+            <Skeleton animation="wave" />
+          )}
         </div>
       )}
 
@@ -224,6 +232,7 @@ export default function Marketplaces() {
           <NewMarketplace
             resetMarketplaceFocused={resetMarketplaceFocused}
             getMarketplaces={getMarketplaces}
+            setFocusedMarketplace={setFocusedMarketplace}
           />
         )}
     </div>

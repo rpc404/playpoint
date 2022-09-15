@@ -5,7 +5,7 @@ import { IKImage, IKContext } from "imagekitio-react";
 export default function Helpbar() {
   return (
     <div className="helpbar__container">
-      <IKContext urlEndpoint="https://ik.imagekit.io/your_imagekit_id">
+      <IKContext urlEndpoint="https://ik.imagekit.io/playpoint">
         <IKImage src="https://ik.imagekit.io/domsan/fifa_K91-cF76y.png?ik-sdk-version=javascript-1.4.3&updatedAt=1662802427034" />
         <IKImage src="https://ik.imagekit.io/domsan/premiere_50mfIMZUo.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1662802235192" />
         <IKImage src="https://ik.imagekit.io/domsan/Easports_fifa_logo.svg_4tFjWslcH.png?ik-sdk-version=javascript-1.4.3&updatedAt=1662801195306" />

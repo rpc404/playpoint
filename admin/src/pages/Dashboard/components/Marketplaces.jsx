@@ -147,7 +147,10 @@ export default function Marketplaces() {
       {focusedMarketplace.isFocused &&
         focusedMarketplace.marketplaceSlug !== "new-item" && (
           <div className="focusedMarketplace__container">
+            <span style={{display:'flex',alignItems:'center'}}>
+             <Button variant="outlined" style={{marginRight:"10px"}} onClick={()=>resetMarketplaceFocused()}><i class="ri-arrow-go-back-line"></i> Back</Button>
             <p>Marketplaces / {focusedMarketplace.marketplaceSlug}</p>
+            </span>
             {marketplaceItems.map(
               (data, index) =>
                 data.marketplaceSlug === focusedMarketplace.marketplaceSlug && (

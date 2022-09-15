@@ -31,6 +31,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 const MarketplaceRouter = require("./routes/Marketplace");
+const FixtureRouter = require("./routes/Fixture");
+const QuestionaireRouter = require("./routes/Questionaire");
 
 // for parsing application/json
 app.use(bodyParser.json());
@@ -43,6 +45,8 @@ app
   .use(morgan("dev"))
   .use(express.static("uploads"))
   .use("/api/marketplace", MarketplaceRouter)
+  .use("/api/fixture", FixtureRouter)
+  .use("/api/questionaire", QuestionaireRouter)
   .get("*", (req, res) =>
     res.json({
       msg: "404 Not Found!",

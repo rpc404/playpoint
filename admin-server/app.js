@@ -33,6 +33,7 @@ const cors = require("cors");
 const MarketplaceRouter = require("./routes/Marketplace");
 const FixtureRouter = require("./routes/Fixture");
 const QuestionaireRouter = require("./routes/Questionaire");
+const ResultRouter = require("./routes/Result");
 
 // for parsing application/json
 app.use(bodyParser.json());
@@ -47,6 +48,7 @@ app
   .use("/api/marketplace", MarketplaceRouter)
   .use("/api/fixture", FixtureRouter)
   .use("/api/questionaire", QuestionaireRouter)
+  .use("/api/result", ResultRouter)
   .get("*", (req, res) =>
     res.json({
       msg: "404 Not Found!",

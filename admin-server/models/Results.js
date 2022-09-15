@@ -16,18 +16,9 @@ const returnType = (type, require, requiredMessage) => {
   };
 };
 
-const questionaireSchema = new Schema({
-  fixtureId: returnType(String, true, "Fixture ID is required!"),
-  questionaireType: returnType(Number, true, "Questionaire Type is required!"),
-  questionairePrice: returnType(
-    Number,
-    true,
-    "Questionaire Price is required!"
-  ),
-  questionaires: [
-    { question: returnType(String, true, "Questionaire is required!") },
-  ],
-  poolType: returnType(String, true, "Pool Type is required!"),
+const resultSchema = new Schema({
+  questionaireId: returnType(String, true, "Questionaire ID is required!"),
+  results: returnType(Array, true, "Results are required!"),
   created_at: {
     type: Date,
     default: Date.now(),
@@ -35,4 +26,4 @@ const questionaireSchema = new Schema({
   updated_at: Date,
 });
 
-module.exports = Model("questionaire", questionaireSchema);
+module.exports = Model("result", resultSchema);

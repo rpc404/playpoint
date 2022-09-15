@@ -5,6 +5,7 @@ import React from "react";
 export default function NewMarketplace({
   resetMarketplaceFocused,
   getMarketplaces,
+  setFocusedMarketplace
 }) {
   /**
    * @dev for new marketplace validation
@@ -36,6 +37,12 @@ export default function NewMarketplace({
       marketplaceCoverImage: null,
     });
   };
+
+  const handleGoBackButton = () => {
+    setFocusedMarketplace({
+      isFocused:false,
+    })
+  }
 
   const handleNewMarketplaceSubmit = async (e) => {
     e.preventDefault();
@@ -92,6 +99,7 @@ export default function NewMarketplace({
         <div className="buttons">
           <Button type="submit">Submit</Button>
           <Button onClick={() => handleResetInputs()}>Reset</Button>
+          <Button onClick={handleGoBackButton}>Go back</Button>
         </div>
       </form>
     </div>

@@ -116,14 +116,6 @@ export default function Navbar({ rpcAPI }) {
           >
             Marketplace
           </div>
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              navigate("/leagues");
-            }}
-          >
-            Leagues
-          </div>
         </div>
       </div>
       <div className="navbar__authentication">

@@ -38,12 +38,6 @@ export default function NewMarketplace({
     });
   };
 
-  const handleGoBackButton = () => {
-    setFocusedMarketplace({
-      isFocused:false,
-    })
-  }
-
   const handleNewMarketplaceSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -99,7 +93,6 @@ export default function NewMarketplace({
         <div className="buttons">
           <Button type="submit">Submit</Button>
           <Button onClick={() => handleResetInputs()}>Reset</Button>
-          <Button onClick={handleGoBackButton}>Go back</Button>
         </div>
       </form>
     </div>

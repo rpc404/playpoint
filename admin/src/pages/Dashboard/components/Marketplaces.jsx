@@ -139,7 +139,7 @@ export default function Marketplaces() {
               );
             })
           ) : (
-            <Skeleton animation="wave" />
+            <Skeleton animation="wave" variant = "rectangular" width={"23vw"} height= {"20vh"} />
           )}
         </div>
       )}

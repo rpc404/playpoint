@@ -5,20 +5,19 @@ import Leaderboards from "../pages/Leaderboards";
 import Profile from "../pages/Profile";
 import Showcases from "../pages/Showcases";
 import Prediction from "../pages/Prediction";
+import Marketplace from "../pages/Marketplace";
 
 export default function PageRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Showcases />} />
+      <Route path="/" element={<Marketplace />} />
+      <Route path="/showcases" element={<Showcases />} />
       {/* <Route path="/chats">
         <Route path=":room_id" element={<Chatroom />} />
         <Route path="" element={<Chatroom />} />
       </Route> */}
       <Route path="/profile" element={<Profile />} />
-      <Route path="/predict">
-        <Route path=":prediction_id" element={<Prediction />} />
-        <Route path="" element={<Prediction />} />
-      </Route>
+      <Route path="/predict" element={<Prediction />} />
       <Route path="/leaderboards" element={<Leaderboards />} />
       {/**
        * @dev 404 Page

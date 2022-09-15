@@ -20,7 +20,6 @@ const fixtureSchema = new Schema({
   marketplaceSlug: returnType(String, true, "Marketplace Slug is required!"),
   MatchNumber: {
     ...returnType(Number, true, "Match number is required!"),
-    unique: [true, "Match number must be unique!"],
   },
   RoundNumber: returnType(Number, true, "Round number is required!"),
   DateUtc: returnType(String, true, "Game date utc is required!"),

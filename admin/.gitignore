@@ -26,3 +26,5 @@ dist-ssr
 *.lockb
 
 .dccache
+
+prepros.config

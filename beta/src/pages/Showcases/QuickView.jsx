@@ -70,8 +70,8 @@ export default function QuickView({ handleModalClose }) {
               <i className="ri-map-pin-2-line"></i> {gameData?.Location}
             </div>
             <div className="actions">
-              <Button className="predictNow" onClick={() => navigate(`/predict/1`)} ><i className="ri-boxing-line"  ></i>Predict Now</Button>
-              <Button className="joinChat" onClick={() => navigate("/chats")} ><i className="ri-message-3-line"></i> Join Chat</Button>
+              <Button className="predictNow" onClick={() => navigate(`/predict`)} ><i className="ri-boxing-line"  ></i>Predict Now</Button>
+              {/* <Button className="joinChat" onClick={() => navigate("/chats")} ><i className="ri-message-3-line"></i> Join Chat</Button> */}
               <Button className="leaderboards" onClick={() => navigate("/leaderboards")} ><i className="ri-bar-chart-grouped-line"></i> Leaderboards</Button>
             </div>
           </div>

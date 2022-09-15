@@ -63,4 +63,7 @@ module.exports = {
       )
       .catch((error) => console.error(error));
   },
+  updateMarketplaceSummaryDataController: (req, res) => {
+    
+  }
 };

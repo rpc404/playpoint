@@ -9,7 +9,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
-import { IKImage, IKContext } from "imagekitio-react";
 
 export default function Navbar({ rpcAPI }) {
   const navigate = useNavigate();
@@ -97,9 +96,7 @@ export default function Navbar({ rpcAPI }) {
         }}
         className="logo__container"
       >
-        <IKContext urlEndpoint="https://ik.imagekit.io/your_imagekit_id">
-          <IKImage src="https://ik.imagekit.io/domsan/Logo_0vBSw9piY.webp?ik-sdk-version=javascript-1.4.3&updatedAt=1662803005580" />
-        </IKContext>
+          <img src="https://ik.imagekit.io/domsan/Logo_0vBSw9piY.webp?ik-sdk-version=javascript-1.4.3&updatedAt=1662803005580" />
         <h3>Playpoint</h3>
 
         <div className="navLinks">

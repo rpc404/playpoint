@@ -30,6 +30,7 @@ MarketplaceRouter.get("/get-marketplaces", getMarketplacesController)
     "/update-marketplace",
     updateMarketplacesController
   )
-  .delete("/delete-marketplace", deleteMarketplaceController);
+  .delete("/delete-marketplace", deleteMarketplaceController)
+  .patch("/update-marketplace-summary", deleteMarketplaceController)
 
 module.exports = MarketplaceRouter;

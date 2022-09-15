@@ -1,7 +1,8 @@
 import React from "react";
-import { Button, Skeleton } from "@mui/material";
+import { Button, Skeleton, Stack } from "@mui/material";
 import axios from "axios";
 import NewMarketplace from "./NewMarketplace";
+import EditMarketPlace from "./EditMarketPlace";
 
 export default function Marketplaces() {
   /**
@@ -12,12 +13,24 @@ export default function Marketplaces() {
     marketplaceSlug: "",
   });
 
+  const [editMarketPlace, setEditMarketPlace] = React.useState({
+    isFocused: false,
+  });
+
   const handleFocusedMarketplace = (marketplaceSlug) => {
     setFocusedMarketplace({
       isFocused: true,
       marketplaceSlug,
     });
   };
+
+  const handleEditButton = () => {
+    setEditMarketPlace({
+      isFocused: true,
+    });
+  };
+
+  console.log(editMarketPlace.isFocused);
 
   const resetMarketplaceFocused = () => {
     setFocusedMarketplace({
@@ -58,6 +71,17 @@ export default function Marketplaces() {
       .catch((err) => console.error(err));
   };
 
+  // const editMarketPlaces = () => {
+  //   axios
+  //     .patch("localhost:4000/api/marketplace/update-marketplace")
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e.message);
+  //     });
+  // };
+
   React.useEffect(() => {
     getMarketplaces();
   }, []);
@@ -79,7 +103,7 @@ export default function Marketplaces() {
 
       {!focusedMarketplace.isFocused && (
         <div className="marketplace__items">
-          {marketplaceItems.length > 0 ? (
+          {marketplaceItems.length > 1 ? (
             marketplaceItems.map((data, index) => {
               const {
                 marketplaceCoverImage,
@@ -112,7 +136,7 @@ export default function Marketplaces() {
                       >
                         {marketplaceName}
                       </h4>
-                      <Button>
+                      <Button onClick={() => handleEditButton()}>
                         <i className="ri-edit-line"></i> Edit
                       </Button>
                     </div>
@@ -139,7 +163,39 @@ export default function Marketplaces() {
               );
             })
           ) : (
-            <Skeleton animation="wave" variant = "rectangular" width={"23vw"} height= {"20vh"} />
+            <>
+              {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((data) => {
+                return (
+                  <Stack key={data}>
+                    <Skeleton
+                      animation="wave"
+                      variant="rectangular"
+                      width={"23vw"}
+                      height={"20vh"}
+                    />
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Skeleton width={200} height={40} />
+                      <Skeleton width={70} />
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      {[0, 1, 2, 3].map((data) => {
+                        return <Skeleton width={70} height={40} key={data} />;
+                      })}
+                    </div>
+                  </Stack>
+                );
+              })}
+            </>
           )}
         </div>
       )}
@@ -147,9 +203,15 @@ export default function Marketplaces() {
       {focusedMarketplace.isFocused &&
         focusedMarketplace.marketplaceSlug !== "new-item" && (
           <div className="focusedMarketplace__container">
-            <span style={{display:'flex',alignItems:'center'}}>
-             <Button variant="outlined" style={{marginRight:"10px"}} onClick={()=>resetMarketplaceFocused()}><i class="ri-arrow-go-back-line"></i> Back</Button>
-            <p>Marketplaces / {focusedMarketplace.marketplaceSlug}</p>
+            <span style={{ display: "flex", alignItems: "center" }}>
+              <Button
+                variant="outlined"
+                style={{ marginRight: "10px" }}
+                onClick={() => resetMarketplaceFocused()}
+              >
+                <i class="ri-arrow-go-back-line"></i> Back
+              </Button>
+              <p>Marketplaces / {focusedMarketplace.marketplaceSlug}</p>
             </span>
             {marketplaceItems.map(
               (data, index) =>
@@ -235,6 +297,14 @@ export default function Marketplaces() {
             setFocusedMarketplace={setFocusedMarketplace}
           />
         )}
+
+      {editMarketPlace.isFocused && (
+        <EditMarketPlace
+        // resetMarketplaceFocused={resetMarketplaceFocused}
+        // getMarketplaces={getMarketplaces}
+        // setFocusedMarketplace={setFocusedMarketplace}
+        />
+      )}
     </div>
   );
 }

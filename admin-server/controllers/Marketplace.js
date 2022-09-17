@@ -34,13 +34,14 @@ module.exports = {
       marketplaceSlug: sanitizeQueryInput(marketplaceSlug),
     });
 
-    Marketplace.updateOne(
+    console.log(marketplaceName,marketplaceSlug)
+    await Marketplace.updateOne(
       {
         marketplaceSlug: sanitizeQueryInput(marketplaceSlug),
       },
       {
         $set: {
-          marketplaceName: marketplaceName || marketplaceData.marketplaceName,
+          marketplaceName: marketplaceName,
         },
       }
     )

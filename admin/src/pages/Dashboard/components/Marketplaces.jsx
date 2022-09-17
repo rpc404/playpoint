@@ -13,6 +13,9 @@ export default function Marketplaces() {
     marketplaceSlug: "",
   });
 
+
+  const [editSlug, seteditSlug] = React.useState({});
+
   const handleFocusedMarketplace = (marketplaceSlug) => {
     setFocusedMarketplace({
       isFocused: true,
@@ -73,6 +76,13 @@ export default function Marketplaces() {
     })
   }
 
+  const handleEdit = (marketplace) => {
+    seteditSlug(marketplace);
+    setFocusedMarketplace({
+      isFocused:true,
+      marketplaceSlug:'edit-item'
+    })
+  }
   React.useEffect(() => {
     getMarketplaces();
   }, []);
@@ -130,7 +140,7 @@ export default function Marketplaces() {
                       >
                         {marketplaceName}
                       </h4>
-                      <Button>
+                      <Button onClick={()=>handleEdit({marketplaceName,marketplaceSlug,marketplaceCoverImage})}>
                         <i className="ri-edit-line"></i> Edit
                       </Button>
                       <Button onClick={()=>handleDelete(marketplaceSlug)}>
@@ -198,7 +208,8 @@ export default function Marketplaces() {
       )}
 
       {focusedMarketplace.isFocused &&
-        focusedMarketplace.marketplaceSlug !== "new-item" && (
+        focusedMarketplace.marketplaceSlug !== "new-item" &&
+        focusedMarketplace.marketplaceSlug !== "edit-item" && (
           <div className="focusedMarketplace__container">
             <p>Marketplaces / {focusedMarketplace.marketplaceSlug}</p>
             {marketplaceItems.map(
@@ -285,6 +296,16 @@ export default function Marketplaces() {
             setFocusedMarketplace={setFocusedMarketplace}
           />
         )}
+
+{focusedMarketplace.isFocused &&
+        focusedMarketplace.marketplaceSlug === "edit-item" && (
+          <EditMarketPlace
+            resetMarketplaceFocused={resetMarketplaceFocused}
+            editSlug={editSlug}
+            getMarketplaces={getMarketplaces}
+          />
+        )}
+
     </div>
   );
 }

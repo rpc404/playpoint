@@ -4,7 +4,7 @@ const { sanitizeQueryInput } = require("../utils/QuerySanitizer");
 module.exports = {
   getFixturesController: async (req, res) => {
     try {
-      const fixtures = await Fixture.find();
+      const fixtures = await Fixture.find()
       res.status(200).json({ fixtures });
     } catch (error) {
       console.error(error);

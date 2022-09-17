@@ -499,3 +499,107 @@
 .dashboard__container .dashboardMain .fixtures__container .fixtureItems__container .items .item__container:nth-child(2n) {
   background: rgba(0, 0, 0, 0.0666666667);
 }
+.dashboard__container .dashboardMain .questionaires__container .title {
+  padding: 0 15px 0 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 10px;
+}
+.dashboard__container .dashboardMain .questionaires__container .title .MuiButton-root {
+  gap: 5px;
+  color: #fff;
+  background: rgba(39, 174, 95, 0.8);
+}
+.dashboard__container .dashboardMain .questionaires__container .question__card {
+  -webkit-box-shadow: 1px 3px 21px -15px black;
+          box-shadow: 1px 3px 21px -15px black;
+  margin: 31px 0px;
+  display: -ms-grid;
+  display: grid;
+}
+.dashboard__container .dashboardMain .questionaires__container .question__card .card__header {
+  border-bottom: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background: black;
+  color: white;
+  padding: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.dashboard__container .dashboardMain .questionaires__container .question__card .card__header h2 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.dashboard__container .dashboardMain .questionaires__container .question__card .card__header p, .dashboard__container .dashboardMain .questionaires__container .question__card .card__header button {
+  margin: 0 10px;
+}
+.dashboard__container .dashboardMain .questionaires__container .question__card .card__body {
+  padding: 10px;
+}
+.dashboard__container .dashboardMain .questionaires__container .question__card .card__body p {
+  margin: 10px 0;
+}
+.dashboard__container .dashboardMain .questionaires__container .question__card .card__body h3 {
+  margin-top: 10px;
+}
+.dashboard__container .dashboardMain .questionaires__container .newQuestionaires__container form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 15px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 30px;
+}
+.dashboard__container .dashboardMain .questionaires__container .newQuestionaires__container form h3 {
+  font-weight: 500;
+  font-size: 22px;
+}
+.dashboard__container .dashboardMain .questionaires__container .newQuestionaires__container form img {
+  width: 60%;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.dashboard__container .dashboardMain .questionaires__container .newQuestionaires__container form input, .dashboard__container .dashboardMain .questionaires__container .newQuestionaires__container form select {
+  font-size: 16px;
+  padding: 8px 10px;
+  min-width: 50vw;
+  max-width: 60vw;
+}
+.dashboard__container .dashboardMain .questionaires__container .newQuestionaires__container form .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 15px;
+}
+.dashboard__container .dashboardMain .questionaires__container .newQuestionaires__container form .buttons .MuiButton-root {
+  background: #000;
+  width: 20vw;
+  padding: 10px 0;
+  color: #fff;
+}

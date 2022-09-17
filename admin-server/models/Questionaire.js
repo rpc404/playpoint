@@ -9,15 +9,16 @@ const Model = mongoose.model;
  * @param {*} requiredMessage => If the boolean for require === true, then the specific message descripting why it's required
  * @returns Returns an object with type and require value
  */
-const returnType = (type, require, requiredMessage) => {
+const returnType = (type, require, requiredMessage,ref=null) => {
   return {
     type,
     require: require === true ? [require, requiredMessage] : [false],
+    ref:ref?ref:""
   };
 };
 
 const questionaireSchema = new Schema({
-  fixtureId: returnType(String, true, "Fixture ID is required!"),
+  fixtureId: returnType(Schema.Types.ObjectId, true, "Fixture ID is required!",'fixture'),
   questionaireType: returnType(Number, true, "Questionaire Type is required!"),
   questionairePrice: returnType(
     Number,

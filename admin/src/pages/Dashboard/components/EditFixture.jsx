@@ -3,26 +3,16 @@ import axios from "axios";
 import React from "react";
 import DateTimePicker from 'react-datetime-picker';
 
-export default function NewFixtures({
+export default function EditFixture({
     setIsHome,
     setAction,
-    getFixtures
+    getFixtures,
+    editItem
 }) {
     /**
      * @dev for new fixture validation
      */
-    const [newFixtureItem, setNewFixtureItem] = React.useState({
-        marketplaceSlug: "",
-        MatchNumber: "",
-        RoundNumber: "",
-        DateUtc: "",
-        Location: "",
-        HomeTeam: "",
-        AwayTeam: "",
-        Group: "",
-        HomeTeamScore: "",
-        AwayTeamScore: ""
-    });
+    const [newFixtureItem, setNewFixtureItem] = React.useState(editItem);
 
     const [marketplaceItems, setMarketplaceItems] = React.useState([]);
     const getMarketplaces = () => {
@@ -57,10 +47,12 @@ export default function NewFixtures({
     const handleNewFixture = async (e) => {
         e.preventDefault();
 
-        axios
-            .post(
-                import.meta.env.VITE_SERVER_URI + "api/fixture/new-fixture",
-                newFixtureItem
+        axios(
+                import.meta.env.VITE_SERVER_URI + "api/fixture/update-fixture",
+                {
+                    method:'patch',
+                    data:newFixtureItem
+                }
             )
             .then((res) => {
                 if (res.status === 200) {
@@ -74,7 +66,7 @@ export default function NewFixtures({
     return (
         <div className="newfixtures__container">
             <form onSubmit={handleNewFixture}>
-                <h3>Add New Fixture</h3>
+                <h3>Edit Fixture -  {newFixtureItem.HomeTeam} vs {newFixtureItem.AwayTeam}</h3>
                 <select
                     className="input"
                     onChange={(e) => setNewFixtureItem({ ...newFixtureItem, marketplaceSlug: e.target.value })}

@@ -3,7 +3,7 @@ import { Button, Skeleton, Stack } from "@mui/material";
 import axios from "axios";
 import NewMarketplace from "./NewMarketplace";
 import EditMarketPlace from "./EditMarketPlace";
-
+const server = import.meta.env.VITE_SERVER_URI;
 export default function Marketplaces() {
   /**
    * @dev for marketplace focus handler
@@ -59,6 +59,20 @@ export default function Marketplaces() {
       .catch((err) => console.error(err));
   };
 
+  // delete marketplace
+  const handleDelete = (marketplaceSlug) =>{
+    axios(server+'api/marketplace/delete-marketplace',{
+      method:'delete',
+      data:{
+        marketplaceSlug
+      }
+    }).then(res=>{
+      if(res.status==200){
+        getMarketplaces();
+      }
+    })
+  }
+
   React.useEffect(() => {
     getMarketplaces();
   }, []);
@@ -66,6 +80,7 @@ export default function Marketplaces() {
   return (
     <div className="marketplaces__container">
       <div className="title">
+       {focusedMarketplace.isFocused && <Button onClick={()=>resetMarketplaceFocused()}>BACK</Button> }
         <h2>
           Marketplaces - 10 Active Marketplaces
         </h2>
@@ -117,6 +132,9 @@ export default function Marketplaces() {
                       </h4>
                       <Button>
                         <i className="ri-edit-line"></i> Edit
+                      </Button>
+                      <Button onClick={()=>handleDelete(marketplaceSlug)}>
+                      <i className="ri-delete-bin-2-line"></i>Delete
                       </Button>
                     </div>
                     <div className="info">

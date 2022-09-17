@@ -1,5 +1,6 @@
 const Marketplace = require("../models/Marketplace");
 const { sanitizeQueryInput } = require("../utils/QuerySanitizer");
+const fs = require('fs');
 
 module.exports = {
   newMarketplaceController: (req, res) => {
@@ -53,11 +54,20 @@ module.exports = {
   deleteMarketplaceController: (req, res) => {
     const { marketplaceSlug } = req.body;
 
+    const deleteImage = Marketplace.findOne({marketplaceSlug}).then(res=>{
+      // console.log(res);
+      try {
+        fs.unlinkSync('uploads/'+ res.marketplaceCoverImage);
+      } catch (error) {
+        console.log(error)
+      }
+    })
+    
     const deleteMarketplace = Marketplace.deleteOne({
       marketplaceSlug: sanitizeQueryInput(marketplaceSlug),
     });
 
-    Promise.all([deleteMarketplace])
+    Promise.all([deleteMarketplace,deleteImage])
       .then(() =>
         res.status(200).json({ message: "Marketplace Deleted Successfully!" })
       )

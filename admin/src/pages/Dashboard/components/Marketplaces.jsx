@@ -4,6 +4,7 @@ import axios from "axios";
 import NewMarketplace from "./NewMarketplace";
 import EditMarketPlace from "./EditMarketPlace";
 const server = import.meta.env.VITE_SERVER_URI;
+
 export default function Marketplaces() {
   /**
    * @dev for marketplace focus handler

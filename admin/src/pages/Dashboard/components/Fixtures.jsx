@@ -1,24 +1,53 @@
 import { Button } from "@mui/material";
 import axios from "axios";
 import React from "react";
+import NewFixtures from './NewFixtures'
 
 export default function Fixtures() {
   const [fixturesItems, setFixturesItems] = React.useState([]);
+  const [isHome,setIsHome] = React.useState(true);
+  const [action,setAction] = React.useState("");
+
+  const getFixtures = () =>{
+    axios
+    .get(`${import.meta.env.VITE_SERVER_URI}api/fixture/get-fixtures`)
+    .then((res) => setFixturesItems(res.data?.fixtures))
+    .catch((err) => console.error(err));
+  }
 
   React.useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_SERVER_URI}api/fixture/get-fixtures`)
-      .then((res) => setFixturesItems(res.data?.fixtures))
-      .catch((err) => console.error(err));
+    getFixtures();
   }, []);
+
+  const handleAddItem = ()=>{
+    setIsHome(false);
+    setAction('add-item');
+  }
+
+  const deleteItem = (id)=>{
+    axios(`${import.meta.env.VITE_SERVER_URI}api/fixture/delete-fixture`,{
+      method:'delete',
+      data:{_id:id}
+    })
+    .then((res) =>{
+      if(res.status===200){
+        alert(res.data.message);
+        getFixtures();
+      }
+    })
+    .catch((err) => console.error(err));
+  }
+  
+
   return (
     <div className="fixtures__container">
       <div className="fixturesCoverImage"></div>
-
+      {isHome && 
+      <>
       <div className="title">
         <h2>Fixtures - 10 Fixtures</h2>
         <div className="rightTitleBar">
-          <Button>
+          <Button onClick={()=>handleAddItem()}>
             <i className="ri-menu-add-line"></i> Add Item
           </Button>
         </div>
@@ -56,13 +85,20 @@ export default function Fixtures() {
                 <p>{data.Group}</p>
                 <p>
                   <Button><i className="ri-edit-2-line"></i> Edit</Button>
-                  <Button><i className="ri-delete-bin-5-line"></i> Delete</Button>
+                  <Button onClick={()=>deleteItem(data._id)}><i className="ri-delete-bin-5-line"></i> Delete</Button>
                 </p>
               </div>
             );
           })}
         </div>
       </div>
+      </>
+      }
+      {
+        !isHome && action==='add-item' &&
+        <NewFixtures setIsHome={setIsHome} setAction={setAction} getFixtures={getFixtures} />
+      }
+
     </div>
   );
 }

@@ -122,6 +122,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
+
             input {
               border: none;
               font-size: 16px;
@@ -198,6 +199,7 @@
               align-items: center;
               margin-top: 8px;
               gap: 10px;
+
               p {
                 flex: 1 1 0;
                 font-size: 14px;
@@ -255,6 +257,7 @@
 
           .title {
             padding: 0 15px;
+
             .MuiButton-root {
               min-width: 0;
             }
@@ -329,14 +332,56 @@
         }
       }
 
+      .newfixtures__container {
+
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          align-items: center;
+          justify-content: center;
+          margin-top: 30px;
+
+          h3 {
+            font-weight: 500;
+            font-size: 22px;
+          }
+
+          img {
+            width: 60%;
+            height: 300px;
+            object-fit: cover;
+          }
+
+          .input {
+            font-size: 16px;
+            padding: 8px 10px;
+            min-width: 50vw;
+            max-width: 60vw;
+          }
+
+          .buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            .MuiButton-root {
+              background: #000;
+              width: 20vw;
+              padding: 10px 0;
+              color: #fff;
+            }
+          }
+        }
+      }
+
       .fixturesCoverImage {
         width: 100%;
         height: 200px;
         padding: 12px;
         margin: 12px 0;
         border-radius: 20px;
-        background: url("https://images.unsplash.com/photo-1522069213448-443a614da9b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80")
-          no-repeat fixed center center;
+        background: url("https://images.unsplash.com/photo-1522069213448-443a614da9b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80") no-repeat fixed center center;
         background-size: cover;
       }
 
@@ -371,11 +416,12 @@
           .item__container {
             display: flex;
             align-items: center;
+
             p {
               flex: 1 1 0;
               font-size: 14px;
 
-              .MuiButton-root:last-child{
+              .MuiButton-root:last-child {
                 color: red;
               }
 
@@ -386,12 +432,99 @@
               }
             }
 
-            &:nth-child(2n){
+            &:nth-child(2n) {
               background: #0001;
             }
           }
         }
       }
+    }
+
+    .questionaires__container {
+      .title {
+        padding: 0 15px 0 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+        .MuiButton-root {
+          gap: 5px;
+          color: #fff;
+          background: #27ae5fcc;
+        }
+      }
+      .question__card {
+        box-shadow: 1px 3px 21px -15px black;
+        margin: 31px 0px;
+        display: grid;
+
+        .card__header {
+          border-bottom: 1px solid black;
+          display: flex;
+          justify-content: space-around;
+          background: black;
+          color: white;
+          padding: 10px;
+          align-items: center;
+          h2{
+            flex: 1;
+          }
+          p,button{
+            margin: 0 10px;
+          }
+        }
+        .card__body{
+          padding: 10px;
+          p{
+            margin: 10px 0;
+          }
+          h3{
+            margin-top: 10px;
+          }
+        }
+      }
+      .newQuestionaires__container{
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+          align-items: center;
+          justify-content: center;
+          margin-top: 30px;
+
+          h3 {
+            font-weight: 500;
+            font-size: 22px;
+          }
+
+          img {
+            width: 60%;
+            height: 300px;
+            object-fit: cover;
+          }
+
+          input,select {
+            font-size: 16px;
+            padding: 8px 10px;
+            min-width: 50vw;
+            max-width: 60vw;
+          }
+
+          .buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            .MuiButton-root {
+              background: #000;
+              width: 20vw;
+              padding: 10px 0;
+              color: #fff;
+            }
+          }
+        }
+      }
+
     }
   }
 }

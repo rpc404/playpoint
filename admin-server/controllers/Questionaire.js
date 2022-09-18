@@ -3,7 +3,7 @@ const { sanitizeQueryInput } = require("../utils/QuerySanitizer");
 
 module.exports = {
   getQuestionaireController: (req, res) => {
-    Questionaire.find()
+    Questionaire.find().populate('fixtureId')
       .then((response) => {
         res.status(200).json(response);
       })

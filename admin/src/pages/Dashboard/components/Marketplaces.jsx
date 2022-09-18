@@ -14,7 +14,6 @@ export default function Marketplaces() {
     marketplaceSlug: "",
   });
 
-
   const [editSlug, seteditSlug] = React.useState({});
 
   const handleFocusedMarketplace = (marketplaceSlug) => {
@@ -64,26 +63,26 @@ export default function Marketplaces() {
   };
 
   // delete marketplace
-  const handleDelete = (marketplaceSlug) =>{
-    axios(server+'api/marketplace/delete-marketplace',{
-      method:'delete',
-      data:{
-        marketplaceSlug
-      }
-    }).then(res=>{
-      if(res.status==200){
+  const handleDelete = (marketplaceSlug) => {
+    axios(server + "api/marketplace/delete-marketplace", {
+      method: "delete",
+      data: {
+        marketplaceSlug,
+      },
+    }).then((res) => {
+      if (res.status == 200) {
         getMarketplaces();
       }
-    })
-  }
+    });
+  };
 
   const handleEdit = (marketplace) => {
     seteditSlug(marketplace);
     setFocusedMarketplace({
-      isFocused:true,
-      marketplaceSlug:'edit-item'
-    })
-  }
+      isFocused: true,
+      marketplaceSlug: "edit-item",
+    });
+  };
   React.useEffect(() => {
     getMarketplaces();
   }, []);
@@ -91,10 +90,10 @@ export default function Marketplaces() {
   return (
     <div className="marketplaces__container">
       <div className="title">
-       {focusedMarketplace.isFocused && <Button onClick={()=>resetMarketplaceFocused()}>BACK</Button> }
-        <h2>
-          Marketplaces - 10 Active Marketplaces
-        </h2>
+        {focusedMarketplace.isFocused && (
+          <Button onClick={() => resetMarketplaceFocused()}>BACK</Button>
+        )}
+        <h2>Marketplaces - 10 Active Marketplaces</h2>
         <div className="rightTitleBar">
           <div className="searchInputs">
             <i className="ri-search-2-line"></i>
@@ -141,11 +140,19 @@ export default function Marketplaces() {
                       >
                         {marketplaceName}
                       </h4>
-                      <Button onClick={()=>handleEdit({marketplaceName,marketplaceSlug,marketplaceCoverImage})}>
+                      <Button
+                        onClick={() =>
+                          handleEdit({
+                            marketplaceName,
+                            marketplaceSlug,
+                            marketplaceCoverImage,
+                          })
+                        }
+                      >
                         <i className="ri-edit-line"></i> Edit
                       </Button>
-                      <Button onClick={()=>handleDelete(marketplaceSlug)}>
-                      <i className="ri-delete-bin-2-line"></i>Delete
+                      <Button onClick={() => handleDelete(marketplaceSlug)}>
+                        <i className="ri-delete-bin-2-line"></i>Delete
                       </Button>
                     </div>
                     <div className="info">
@@ -298,7 +305,7 @@ export default function Marketplaces() {
           />
         )}
 
-{focusedMarketplace.isFocused &&
+      {focusedMarketplace.isFocused &&
         focusedMarketplace.marketplaceSlug === "edit-item" && (
           <EditMarketPlace
             resetMarketplaceFocused={resetMarketplaceFocused}
@@ -306,7 +313,6 @@ export default function Marketplaces() {
             getMarketplaces={getMarketplaces}
           />
         )}
-
     </div>
   );
 }

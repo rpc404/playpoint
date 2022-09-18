@@ -28,7 +28,13 @@ function NewQuestionaires({ setisHome, setAction,getQuestions }) {
     const getFixtures = () => {
         axios
             .get(`${import.meta.env.VITE_SERVER_URI}api/fixture/get-fixtures`)
-            .then((res) => setFixturesItems(res.data?.fixtures))
+            .then((res) => {
+                setFixturesItems(res.data?.fixtures)
+                setnewQuestionaires({
+                    ...newQuestionaires,
+                    fixtureId:res.data?.fixtures[0]._id
+                })
+            })
             .catch((err) => console.error(err));
     }
 
@@ -40,9 +46,9 @@ function NewQuestionaires({ setisHome, setAction,getQuestions }) {
     const handleResetInputs = () =>{
         setnewQuestionaires({
             fixtureId:"",
-            questionaireType:"",
+            questionaireType:3,
             questionairePrice:"",
-            poolType:"",
+            poolType:"duo",
             questionaires:[
                 { question:""},
                 { question:""},
@@ -71,6 +77,21 @@ function NewQuestionaires({ setisHome, setAction,getQuestions }) {
         })
         .catch((err) => console.error(err));
     }
+
+    const Inputs = ()=>{
+        const temp =[];
+        for (let index = 0; index < newQuestionaires.questionaireType; index++) {
+           temp.push(<input 
+            type="text" 
+            placeholder={"Question "+(index+1)} 
+            value={newQuestionaires.questionaires[index].question}
+            onChange={
+                e=>handleQuestion(index,e.target.value)
+            } />)
+        }
+        return temp;
+    }
+
     
     return (
         <div className='newQuestionaires__container'>
@@ -88,12 +109,14 @@ function NewQuestionaires({ setisHome, setAction,getQuestions }) {
                     value={newQuestionaires.questionairePrice}
                     onChange={e=>setnewQuestionaires({...newQuestionaires,questionairePrice:e.target.value})}
                 />
-                <input 
-                    type="number" 
-                    placeholder='Questionaire Type' 
-                    value={newQuestionaires.questionaireType} 
-                    onChange={e=>setnewQuestionaires({...newQuestionaires,questionaireType:e.target.value})}
-                />
+    
+                <select 
+                onChange={e=>setnewQuestionaires({...newQuestionaires,questionaireType:e.target.value})}
+                value={newQuestionaires.questionaireType} 
+                >
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
                 <select 
                     value={newQuestionaires.poolType}
                     onChange={e=>setnewQuestionaires({...newQuestionaires,poolType:e.target.value})}
@@ -101,35 +124,7 @@ function NewQuestionaires({ setisHome, setAction,getQuestions }) {
                     <option value="duo">Duo</option>
                     <option value="trio">Trio</option>
                 </select>
-                    <input 
-                        type="text" 
-                        placeholder={"Question 1"} 
-                        value={newQuestionaires.questionaires[0].question}
-                        onChange={
-                            e=>handleQuestion(0,e.target.value)
-                        }
-                        />
-                    <input 
-                        type="text" 
-                        placeholder={"Question 2"} 
-                        value={newQuestionaires.questionaires[1].question}
-                        onChange={
-                            e=>handleQuestion(1,e.target.value)
-                        } />
-                    <input 
-                        type="text" 
-                        placeholder={"Question 3"} 
-                        value={newQuestionaires.questionaires[2].question} 
-                        onChange={
-                            e=>handleQuestion(2,e.target.value)
-                        }/>
-                    <input 
-                        type="text" 
-                        placeholder={"Question 4"} 
-                        value={newQuestionaires.questionaires[3].question}
-                        onChange={
-                            e=>handleQuestion(3,e.target.value)
-                        } />
+                <Inputs />
                 {/* <Button onClick={()=>addField()}>Add More Question</Button> */}
                 <div className="buttons">
                     <Button type="submit">Submit</Button>

@@ -5,17 +5,13 @@ import React, { useState } from 'react'
 function NewQuestionaires({ setisHome, setAction,getQuestions }) {
 
     const [FixturesItems, setFixturesItems] = React.useState([])
+    const [noInputs, setnoInputs] = React.useState([]);
     const [newQuestionaires, setnewQuestionaires] = React.useState({
         fixtureId:"",
-        questionaireType:"",
+        questionaireType:3,
         questionairePrice:"",
-        poolType:"",
-        questionaires:[
-            { question:""},
-            { question:""},
-            { question:""},
-            { question:""}
-        ]
+        poolType:"unlimited",
+        questionaires:[]
     })
    
 
@@ -48,13 +44,8 @@ function NewQuestionaires({ setisHome, setAction,getQuestions }) {
             fixtureId:"",
             questionaireType:3,
             questionairePrice:"",
-            poolType:"duo",
-            questionaires:[
-                { question:""},
-                { question:""},
-                { question:""},
-                { question:""}
-            ]
+            poolType:"unlimited",
+            questionaires:[]
         })
     }
     const handleQuestion = (index,value)=>{
@@ -78,19 +69,17 @@ function NewQuestionaires({ setisHome, setAction,getQuestions }) {
         .catch((err) => console.error(err));
     }
 
-    const Inputs = ()=>{
-        const temp =[];
-        for (let index = 0; index < newQuestionaires.questionaireType; index++) {
-           temp.push(<input 
-            type="text" 
-            placeholder={"Question "+(index+1)} 
-            value={newQuestionaires.questionaires[index].question}
-            onChange={
-                e=>handleQuestion(index,e.target.value)
-            } />)
-        }
-        return temp;
-    }
+  
+    React.useEffect(() => {
+        let arr = []
+      for (let index = 1; index <=newQuestionaires.questionaireType; index++) {
+            arr.push(index);
+      }
+      setnoInputs(arr);
+    }, [newQuestionaires.questionaireType])
+    
+
+
 
     
     return (
@@ -117,15 +106,26 @@ function NewQuestionaires({ setisHome, setAction,getQuestions }) {
                     <option value="3">3</option>
                     <option value="4">4</option>
                 </select>
-                <select 
+                <select
                     value={newQuestionaires.poolType}
                     onChange={e=>setnewQuestionaires({...newQuestionaires,poolType:e.target.value})}
                     >
+                    <option value="unlimited">Unlimited</option>
                     <option value="duo">Duo</option>
                     <option value="trio">Trio</option>
+                    <option value="nonet">Nonet</option>
                 </select>
-                <Inputs />
-                {/* <Button onClick={()=>addField()}>Add More Question</Button> */}
+                {
+                     noInputs.map((i,index)=>
+                     <input 
+                     type="text" 
+                     key={index}
+                     placeholder={"Question "+(index+1)} 
+                     value={newQuestionaires.questionaires[index]?.question || ""}
+                     onChange={
+                         e=>handleQuestion(index,e.target.value)
+                     } />)
+                }
                 <div className="buttons">
                     <Button type="submit">Submit</Button>
                     <Button onClick={() => handleResetInputs()}>Reset</Button>

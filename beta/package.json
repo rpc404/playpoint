@@ -24,7 +24,7 @@
     "reaviz": "13.1.8",
     "remixicon": "2.5.0",
     "util": "0.12.4",
-    "web-vitals": "3.0.1"
+    "web-vitals": "3.5.2"
   },
   "scripts": {
     "dev": "vite",

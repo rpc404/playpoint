@@ -8,7 +8,7 @@
     "@emotion/styled": "11.10.4",
     "@esbuild-plugins/node-modules-polyfill": "0.1.4",
     "@mui/material": "5.10.5",
-    "axios": "0.27.2",
+    "axios": "0.28.0",
     "buffer": "6.0.3",
     "ethers": "5.7.0",
     "events": "3.3.0",

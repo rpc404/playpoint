@@ -16,7 +16,7 @@
     "express-rate-limit": "^6.4.0",
     "got": "12.1.0",
     "helmet": "^5.1.0",
-    "joi": "^17.6.0",
+    "joi": "^18.2.1",
     "jsonwebtoken": "^8.5.1",
     "mongo-sanitize": "^1.1.0",
     "mongoose": "^6.4.0",
